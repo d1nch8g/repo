@@ -14,7 +14,6 @@ check:
 run:
 	docker compose down &
 	flutter build web &
-	# chromium --disable-web-security http://localhost:8080/ &
 	go run . -w ${pwd}/build/web -u ${USER} -f pretty run
 
 evans:
