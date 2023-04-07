@@ -30,7 +30,7 @@ USER $user
 WORKDIR /home/$user
 
 RUN git clone https://aur.archlinux.org/yay.git
-RUN cd yay && makepkg -sri --needed --noconfirm
+RUN cd yay && makepkg -sri --needed --noconfirm && sudo  mv *.pkg.tar.zst /var/cache/pacman/pkg
 RUN cd && rm -rf .cache yay
 
 COPY --from=go-build /src/go-pacman .

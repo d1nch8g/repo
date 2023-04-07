@@ -1,4 +1,4 @@
-module dancheg97.ru/dancheg97/ctlpkg
+module dancheg97.ru/dancheg97/fleupkg
 
 go 1.19
 

@@ -1,4 +1,4 @@
-name: ctlpkg
+name: fleupkg
 description: CtlOS package repository UI.
 
 version: 1.0.0+1

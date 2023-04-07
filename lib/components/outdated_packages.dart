@@ -1,6 +1,6 @@
-import 'package:ctlpkg/generated/v1/pacman.pb.dart';
-import 'package:ctlpkg/components/ctl_button.dart';
-import 'package:ctlpkg/components/update_packages.dart';
+import 'package:fleupkg/generated/v1/pacman.pb.dart';
+import 'package:fleupkg/components/ctl_button.dart';
+import 'package:fleupkg/components/update_packages.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';

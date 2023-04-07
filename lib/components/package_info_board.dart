@@ -1,5 +1,5 @@
-import 'package:ctlpkg/constants.dart';
-import 'package:ctlpkg/generated/v1/pacman.pbgrpc.dart';
+import 'package:fleupkg/constants.dart';
+import 'package:fleupkg/generated/v1/pacman.pbgrpc.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 

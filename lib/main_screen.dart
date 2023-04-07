@@ -1,11 +1,11 @@
-import 'package:ctlpkg/components/header.dart';
-import 'package:ctlpkg/components/outdated_packages.dart';
-import 'package:ctlpkg/components/package_info_board.dart';
-import 'package:ctlpkg/components/side_menu.dart';
-import 'package:ctlpkg/constants.dart';
-import 'package:ctlpkg/controllers/menu_app_controller.dart';
-import 'package:ctlpkg/generated/v1/pacman.pb.dart';
-import 'package:ctlpkg/responsive.dart';
+import 'package:fleupkg/components/header.dart';
+import 'package:fleupkg/components/outdated_packages.dart';
+import 'package:fleupkg/components/package_info_board.dart';
+import 'package:fleupkg/components/side_menu.dart';
+import 'package:fleupkg/constants.dart';
+import 'package:fleupkg/controllers/menu_app_controller.dart';
+import 'package:fleupkg/generated/v1/pacman.pb.dart';
+import 'package:fleupkg/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

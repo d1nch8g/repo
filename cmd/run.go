@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"dancheg97.ru/dancheg97/ctlpkg/cmd/service"
-	"dancheg97.ru/dancheg97/ctlpkg/cmd/utils"
+	"dancheg97.ru/dancheg97/fleupkg/cmd/service"
+	"dancheg97.ru/dancheg97/fleupkg/cmd/utils"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

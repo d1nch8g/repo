@@ -2,13 +2,13 @@
 <img style="align: center; padding-left: 10px; padding-right: 10px; padding-bottom: 10px;" width="238px" height="238px" src="./assets/images/logo.png" />
 </p>
 
-<h2 align="center">CtlOS package repository - ctlpkg</h2>
+<h2 align="center">CtlOS package repository - fleupkg</h2>
 
-[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://dancheg97.ru/dancheg97/ctlpkg/src/branch/main/LICENSE)
-[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://dancheg97.ru/dancheg97/ctlpkg)
-[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/ctlos/ctlpkg)
-[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://dancheg97.ru/dancheg97/-/packages/container/ctlpkg/latest)
-[![Build Status](https://drone.dancheg97.ru/api/badges/dancheg97/ctlpkg/status.svg)](https://drone.dancheg97.ru/dancheg97/ctlpkg)
+[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://dancheg97.ru/dancheg97/fleupkg/src/branch/main/LICENSE)
+[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://dancheg97.ru/dancheg97/fleupkg)
+[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/ctlos/fleupkg)
+[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://dancheg97.ru/dancheg97/-/packages/container/fleupkg/latest)
+[![Build Status](https://drone.dancheg97.ru/api/badges/dancheg97/fleupkg/status.svg)](https://drone.dancheg97.ru/dancheg97/fleupkg)
 
 Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle.
 
@@ -36,7 +36,7 @@ Environment variables/flags:
 - with `docker`:
 
 ```sh
-docker run -p 8080:8080 -e CTLPKG_LOGS_FMT=text dancheg97.ru/dancheg97/ctlpkg:latest
+docker run -p 8080:8080 -e CTLPKG_LOGS_FMT=text dancheg97.ru/dancheg97/fleupkg:latest
 ```
 
 - with `docker-compose`:
@@ -44,7 +44,7 @@ docker run -p 8080:8080 -e CTLPKG_LOGS_FMT=text dancheg97.ru/dancheg97/ctlpkg:la
 ```yml
 services:
   pacman:
-    image: dancheg97.ru/dancheg97/ctlpkg:latest
+    image: dancheg97.ru/dancheg97/fleupkg:latest
     command: run
     environment:
       CTLPKG_INIT_PKGS: yay
