@@ -2,7 +2,7 @@ import 'package:fleupkg/controllers/menu_app_controller.dart';
 import 'package:fleupkg/generated/v1/pacman.pb.dart';
 import 'package:fleupkg/responsive.dart';
 import 'package:fleupkg/components/add_pkg_popup.dart';
-import 'package:fleupkg/components/ctl_button.dart';
+import 'package:fleupkg/components/flue_button.dart';
 import 'package:fleupkg/components/login_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +26,7 @@ class Header extends StatelessWidget {
           ),
         if (!Responsive.isMobile(context))
           Text(
-            "CtlOS package repository",
+            "FleuOS package repository",
             style: Theme.of(context).textTheme.titleLarge,
           ),
         Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
@@ -97,7 +97,7 @@ class UnauthorizedWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        CtlButton(
+        FlueButton(
           text: "Authorize",
           icon: Icons.lock_open,
           onPressed: () {
@@ -118,7 +118,7 @@ class AuthorizedActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CtlButton(
+        FlueButton(
           text: "Add",
           icon: Icons.add,
           onPressed: () {

@@ -1,5 +1,5 @@
 import 'package:fleupkg/generated/v1/pacman.pb.dart';
-import 'package:fleupkg/components/ctl_button.dart';
+import 'package:fleupkg/components/flue_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -115,7 +115,7 @@ class _LoginContentsState extends State<LoginContents> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CtlButton(
+                FlueButton(
                   text: "Close",
                   icon: Icons.close,
                   onPressed: () {
@@ -123,7 +123,7 @@ class _LoginContentsState extends State<LoginContents> {
                   },
                 ),
                 SizedBox(width: defaultPadding),
-                CtlButton(
+                FlueButton(
                   text: "Login",
                   icon: Icons.person,
                   onPressed: () {

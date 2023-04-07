@@ -1,5 +1,5 @@
 import 'package:fleupkg/generated/v1/pacman.pb.dart';
-import 'package:fleupkg/components/ctl_button.dart';
+import 'package:fleupkg/components/flue_button.dart';
 import 'package:fleupkg/components/update_packages.dart';
 import 'package:flutter/material.dart';
 
@@ -78,7 +78,7 @@ class OutdatedPackages extends StatelessWidget {
           Center(
             child: Padding(
               padding: const EdgeInsets.all(defaultPadding),
-              child: CtlButton(
+              child: FlueButton(
                 text: "Update",
                 icon: Icons.refresh,
                 onPressed: () {

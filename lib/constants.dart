@@ -2,7 +2,7 @@ import 'package:fleupkg/generated/v1/pacman.pbgrpc.dart';
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc_web.dart';
 
-const primaryColor = Color(0xFF4079FA);
+const primaryColor = Color.fromARGB(255, 64, 138, 250);
 const secondaryColor = Color(0xFF2A2D3E);
 const backgroundColor = Color(0xFF212332);
 

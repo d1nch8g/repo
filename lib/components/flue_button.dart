@@ -2,11 +2,11 @@ import 'package:fleupkg/responsive.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
-class CtlButton extends StatelessWidget {
+class FlueButton extends StatelessWidget {
   final String text;
   final void Function()? onPressed;
   final IconData icon;
-  const CtlButton({
+  const FlueButton({
     Key? key,
     this.onPressed,
     required this.text,

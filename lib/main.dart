@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'CtlOS package repo',
+      title: 'FleuOS package repo',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
