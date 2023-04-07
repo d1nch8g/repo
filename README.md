@@ -6,7 +6,7 @@
 
 [![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://dancheg97.ru/dancheg97/fleupkg/src/branch/main/LICENSE)
 [![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://dancheg97.ru/dancheg97/fleupkg)
-[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/FleuOS/fleupkg)
+[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fleu-io/fleupkg)
 [![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://dancheg97.ru/dancheg97/-/packages/container/fleupkg/latest)
 [![Build Status](https://drone.dancheg97.ru/api/badges/dancheg97/fleupkg/status.svg)](https://drone.dancheg97.ru/dancheg97/fleupkg)
 
