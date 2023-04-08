@@ -65,7 +65,7 @@ class OutdatedPackages extends StatelessWidget {
             ),
           ),
           SizedBox(height: defaultPadding),
-          Chart(
+          PackageChart(
             outdated: outdated,
             uptodate: total - outdated,
           ),

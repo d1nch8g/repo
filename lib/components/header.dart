@@ -26,7 +26,7 @@ class Header extends StatelessWidget {
           ),
         if (!Responsive.isMobile(context))
           Text(
-            "FleuOS package repository",
+            "Pacman package repository",
             style: Theme.of(context).textTheme.titleLarge,
           ),
         Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),

@@ -2,9 +2,9 @@ import 'package:fleupkg/generated/v1/pacman.pbgrpc.dart';
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc_web.dart';
 
-const primaryColor = Color.fromARGB(255, 64, 138, 250);
-const secondaryColor = Color(0xFF2A2D3E);
-const backgroundColor = Color(0xFF212332);
+const primaryColor = Color.fromARGB(255, 116, 116, 116);
+const secondaryColor = Color.fromARGB(255, 54, 54, 54);
+const backgroundColor = Color.fromARGB(255, 36, 36, 36);
 
 const defaultPadding = 16.0;
 

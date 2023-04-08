@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
 
-class Chart extends StatelessWidget {
+class PackageChart extends StatelessWidget {
   final double outdated;
   final double uptodate;
-  const Chart({
+  const PackageChart({
     Key? key,
     required this.outdated,
     required this.uptodate,
@@ -25,7 +25,7 @@ class Chart extends StatelessWidget {
               startDegreeOffset: -90,
               sections: [
                 PieChartSectionData(
-                  color: primaryColor,
+                  color: Color.fromARGB(255, 64, 138, 250),
                   value: uptodate,
                   showTitle: false,
                   radius: 22,

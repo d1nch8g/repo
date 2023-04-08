@@ -2,7 +2,7 @@
 <img style="align: center; padding-left: 10px; padding-right: 10px; padding-bottom: 10px;" width="238px" height="238px" src="./assets/images/logo.png" />
 </p>
 
-<h2 align="center">FleuOS package repository - fleupkg</h2>
+<h2 align="center">Pacman package repository - fleu-pkg</h2>
 
 [![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://dancheg97.ru/dancheg97/fleupkg/src/branch/main/LICENSE)
 [![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://dancheg97.ru/dancheg97/fleupkg)
@@ -10,7 +10,7 @@
 [![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://dancheg97.ru/dancheg97/-/packages/container/fleupkg/latest)
 [![Build Status](https://drone.dancheg97.ru/api/badges/dancheg97/fleupkg/status.svg)](https://drone.dancheg97.ru/dancheg97/fleupkg)
 
-Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle.
+Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle. Base styling is provided to keep in sync with modern gnome apps.
 
 ![](preview.gif)
 
