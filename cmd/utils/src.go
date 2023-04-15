@@ -223,12 +223,7 @@ func (o *OsHelper) LoadFilePackages(links []string) error {
 			return err
 		}
 
-		input, err := os.ReadFile("/home/" + o.User + "/" + name)
-		if err != nil {
-			return err
-		}
-
-		err = os.WriteFile("/var/cache/pacman/pkg/"+name, input, 0o600)
+		err = o.Execute("sudo mv /home/" + o.User + "/" + name + " " + "/var/cache/pacman/pkg/" + name)
 		if err != nil {
 			return err
 		}
