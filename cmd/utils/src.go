@@ -210,3 +210,17 @@ func (o *OsHelper) ReplaceFileString(file string, old string, new string) error 
 	replaced := strings.ReplaceAll(string(contents), old, new)
 	return os.WriteFile(file, []byte(replaced), 0o600)
 }
+
+func (o *OsHelper) LoadFilePackages(links []string) error {
+	err := o.Execute("cd /var/cache/pacman/pkg")
+	if err != nil {
+		return err
+	}
+	for _, v := range links {
+		err = o.Execute("wget " + v)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}

@@ -31,6 +31,7 @@ func Run(cmd *cobra.Command, args []string) {
 		initPkgs  = viper.GetString(`init-pkgs`)
 		apiAdress = viper.GetString(`api-adress`)
 		logins    = viper.GetString(`logins`)
+		linkPkgs  = viper.GetString(`init-pkgs-links`)
 	)
 
 	setLogFormat()
@@ -42,6 +43,9 @@ func Run(cmd *cobra.Command, args []string) {
 		`http://localhost:8080/`,
 		apiAdress,
 	)
+	checkErr(err)
+
+	err = helper.LoadFilePackages(strings.Split(linkPkgs, " "))
 	checkErr(err)
 
 	err = helper.Execute("yay -Sy --noconfirm " + initPkgs)

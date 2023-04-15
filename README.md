@@ -25,6 +25,7 @@ Environment variables/flags:
 - 🌐 - `FMNXPKG_PORT` - `port` - publically exposed port, `8080` default
 - 📫 - `FMNXPKG_API_ADRESS` - `api-adress` - adress for backend api calls via `grpc-web`
 - 📦 - `FMNXPKG_INIT_PKGS` - `init-pkgs` - initial packages to download on start
+- 📥 - `FMNXPKG_INIT_PKGS_LINKS` - `init-pkgs-links` - initial packages to download using links, separated with space
 - 📒 - `FMNXPKG_LOGS_FORMAT` - `logs-fmt` - format for logs (can be text/json/pretty)
 - 📂 - `FMNXPKG_WEB_DIR` - `web-dir` - directory with flutter web app
 - 🔐 - `FMNXPKG_LOGINS` - `logins` - list of logins and passwords separated by '|' symbol

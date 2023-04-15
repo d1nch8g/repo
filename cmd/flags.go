@@ -45,6 +45,13 @@ var flags = []Flag{
 	},
 	{
 		Cmd:         rootCmd,
+		Name:        "init-pkgs-links",
+		ShortName:   "p",
+		Env:         "FMNXPKG_INIT_PKGS_LINKS",
+		Description: "📥 initial packages to download using links",
+	},
+	{
+		Cmd:         rootCmd,
 		Name:        "logs-format",
 		ShortName:   "f",
 		Env:         "FMNXPKG_LOGS_FORMAT",
