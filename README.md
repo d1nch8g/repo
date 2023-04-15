@@ -8,7 +8,7 @@
 [![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.ru/dancheg97/fmnxpkg)
 [![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fleu-io/fmnxpkg)
 [![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.ru/dancheg97/-/packages/container/fmnxpkg/latest)
-[![Build Status](https://drone.fmnx.ru/api/badges/dancheg97/fmnxpkg/status.svg)](https://drone.fmnx.ru/dancheg97/fmnxpkg)
+[![Build Status](https://ci.fmnx.ru/api/badges/dancheg97/fmnxpkg/status.svg)](https://ci.fmnx.ru/dancheg97/fmnxpkg)
 
 Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle. Base styling is provided to keep in sync with modern gnome apps.
 
