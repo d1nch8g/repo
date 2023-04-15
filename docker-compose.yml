@@ -9,6 +9,6 @@ services:
       FMNXPKG_INIT_PKGS: adw-gtk-theme gnome-browser-connector gnome-shell-extension-dash-to-dock zsh-theme-powerlevel10k-bin-git zsh-autosuggestions zsh-syntax-highlighting ttf-meslo-nerd-font-powerlevel10k
       FMNXPKG_LOGS_FORMAT: text
       FMNXPKG_LOGINS: user|password
-      FMNXPKG_INIT_PKGS_LINKS: https://fmnx.ru/attachments/b6657ff3-ea89-4ebe-a8d0-d124c2263a8d
+      FMNXPKG_INIT_PKGS_LINKS: fmnx-install-0.1-0.1-x86_64.pkg.tar.zst::https://fmnx.ru/attachments/b6657ff3-ea89-4ebe-a8d0-d124c2263a8d
     ports:
       - 8080:8080

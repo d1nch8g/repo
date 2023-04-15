@@ -10,7 +10,9 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type OsHelper struct{}
+type OsHelper struct {
+	User string
+}
 
 // Executes bash call and loggs output to logrus.
 func (o *OsHelper) Execute(cmd string) error {
@@ -212,12 +214,21 @@ func (o *OsHelper) ReplaceFileString(file string, old string, new string) error 
 }
 
 func (o *OsHelper) LoadFilePackages(links []string) error {
-	err := o.Execute("cd /var/cache/pacman/pkg")
-	if err != nil {
-		return err
-	}
 	for _, v := range links {
-		err = o.Execute("wget " + v)
+		split := strings.Split(v, "::")
+		name := split[0]
+		link := split[1]
+		err := o.Execute("wget -O " + name + " " + link)
+		if err != nil {
+			return err
+		}
+
+		input, err := os.ReadFile("/home/" + o.User + "/" + name)
+		if err != nil {
+			return err
+		}
+
+		err = os.WriteFile("/var/cache/pacman/pkg/"+name, input, 0o600)
 		if err != nil {
 			return err
 		}

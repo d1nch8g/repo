@@ -24,7 +24,8 @@ var runCmd = &cobra.Command{
 func Run(cmd *cobra.Command, args []string) {
 	var (
 		pkgPath   = "/var/cache/pacman/pkg"
-		yayPath   = "/home/" + viper.GetString("user") + "/.cache/yay"
+		user      = viper.GetString("user")
+		yayPath   = "/home/" + user + "/.cache/yay"
 		port      = viper.GetInt("port")
 		repoName  = viper.GetString("repo")
 		webPath   = viper.GetString("web-dir")
@@ -36,7 +37,9 @@ func Run(cmd *cobra.Command, args []string) {
 
 	setLogFormat()
 
-	helper := &utils.OsHelper{}
+	helper := &utils.OsHelper{
+		User: user,
+	}
 
 	err := helper.ReplaceFileString(
 		webPath+`/main.dart.js`,
