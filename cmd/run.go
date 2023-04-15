@@ -17,7 +17,7 @@ func init() {
 
 var runCmd = &cobra.Command{
 	Use:   "run",
-	Short: "🚀 Run instance of go-pacman",
+	Short: "🚀 Run instance of fmnxpkg",
 	Run:   Run,
 }
 
