@@ -48,17 +48,19 @@ func Run(cmd *cobra.Command, args []string) {
 	)
 	checkErr(err)
 
-	err = helper.LoadFilePackages(strings.Split(linkPkgs, " "))
-	checkErr(err)
-
-	err = helper.Execute("yay -Sy --noconfirm " + initPkgs)
-	checkErr(err)
-
-	err = helper.FormDb(yayPath, pkgPath, repoName)
-	checkErr(err)
-
 	formattedLogins, err := formatLogins(logins)
 	checkErr(err)
+
+	go func() {
+		err = helper.Execute("yay -Sy --noconfirm " + initPkgs)
+		checkErr(err)
+
+		err = helper.LoadFilePackages(strings.Split(linkPkgs, " "))
+		checkErr(err)
+
+		err = helper.FormDb(yayPath, pkgPath, repoName)
+		checkErr(err)
+	}()
 
 	err = service.Run(&service.Params{
 		Port:     port,
