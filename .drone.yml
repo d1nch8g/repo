@@ -33,12 +33,12 @@ steps:
       - docker login -u dancheg97 -p $PASS fmnx.ru
       - docker push fmnx.ru/$DRONE_REPO:latest
 
-  # - name: push github mirror
-  #   image: appleboy/drone-git-push
-  #   settings:
-  #     branch: main
-  #     remote: git@github.com:fleu-io/fmnxpkg.git
-  #     force: false
-  #     commit: true
-  #     ssh_key:
-  #       from_secret: SSHKEY
+  - name: push github mirror
+    image: appleboy/drone-git-push
+    settings:
+      branch: main
+      remote: git@github.com:fmnx-ru/fmnxpkg.git
+      force: false
+      commit: true
+      ssh_key:
+        from_secret: SSHKEY

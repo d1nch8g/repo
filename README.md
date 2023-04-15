@@ -2,11 +2,11 @@
 <img style="align: center; padding-left: 10px; padding-right: 10px; padding-bottom: 10px;" width="238px" height="238px" src="./assets/images/logo.png" />
 </p>
 
-<h2 align="center">Pacman package repository - fleu-pkg</h2>
+<h2 align="center">Pacman package repository - fmnxpkg</h2>
 
 [![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.ru/dancheg97/fmnxpkg/src/branch/main/LICENSE)
 [![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.ru/dancheg97/fmnxpkg)
-[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fleu-io/fmnxpkg)
+[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fmnx-ru/fmnxpkg)
 [![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.ru/dancheg97/-/packages/container/fmnxpkg/latest)
 [![Build Status](https://ci.fmnx.ru/api/badges/dancheg97/fmnxpkg/status.svg)](https://ci.fmnx.ru/dancheg97/fmnxpkg)
 
