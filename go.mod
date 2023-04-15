@@ -1,4 +1,4 @@
-module dancheg97.ru/dancheg97/fleupkg
+module fmnx.ru/dancheg97/fmnxpkg
 
 go 1.19
 

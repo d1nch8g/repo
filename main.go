@@ -1,6 +1,6 @@
 package main
 
-import "dancheg97.ru/dancheg97/fleupkg/cmd"
+import "fmnx.ru/dancheg97/fmnxpkg/cmd"
 
 func main() {
 	cmd.Execute()

@@ -19,7 +19,8 @@ RUN flutter clean
 RUN flutter build web
 
 FROM archlinux/archlinux:base-devel
-LABEL maintainer="Dancheg97 <dangdancheg@gmail.com>"
+
+LABEL maintainer="Dancheg97 <dancheg97@fmnx.ru>"
 
 RUN pacman -Syu --needed --noconfirm git pacman-contrib
 

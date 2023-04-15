@@ -29,16 +29,16 @@ steps:
       PASS:
         from_secret: PASS
     commands:
-      - docker build -t dancheg97.ru/$DRONE_REPO:latest .
-      - docker login -u dancheg97 -p $PASS dancheg97.ru
-      - docker push dancheg97.ru/$DRONE_REPO:latest
+      - docker build -t fmnx.ru/$DRONE_REPO:latest .
+      - docker login -u dancheg97 -p $PASS fmnx.ru
+      - docker push fmnx.ru/$DRONE_REPO:latest
 
-  - name: push github mirror
-    image: appleboy/drone-git-push
-    settings:
-      branch: main
-      remote: git@github.com:fleu-io/fleupkg.git
-      force: false
-      commit: true
-      ssh_key:
-        from_secret: SSHKEY
+  # - name: push github mirror
+  #   image: appleboy/drone-git-push
+  #   settings:
+  #     branch: main
+  #     remote: git@github.com:fleu-io/fmnxpkg.git
+  #     force: false
+  #     commit: true
+  #     ssh_key:
+  #       from_secret: SSHKEY

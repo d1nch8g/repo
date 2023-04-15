@@ -1,6 +1,6 @@
 {
-  "name": "fleupkg",
-  "short_name": "fleupkg",
+  "name": "fmnxpkg",
+  "short_name": "fmnxpkg",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

@@ -1,9 +1,9 @@
-import 'package:fleupkg/controllers/menu_app_controller.dart';
-import 'package:fleupkg/generated/v1/pacman.pb.dart';
-import 'package:fleupkg/responsive.dart';
-import 'package:fleupkg/components/add_pkg_popup.dart';
-import 'package:fleupkg/components/flue_button.dart';
-import 'package:fleupkg/components/login_popup.dart';
+import 'package:fmnxpkg/controllers/menu_app_controller.dart';
+import 'package:fmnxpkg/generated/v1/pacman.pb.dart';
+import 'package:fmnxpkg/responsive.dart';
+import 'package:fmnxpkg/components/add_pkg_popup.dart';
+import 'package:fmnxpkg/components/flue_button.dart';
+import 'package:fmnxpkg/components/login_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';

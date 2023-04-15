@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	pb "dancheg97.ru/dancheg97/fleupkg/cmd/generated/proto/v1"
-	"dancheg97.ru/dancheg97/fleupkg/cmd/utils"
+	pb "fmnx.ru/dancheg97/fmnxpkg/cmd/generated/proto/v1"
+	"fmnx.ru/dancheg97/fmnxpkg/cmd/utils"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

@@ -4,11 +4,11 @@
 
 <h2 align="center">Pacman package repository - fleu-pkg</h2>
 
-[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://dancheg97.ru/dancheg97/fleupkg/src/branch/main/LICENSE)
-[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://dancheg97.ru/dancheg97/fleupkg)
-[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fleu-io/fleupkg)
-[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://dancheg97.ru/dancheg97/-/packages/container/fleupkg/latest)
-[![Build Status](https://drone.dancheg97.ru/api/badges/dancheg97/fleupkg/status.svg)](https://drone.dancheg97.ru/dancheg97/fleupkg)
+[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.ru/dancheg97/fmnxpkg/src/branch/main/LICENSE)
+[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.ru/dancheg97/fmnxpkg)
+[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fleu-io/fmnxpkg)
+[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.ru/dancheg97/-/packages/container/fmnxpkg/latest)
+[![Build Status](https://drone.fmnx.ru/api/badges/dancheg97/fmnxpkg/status.svg)](https://drone.fmnx.ru/dancheg97/fmnxpkg)
 
 Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle. Base styling is provided to keep in sync with modern gnome apps.
 
@@ -36,7 +36,7 @@ Environment variables/flags:
 - with `docker`:
 
 ```sh
-docker run -p 8080:8080 -e FLEUPKG_LOGS_FMT=text dancheg97.ru/dancheg97/fleupkg:latest
+docker run -p 8080:8080 -e FLEUPKG_LOGS_FMT=text fmnx.ru/dancheg97/fmnxpkg:latest
 ```
 
 - with `docker-compose`:
@@ -44,7 +44,7 @@ docker run -p 8080:8080 -e FLEUPKG_LOGS_FMT=text dancheg97.ru/dancheg97/fleupkg:
 ```yml
 services:
   pacman:
-    image: dancheg97.ru/dancheg97/fleupkg:latest
+    image: fmnx.ru/dancheg97/fmnxpkg:latest
     command: run
     environment:
       FLEUPKG_INIT_PKGS: yay
