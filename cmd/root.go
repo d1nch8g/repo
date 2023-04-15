@@ -8,11 +8,11 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "go-pacman",
+	Use:   "fmnxpkg",
 	Short: "📦 Tool for managing personal pacman repository written in go.",
 	Long: `📦 Tool for managing personal pacman repository written in go.
 
-	go-pacman  Copyright (C) 2023  Dancheg97
+	fmnxpkg - Copyright (C) 2023  Dancheg97
 	
 	This program comes with ABSOLUTELY NO WARRANTY; for details 'use -h flag'.
 	This is free software, and you are welcome to redistribute it

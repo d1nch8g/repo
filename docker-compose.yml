@@ -6,8 +6,8 @@ services:
       context: .
     command: run
     environment:
-      FLEUPKG_INIT_PKGS: adw-gtk-theme gnome-browser-connector gnome-shell-extension-dash-to-dock zsh-theme-powerlevel10k-bin-git zsh-autosuggestions zsh-syntax-highlighting ttf-meslo-nerd-font-powerlevel10k
-      FLEUPKG_LOGS_FORMAT: text
-      FLEUPKG_LOGINS: user|password
+      FMNXPKG_INIT_PKGS: adw-gtk-theme gnome-browser-connector gnome-shell-extension-dash-to-dock zsh-theme-powerlevel10k-bin-git zsh-autosuggestions zsh-syntax-highlighting ttf-meslo-nerd-font-powerlevel10k
+      FMNXPKG_LOGS_FORMAT: text
+      FMNXPKG_LOGINS: user|password
     ports:
       - 8080:8080
