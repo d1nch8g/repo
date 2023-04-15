@@ -22,7 +22,7 @@ FROM archlinux/archlinux:base-devel
 
 LABEL maintainer="Dancheg97 <dancheg97@fmnx.ru>"
 
-RUN pacman -Syu --needed --noconfirm git pacman-contrib
+RUN pacman -Syu --needed --noconfirm git pacman-contrib wget
 
 ARG user=makepkg
 RUN useradd --system --create-home $user
