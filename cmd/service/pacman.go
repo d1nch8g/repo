@@ -25,6 +25,9 @@ type Handlers struct {
 
 // Remove implements pb.PacmanServiceServer.
 func (s *Handlers) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveResponse, error) {
+	if !s.Tokens[in.Token] {
+		return nil, status.Error(codes.Unauthenticated, "token incorrect")
+	}
 	return &pb.RemoveResponse{}, s.Helper.Execute("yay -R --noconfirm " + in.Package)
 }
 

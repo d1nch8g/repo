@@ -133,6 +133,7 @@ message UploadResponse {}
 
 message RemoveRequest {
   string package = 1;
+  string token = 2;
 }
 
 message RemoveResponse {}

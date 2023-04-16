@@ -4,14 +4,76 @@ import 'package:fmnxpkg/constants.dart';
 import 'package:fmnxpkg/generated/v1/pacman.pbgrpc.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class PackageInfoBoard extends StatelessWidget {
+class PackageInfoBoard extends StatefulWidget {
   final DescribeResponse description;
 
   const PackageInfoBoard({
     Key? key,
     required this.description,
   }) : super(key: key);
+
+  @override
+  State<PackageInfoBoard> createState() => _PackageInfoBoardState();
+}
+
+class _PackageInfoBoardState extends State<PackageInfoBoard> {
+  Widget removeWidget = Container();
+
+  setRemoveWidget() async {
+    var prefs = await SharedPreferences.getInstance();
+    var checked = await stub.checkToken(CheckTokenRequest(
+      token: prefs.getString("token") ?? "",
+    ));
+    if (checked.upToDate) {
+      setState(() {
+        removeWidget = Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FmnxButton(
+              text: "delete",
+              icon: Icons.do_disturb,
+              onPressed: () async {
+                try {
+                  await stub.remove(RemoveRequest(
+                    package: widget.description.name,
+                  ));
+                  showBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return NotificationPopup(
+                        message: "Package removed",
+                        icon: Icons.check_circle_outline_rounded,
+                        duration: Duration(milliseconds: 2342),
+                      );
+                    },
+                  );
+                } catch (e) {
+                  showBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return NotificationPopup(
+                        message: e.toString(),
+                        icon: Icons.check_circle_outline_rounded,
+                        duration: Duration(milliseconds: 2342),
+                      );
+                    },
+                  );
+                }
+              },
+            ),
+          ),
+        );
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setRemoveWidget();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +88,7 @@ class PackageInfoBoard extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              description.name.toUpperCase(),
+              widget.description.name.toUpperCase(),
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
@@ -48,84 +110,84 @@ class PackageInfoBoard extends StatelessWidget {
               rows: [
                 formDataRow(
                   key: "Current version",
-                  value: description.version,
+                  value: widget.description.version,
                   icon: Icons.receipt,
                   color: Colors.blueGrey,
                 ),
                 formDataRow(
                   key: "Description",
-                  value: description.description,
+                  value: widget.description.description,
                   icon: Icons.article,
                   color: Colors.deepOrange,
                 ),
                 formDataRow(
                   key: "Architecture",
-                  value: description.architecture,
+                  value: widget.description.architecture,
                   icon: Icons.computer,
                   color: Colors.orange,
                 ),
                 formDataRow(
-                  value: description.installedSize,
+                  value: widget.description.installedSize,
                   key: "Storage size",
                   icon: Icons.sd_card,
                   color: Colors.teal,
                 ),
                 formDataRow(
                   key: "Official web URL",
-                  value: description.url,
+                  value: widget.description.url,
                   icon: Icons.web,
                   color: Colors.grey,
                 ),
                 formDataRow(
                   key: "Licenses",
-                  value: description.licenses,
+                  value: widget.description.licenses,
                   icon: Icons.assignment,
                   color: Colors.purple,
                 ),
                 formDataRow(
-                  value: description.groups,
+                  value: widget.description.groups,
                   key: "Groups",
                   icon: Icons.apps,
                   color: Colors.brown,
                 ),
                 formDataRow(
-                  value: description.provides,
+                  value: widget.description.provides,
                   key: "Provides",
                   icon: Icons.crop_free,
                   color: Colors.indigo,
                 ),
                 formDataRow(
-                  value: description.packager,
+                  value: widget.description.packager,
                   key: "Packager",
                   icon: Icons.person,
                   color: Colors.blue,
                 ),
                 formDataRow(
-                  value: description.buildDate,
+                  value: widget.description.buildDate,
                   key: "Build date",
                   icon: Icons.donut_small,
                   color: Colors.cyan,
                 ),
                 formDataRow(
-                  value: description.conflictsWith,
+                  value: widget.description.conflictsWith,
                   key: "Conflicts",
                   icon: Icons.do_disturb,
                   color: Colors.red,
                 ),
                 formDataRow(
-                  value: description.replaces,
+                  value: widget.description.replaces,
                   key: "Replaces",
                   icon: Icons.crop_3_2,
                   color: Colors.red,
                 ),
                 formDataRow(
-                  value: description.installScript,
+                  value: widget.description.installScript,
                   key: "Installation script",
                   icon: Icons.code,
                   color: Colors.deepPurple,
                 ),
                 formDataRow(
-                  value: description.validatedBy,
+                  value: widget.description.validatedBy,
                   key: "Validated by",
                   icon: Icons.check_circle,
                   color: Colors.green,
@@ -133,43 +195,7 @@ class PackageInfoBoard extends StatelessWidget {
               ],
             ),
           ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FmnxButton(
-                text: "delete",
-                icon: Icons.do_disturb,
-                onPressed: () async {
-                  try {
-                    await stub.remove(RemoveRequest(
-                      package: description.name,
-                    ));
-                    showBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return NotificationPopup(
-                          message: "Package removed",
-                          icon: Icons.check_circle_outline_rounded,
-                          duration: Duration(milliseconds: 2342),
-                        );
-                      },
-                    );
-                  } catch (e) {
-                    showBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return NotificationPopup(
-                          message: e.toString(),
-                          icon: Icons.check_circle_outline_rounded,
-                          duration: Duration(milliseconds: 2342),
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
-          )
+          removeWidget,
         ],
       ),
     );

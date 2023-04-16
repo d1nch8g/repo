@@ -1148,16 +1148,21 @@ class UploadResponse extends $pb.GeneratedMessage {
 class RemoveRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RemoveRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.v1'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'package')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'token')
     ..hasRequiredFields = false
   ;
 
   RemoveRequest._() : super();
   factory RemoveRequest({
     $core.String? package,
+    $core.String? token,
   }) {
     final _result = create();
     if (package != null) {
       _result.package = package;
+    }
+    if (token != null) {
+      _result.token = token;
     }
     return _result;
   }
@@ -1190,6 +1195,15 @@ class RemoveRequest extends $pb.GeneratedMessage {
   $core.bool hasPackage() => $_has(0);
   @$pb.TagNumber(1)
   void clearPackage() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get token => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set token($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasToken() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearToken() => clearField(2);
 }
 
 class RemoveResponse extends $pb.GeneratedMessage {

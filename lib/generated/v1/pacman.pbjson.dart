@@ -209,11 +209,12 @@ const RemoveRequest$json = const {
   '1': 'RemoveRequest',
   '2': const [
     const {'1': 'package', '3': 1, '4': 1, '5': 9, '10': 'package'},
+    const {'1': 'token', '3': 2, '4': 1, '5': 9, '10': 'token'},
   ],
 };
 
 /// Descriptor for `RemoveRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List removeRequestDescriptor = $convert.base64Decode('Cg1SZW1vdmVSZXF1ZXN0EhgKB3BhY2thZ2UYASABKAlSB3BhY2thZ2U=');
+final $typed_data.Uint8List removeRequestDescriptor = $convert.base64Decode('Cg1SZW1vdmVSZXF1ZXN0EhgKB3BhY2thZ2UYASABKAlSB3BhY2thZ2USFAoFdG9rZW4YAiABKAlSBXRva2Vu');
 @$core.Deprecated('Use removeResponseDescriptor instead')
 const RemoveResponse$json = const {
   '1': 'RemoveResponse',
