@@ -39,4 +39,4 @@ COPY --from=flutter-build /src/build/web /web
 RUN sudo chmod a+rwx -R /web
 
 ENTRYPOINT ["./fmnxpkg"]
-CMD ["--help"]
+CMD ["run"]

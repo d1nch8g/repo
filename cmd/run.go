@@ -68,7 +68,7 @@ func Run(cmd *cobra.Command, args []string) {
 		YayPath:  yayPath,
 		WebPath:  webPath,
 		RepoName: repoName,
-		Packager: helper,
+		OsHelper: helper,
 		Logins:   formattedLogins,
 	})
 	checkErr(err)

@@ -12,9 +12,9 @@ check:
 	buf lint
 
 run:
-	docker compose down &
-	flutter build web &
-	go run . -w ${pwd}/build/web -u ${USER} -f pretty run
+	docker compose down
+	chromium --disalbe-web-security &
+	docker compose up --build app
 
 evans:
 	evans --proto proto/v1/pacman.proto --web --host localhost -p 8080

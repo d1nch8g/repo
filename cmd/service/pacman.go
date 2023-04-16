@@ -32,7 +32,7 @@ func (s *Handlers) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.Upload
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
-	err = s.Helper.Execute("makepkg -i")
+	err = s.Helper.Execute("sudo pacman -U --noconfirm " + in.Name)
 	if err != nil {
 		return nil, err
 	}

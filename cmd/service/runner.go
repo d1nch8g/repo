@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"math"
 	"net/http"
 	"time"
 
@@ -23,7 +24,7 @@ type Params struct {
 	WebPath  string
 	RepoName string
 	Logins   map[string]string
-	Packager *utils.OsHelper
+	OsHelper *utils.OsHelper
 }
 
 func Run(params *Params) error {
@@ -34,9 +35,10 @@ func Run(params *Params) error {
 			grpc_recovery.UnaryServerInterceptor(),
 			UnaryLogger(),
 		),
+		grpc.MaxRecvMsgSize(math.MaxInt),
 	)
 	pb.RegisterPacmanServiceServer(grpcServer, &Handlers{
-		Helper:   &utils.OsHelper{},
+		Helper:   params.OsHelper,
 		YayPath:  params.YayPath,
 		PkgPath:  params.PkgPath,
 		RepoName: params.RepoName,

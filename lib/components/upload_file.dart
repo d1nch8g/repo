@@ -22,24 +22,25 @@ uploadFile(BuildContext context) async {
       name: pick.files.first.name,
       token: prefs.getString("token"),
     ));
-    showDialog(
+    showBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return NotificationPopup(
-          message: "Package uploaded",
-          icon: Icons.error,
-          duration: Duration(milliseconds: 324),
+          message: "Done!",
+          icon: Icons.check_circle_outline,
+          duration: Duration(milliseconds: 1342),
         );
       },
     );
   } catch (e) {
-    showDialog(
+    print(e);
+    showBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return NotificationPopup(
           message: "Upload failed",
           icon: Icons.error,
-          duration: Duration(milliseconds: 324),
+          duration: Duration(milliseconds: 1342),
         );
       },
     );
