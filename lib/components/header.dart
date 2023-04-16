@@ -1,3 +1,4 @@
+import 'package:fmnxpkg/components/upload_file.dart';
 import 'package:fmnxpkg/controllers/menu_app_controller.dart';
 import 'package:fmnxpkg/generated/v1/pacman.pb.dart';
 import 'package:fmnxpkg/responsive.dart';
@@ -119,7 +120,15 @@ class AuthorizedActions extends StatelessWidget {
     return Row(
       children: [
         FlueButton(
-          text: "Add",
+          text: "Upload file",
+          icon: Icons.add,
+          onPressed: () {
+            uploadFile(context);
+          },
+        ),
+        SizedBox(width: defaultPadding),
+        FlueButton(
+          text: "Add from AUR",
           icon: Icons.add,
           onPressed: () {
             showAddPackage(context);

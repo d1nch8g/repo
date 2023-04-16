@@ -185,3 +185,22 @@ const CheckTokenResponse$json = const {
 
 /// Descriptor for `CheckTokenResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List checkTokenResponseDescriptor = $convert.base64Decode('ChJDaGVja1Rva2VuUmVzcG9uc2USHAoKdXBfdG9fZGF0ZRgBIAEoCFIIdXBUb0RhdGU=');
+@$core.Deprecated('Use uploadRequestDescriptor instead')
+const UploadRequest$json = const {
+  '1': 'UploadRequest',
+  '2': const [
+    const {'1': 'content', '3': 1, '4': 1, '5': 12, '10': 'content'},
+    const {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'token', '3': 3, '4': 1, '5': 9, '10': 'token'},
+  ],
+};
+
+/// Descriptor for `UploadRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadRequestDescriptor = $convert.base64Decode('Cg1VcGxvYWRSZXF1ZXN0EhgKB2NvbnRlbnQYASABKAxSB2NvbnRlbnQSEgoEbmFtZRgCIAEoCVIEbmFtZRIUCgV0b2tlbhgDIAEoCVIFdG9rZW4=');
+@$core.Deprecated('Use uploadResponseDescriptor instead')
+const UploadResponse$json = const {
+  '1': 'UploadResponse',
+};
+
+/// Descriptor for `UploadResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadResponseDescriptor = $convert.base64Decode('Cg5VcGxvYWRSZXNwb25zZQ==');
