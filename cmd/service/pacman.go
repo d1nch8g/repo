@@ -23,7 +23,7 @@ type Handlers struct {
 	Tokens   map[string]bool
 }
 
-// Remove implements pb.PacmanServiceServer
+// Remove implements pb.PacmanServiceServer.
 func (s *Handlers) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveResponse, error) {
 	return &pb.RemoveResponse{}, s.Helper.Execute("yay -R --noconfirm " + in.Package)
 }
