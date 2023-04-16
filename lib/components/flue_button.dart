@@ -2,11 +2,11 @@ import 'package:fmnxpkg/responsive.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
-class FlueButton extends StatelessWidget {
+class FmnxButton extends StatelessWidget {
   final String text;
   final void Function()? onPressed;
   final IconData icon;
-  const FlueButton({
+  const FmnxButton({
     Key? key,
     this.onPressed,
     required this.text,

@@ -115,7 +115,7 @@ class _LoginContentsState extends State<LoginContents> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FlueButton(
+                FmnxButton(
                   text: "Close",
                   icon: Icons.close,
                   onPressed: () {
@@ -123,7 +123,7 @@ class _LoginContentsState extends State<LoginContents> {
                   },
                 ),
                 SizedBox(width: defaultPadding),
-                FlueButton(
+                FmnxButton(
                   text: "Login",
                   icon: Icons.person,
                   onPressed: () {

@@ -98,7 +98,7 @@ class UnauthorizedWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        FlueButton(
+        FmnxButton(
           text: "Authorize",
           icon: Icons.lock_open,
           onPressed: () {
@@ -119,7 +119,7 @@ class AuthorizedActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        FlueButton(
+        FmnxButton(
           text: "Upload file",
           icon: Icons.add,
           onPressed: () {
@@ -127,7 +127,7 @@ class AuthorizedActions extends StatelessWidget {
           },
         ),
         SizedBox(width: defaultPadding),
-        FlueButton(
+        FmnxButton(
           text: "Add from AUR",
           icon: Icons.add,
           onPressed: () {

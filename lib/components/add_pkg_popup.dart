@@ -122,7 +122,7 @@ class _AddPackageContentsState extends State<AddPackageContents> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FlueButton(
+              FmnxButton(
                 text: "Close",
                 icon: Icons.close,
                 onPressed: () {
@@ -130,7 +130,7 @@ class _AddPackageContentsState extends State<AddPackageContents> {
                 },
               ),
               SizedBox(width: defaultPadding),
-              FlueButton(
+              FmnxButton(
                 icon: Icons.add,
                 text: "Pull",
                 onPressed: () {

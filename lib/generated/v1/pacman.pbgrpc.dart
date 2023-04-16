@@ -48,6 +48,11 @@ class PacmanServiceClient extends $grpc.Client {
           ($0.CheckTokenRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.CheckTokenResponse.fromBuffer(value));
+  static final _$remove =
+      $grpc.ClientMethod<$0.RemoveRequest, $0.RemoveResponse>(
+          '/proto.v1.PacmanService/Remove',
+          ($0.RemoveRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $0.RemoveResponse.fromBuffer(value));
   static final _$upload =
       $grpc.ClientMethod<$0.UploadRequest, $0.UploadResponse>(
           '/proto.v1.PacmanService/Upload',
@@ -93,6 +98,11 @@ class PacmanServiceClient extends $grpc.Client {
       $0.CheckTokenRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$checkToken, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.RemoveResponse> remove($0.RemoveRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$remove, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.UploadResponse> upload($0.UploadRequest request,
@@ -154,6 +164,13 @@ abstract class PacmanServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.CheckTokenRequest.fromBuffer(value),
         ($0.CheckTokenResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.RemoveRequest, $0.RemoveResponse>(
+        'Remove',
+        remove_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.RemoveRequest.fromBuffer(value),
+        ($0.RemoveResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.UploadRequest, $0.UploadResponse>(
         'Upload',
         upload_Pre,
@@ -198,6 +215,11 @@ abstract class PacmanServiceBase extends $grpc.Service {
     return checkToken(call, await request);
   }
 
+  $async.Future<$0.RemoveResponse> remove_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.RemoveRequest> request) async {
+    return remove(call, await request);
+  }
+
   $async.Future<$0.UploadResponse> upload_Pre(
       $grpc.ServiceCall call, $async.Future<$0.UploadRequest> request) async {
     return upload(call, await request);
@@ -217,6 +239,8 @@ abstract class PacmanServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.LoginRequest request);
   $async.Future<$0.CheckTokenResponse> checkToken(
       $grpc.ServiceCall call, $0.CheckTokenRequest request);
+  $async.Future<$0.RemoveResponse> remove(
+      $grpc.ServiceCall call, $0.RemoveRequest request);
   $async.Future<$0.UploadResponse> upload(
       $grpc.ServiceCall call, $0.UploadRequest request);
 }

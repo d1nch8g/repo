@@ -78,7 +78,7 @@ class OutdatedPackages extends StatelessWidget {
           Center(
             child: Padding(
               padding: const EdgeInsets.all(defaultPadding),
-              child: FlueButton(
+              child: FmnxButton(
                 text: "Update",
                 icon: Icons.refresh,
                 onPressed: () {

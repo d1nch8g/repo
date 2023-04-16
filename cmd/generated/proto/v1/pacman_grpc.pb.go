@@ -36,7 +36,9 @@ type PacmanServiceClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	// A call used to check wether token is up to date in current session
 	CheckToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*CheckTokenResponse, error)
-	// Upload file with .tar.zst package for database
+	// Remove package from repository
+	Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error)
+	// Upload file with .pkg.tar.zst package for database
 	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error)
 }
 
@@ -111,6 +113,15 @@ func (c *pacmanServiceClient) CheckToken(ctx context.Context, in *CheckTokenRequ
 	return out, nil
 }
 
+func (c *pacmanServiceClient) Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error) {
+	out := new(RemoveResponse)
+	err := c.cc.Invoke(ctx, "/proto.v1.PacmanService/Remove", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pacmanServiceClient) Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error) {
 	out := new(UploadResponse)
 	err := c.cc.Invoke(ctx, "/proto.v1.PacmanService/Upload", in, out, opts...)
@@ -138,7 +149,9 @@ type PacmanServiceServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	// A call used to check wether token is up to date in current session
 	CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error)
-	// Upload file with .tar.zst package for database
+	// Remove package from repository
+	Remove(context.Context, *RemoveRequest) (*RemoveResponse, error)
+	// Upload file with .pkg.tar.zst package for database
 	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
 }
 
@@ -166,6 +179,9 @@ func (UnimplementedPacmanServiceServer) Login(context.Context, *LoginRequest) (*
 }
 func (UnimplementedPacmanServiceServer) CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckToken not implemented")
+}
+func (UnimplementedPacmanServiceServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Remove not implemented")
 }
 func (UnimplementedPacmanServiceServer) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
@@ -308,6 +324,24 @@ func _PacmanService_CheckToken_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PacmanService_Remove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PacmanServiceServer).Remove(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.v1.PacmanService/Remove",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PacmanServiceServer).Remove(ctx, req.(*RemoveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PacmanService_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UploadRequest)
 	if err := dec(in); err != nil {
@@ -360,6 +394,10 @@ var PacmanService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckToken",
 			Handler:    _PacmanService_CheckToken_Handler,
+		},
+		{
+			MethodName: "Remove",
+			Handler:    _PacmanService_Remove_Handler,
 		},
 		{
 			MethodName: "Upload",

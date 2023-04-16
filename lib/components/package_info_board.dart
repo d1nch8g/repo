@@ -1,3 +1,5 @@
+import 'package:fmnxpkg/components/flue_button.dart';
+import 'package:fmnxpkg/components/notification.dart';
 import 'package:fmnxpkg/constants.dart';
 import 'package:fmnxpkg/generated/v1/pacman.pbgrpc.dart';
 import 'package:data_table_2/data_table_2.dart';
@@ -131,6 +133,43 @@ class PackageInfoBoard extends StatelessWidget {
               ],
             ),
           ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FmnxButton(
+                text: "delete",
+                icon: Icons.do_disturb,
+                onPressed: () async {
+                  try {
+                    await stub.remove(RemoveRequest(
+                      package: description.name,
+                    ));
+                    showBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return NotificationPopup(
+                          message: "Package removed",
+                          icon: Icons.check_circle_outline_rounded,
+                          duration: Duration(milliseconds: 2342),
+                        );
+                      },
+                    );
+                  } catch (e) {
+                    showBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return NotificationPopup(
+                          message: e.toString(),
+                          icon: Icons.check_circle_outline_rounded,
+                          duration: Duration(milliseconds: 2342),
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
+          )
         ],
       ),
     );

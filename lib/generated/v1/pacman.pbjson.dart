@@ -204,3 +204,20 @@ const UploadResponse$json = const {
 
 /// Descriptor for `UploadResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List uploadResponseDescriptor = $convert.base64Decode('Cg5VcGxvYWRSZXNwb25zZQ==');
+@$core.Deprecated('Use removeRequestDescriptor instead')
+const RemoveRequest$json = const {
+  '1': 'RemoveRequest',
+  '2': const [
+    const {'1': 'package', '3': 1, '4': 1, '5': 9, '10': 'package'},
+  ],
+};
+
+/// Descriptor for `RemoveRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List removeRequestDescriptor = $convert.base64Decode('Cg1SZW1vdmVSZXF1ZXN0EhgKB3BhY2thZ2UYASABKAlSB3BhY2thZ2U=');
+@$core.Deprecated('Use removeResponseDescriptor instead')
+const RemoveResponse$json = const {
+  '1': 'RemoveResponse',
+};
+
+/// Descriptor for `RemoveResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List removeResponseDescriptor = $convert.base64Decode('Cg5SZW1vdmVSZXNwb25zZQ==');

@@ -1145,3 +1145,79 @@ class UploadResponse extends $pb.GeneratedMessage {
   static UploadResponse? _defaultInstance;
 }
 
+class RemoveRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RemoveRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.v1'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'package')
+    ..hasRequiredFields = false
+  ;
+
+  RemoveRequest._() : super();
+  factory RemoveRequest({
+    $core.String? package,
+  }) {
+    final _result = create();
+    if (package != null) {
+      _result.package = package;
+    }
+    return _result;
+  }
+  factory RemoveRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RemoveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RemoveRequest clone() => RemoveRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RemoveRequest copyWith(void Function(RemoveRequest) updates) => super.copyWith((message) => updates(message as RemoveRequest)) as RemoveRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static RemoveRequest create() => RemoveRequest._();
+  RemoveRequest createEmptyInstance() => create();
+  static $pb.PbList<RemoveRequest> createRepeated() => $pb.PbList<RemoveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static RemoveRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RemoveRequest>(create);
+  static RemoveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get package => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set package($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasPackage() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPackage() => clearField(1);
+}
+
+class RemoveResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RemoveResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.v1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  RemoveResponse._() : super();
+  factory RemoveResponse() => create();
+  factory RemoveResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RemoveResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RemoveResponse clone() => RemoveResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RemoveResponse copyWith(void Function(RemoveResponse) updates) => super.copyWith((message) => updates(message as RemoveResponse)) as RemoveResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static RemoveResponse create() => RemoveResponse._();
+  RemoveResponse createEmptyInstance() => create();
+  static $pb.PbList<RemoveResponse> createRepeated() => $pb.PbList<RemoveResponse>();
+  @$core.pragma('dart2js:noInline')
+  static RemoveResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RemoveResponse>(create);
+  static RemoveResponse? _defaultInstance;
+}
+

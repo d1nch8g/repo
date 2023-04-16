@@ -23,6 +23,11 @@ type Handlers struct {
 	Tokens   map[string]bool
 }
 
+// Remove implements pb.PacmanServiceServer
+func (s *Handlers) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveResponse, error) {
+	return &pb.RemoveResponse{}, s.Helper.Execute("yay -R " + in.Package)
+}
+
 // Upload implements pb.PacmanServiceServer.
 func (s *Handlers) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadResponse, error) {
 	if !s.Tokens[in.Token] {
