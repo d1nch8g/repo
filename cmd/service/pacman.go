@@ -23,7 +23,7 @@ type Handlers struct {
 	Tokens   map[string]bool
 }
 
-// Upload implements pb.PacmanServiceServer
+// Upload implements pb.PacmanServiceServer.
 func (s *Handlers) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadResponse, error) {
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
