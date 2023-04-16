@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 
@@ -20,6 +21,27 @@ type Handlers struct {
 	RepoName string
 	Logins   map[string]string
 	Tokens   map[string]bool
+}
+
+// Upload implements pb.PacmanServiceServer
+func (s *Handlers) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadResponse, error) {
+	if !s.Tokens[in.Token] {
+		return nil, status.Error(codes.Unauthenticated, "token incorrect")
+	}
+	err := os.WriteFile("/home/"+s.Helper.User+"/"+in.Name, in.Content, 0o600)
+	if err != nil {
+		return nil, status.Error(codes.Internal, err.Error())
+	}
+	err = s.Helper.Execute("makepkg -i")
+	if err != nil {
+		return nil, err
+	}
+	err = s.Helper.Execute("sudo mv /home/" + s.Helper.User + "/" + in.Name + " " + "/var/cache/pacman/pkg/" + in.Name)
+	if err != nil {
+		return nil, err
+	}
+	err = s.Helper.FormDb(s.YayPath, s.PkgPath, s.RepoName)
+	return &pb.UploadResponse{}, err
 }
 
 // CheckToken implements pb.PacmanServiceServer.

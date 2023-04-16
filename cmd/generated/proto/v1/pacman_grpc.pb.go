@@ -36,6 +36,8 @@ type PacmanServiceClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	// A call used to check wether token is up to date in current session
 	CheckToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*CheckTokenResponse, error)
+	// Upload file with .tar.zst package for database
+	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error)
 }
 
 type pacmanServiceClient struct {
@@ -109,6 +111,15 @@ func (c *pacmanServiceClient) CheckToken(ctx context.Context, in *CheckTokenRequ
 	return out, nil
 }
 
+func (c *pacmanServiceClient) Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error) {
+	out := new(UploadResponse)
+	err := c.cc.Invoke(ctx, "/proto.v1.PacmanService/Upload", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PacmanServiceServer is the server API for PacmanService service.
 // All implementations should embed UnimplementedPacmanServiceServer
 // for forward compatibility
@@ -127,6 +138,8 @@ type PacmanServiceServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	// A call used to check wether token is up to date in current session
 	CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error)
+	// Upload file with .tar.zst package for database
+	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
 }
 
 // UnimplementedPacmanServiceServer should be embedded to have forward compatible implementations.
@@ -153,6 +166,9 @@ func (UnimplementedPacmanServiceServer) Login(context.Context, *LoginRequest) (*
 }
 func (UnimplementedPacmanServiceServer) CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckToken not implemented")
+}
+func (UnimplementedPacmanServiceServer) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
 }
 
 // UnsafePacmanServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -292,6 +308,24 @@ func _PacmanService_CheckToken_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PacmanService_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PacmanServiceServer).Upload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.v1.PacmanService/Upload",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PacmanServiceServer).Upload(ctx, req.(*UploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PacmanService_ServiceDesc is the grpc.ServiceDesc for PacmanService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -326,6 +360,10 @@ var PacmanService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckToken",
 			Handler:    _PacmanService_CheckToken_Handler,
+		},
+		{
+			MethodName: "Upload",
+			Handler:    _PacmanService_Upload_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

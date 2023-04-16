@@ -25,6 +25,9 @@ service PacmanService {
 
   // A call used to check wether token is up to date in current session
   rpc CheckToken(CheckTokenRequest) returns (CheckTokenResponse);
+
+  // Upload file with .tar.zst package for database
+  rpc Upload(UploadRequest) returns (UploadResponse);
 }
 
 // List of packages from AUR to add
@@ -116,3 +119,11 @@ message CheckTokenRequest {
 message CheckTokenResponse {
   bool up_to_date = 1;
 }
+
+message UploadRequest {
+  bytes content = 1;
+  string name = 2;
+  string token = 3;
+}
+
+message UploadResponse {}
