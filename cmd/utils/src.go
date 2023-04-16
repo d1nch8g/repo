@@ -213,8 +213,11 @@ func (o *OsHelper) ReplaceFileString(file string, old string, new string) error 
 	return os.WriteFile(file, []byte(replaced), 0o600)
 }
 
-func (o *OsHelper) LoadFilePackages(links []string) error {
-	for _, v := range links {
+func (o *OsHelper) LoadFilePackages(linkPkgs string) error {
+	if linkPkgs == "" {
+		return nil
+	}
+	for _, v := range strings.Split(linkPkgs, " ") {
 		split := strings.Split(v, "::")
 		name := split[0]
 		link := split[1]

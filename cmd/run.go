@@ -55,7 +55,7 @@ func Run(cmd *cobra.Command, args []string) {
 		err = helper.Execute("yay -Sy --noconfirm " + initPkgs)
 		checkErr(err)
 
-		err = helper.LoadFilePackages(strings.Split(linkPkgs, " "))
+		err = helper.LoadFilePackages(linkPkgs)
 		checkErr(err)
 
 		err = helper.FormDb(yayPath, pkgPath, repoName)
