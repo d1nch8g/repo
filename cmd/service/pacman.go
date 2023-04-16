@@ -25,7 +25,7 @@ type Handlers struct {
 
 // Remove implements pb.PacmanServiceServer
 func (s *Handlers) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveResponse, error) {
-	return &pb.RemoveResponse{}, s.Helper.Execute("yay -R --noconfirm" + in.Package)
+	return &pb.RemoveResponse{}, s.Helper.Execute("yay -R --noconfirm " + in.Package)
 }
 
 // Upload implements pb.PacmanServiceServer.
