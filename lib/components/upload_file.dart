@@ -17,6 +17,16 @@ uploadFile(BuildContext context) async {
     if (pick == null) {
       return;
     }
+    showBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return NotificationPopup(
+          message: "Upload have started...",
+          icon: Icons.warning_amber_rounded,
+          duration: Duration(milliseconds: 2342),
+        );
+      },
+    );
     await stub.upload(UploadRequest(
       content: pick.files.first.bytes,
       name: pick.files.first.name,

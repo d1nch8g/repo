@@ -35,15 +35,15 @@ class OutdatedPackages extends StatelessWidget {
 
   double getHeight(double outdated) {
     if (outdated == 1.0) {
-      return 90;
+      return 94;
     }
     if (outdated == 2.0) {
-      return 180;
+      return 188;
     }
     if (outdated == 3.0) {
-      return 270;
+      return 282;
     }
-    return 380;
+    return 396;
   }
 
   @override
