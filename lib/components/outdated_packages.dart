@@ -1,5 +1,5 @@
 import 'package:fmnxpkg/generated/v1/pacman.pb.dart';
-import 'package:fmnxpkg/components/flue_button.dart';
+import 'package:fmnxpkg/components/fmnx_button.dart';
 import 'package:fmnxpkg/components/update_packages.dart';
 import 'package:flutter/material.dart';
 

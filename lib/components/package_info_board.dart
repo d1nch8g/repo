@@ -1,4 +1,4 @@
-import 'package:fmnxpkg/components/flue_button.dart';
+import 'package:fmnxpkg/components/fmnx_button.dart';
 import 'package:fmnxpkg/components/notification.dart';
 import 'package:fmnxpkg/constants.dart';
 import 'package:fmnxpkg/generated/v1/pacman.pbgrpc.dart';
