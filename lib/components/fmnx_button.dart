@@ -27,7 +27,10 @@ class _FmnxButtonState extends State<FmnxButton> {
     var checked = await stub.checkToken(CheckTokenRequest(
       token: prefs.getString("token"),
     ));
-    if (checked.upToDate || widget.text == "Authorize") {
+    if (checked.upToDate ||
+        widget.text == "Authorize" ||
+        widget.text == "Login" ||
+        widget.text == "Close") {
       setState(() {
         buttonWidget = ElevatedButton.icon(
           style: TextButton.styleFrom(
