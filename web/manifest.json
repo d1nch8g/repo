@@ -1,6 +1,6 @@
 {
-  "name": "fmnxpkg",
-  "short_name": "fmnxpkg",
+  "name": "fmnx-pkg",
+  "short_name": "fmnx-pkg",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

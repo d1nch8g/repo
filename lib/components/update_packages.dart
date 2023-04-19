@@ -1,4 +1,4 @@
-import 'package:fmnxpkg/generated/v1/pacman.pb.dart';
+import 'package:fmnx_pkg/generated/v1/pacman.pb.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:grpc/grpc_web.dart';

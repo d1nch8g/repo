@@ -1,6 +1,6 @@
-import 'package:fmnxpkg/constants.dart';
-import 'package:fmnxpkg/controllers/menu_app_controller.dart';
-import 'package:fmnxpkg/main_screen.dart';
+import 'package:fmnx_pkg/constants.dart';
+import 'package:fmnx_pkg/controllers/menu_app_controller.dart';
+import 'package:fmnx_pkg/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
