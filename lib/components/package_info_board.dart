@@ -35,9 +35,11 @@ class _PackageInfoBoardState extends State<PackageInfoBoard> {
               text: "delete",
               icon: Icons.do_disturb,
               onPressed: () async {
+                var prefs = await SharedPreferences.getInstance();
                 try {
                   await stub.remove(RemoveRequest(
                     package: widget.description.name,
+                    token: prefs.getString("token"),
                   ));
                   showBottomSheet(
                     context: context,
@@ -55,7 +57,7 @@ class _PackageInfoBoardState extends State<PackageInfoBoard> {
                     builder: (BuildContext context) {
                       return NotificationPopup(
                         message: e.toString(),
-                        icon: Icons.check_circle_outline_rounded,
+                        icon: Icons.error,
                         duration: Duration(milliseconds: 2342),
                       );
                     },
