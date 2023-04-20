@@ -18,15 +18,30 @@ uploadFile(BuildContext context) async {
   showBottomSheet(
     context: context,
     builder: (BuildContext context) {
-      return UploadContent(file: pick);
+      return UploadContent(
+        uploadCallback: () async {
+          try {
+            var prefs = await SharedPreferences.getInstance();
+            await stub.upload(UploadRequest(
+              content: pick.files.first.bytes,
+              name: pick.files.first.name,
+              token: prefs.getString("token"),
+            ));
+            return true;
+          } catch (e) {
+            return false;
+          }
+        },
+      );
     },
   );
 }
 
 class UploadContent extends StatefulWidget {
-  final FilePickerResult file;
+  final Future<bool> Function() uploadCallback;
+  const UploadContent({Key? key, required this.uploadCallback})
+      : super(key: key);
 
-  const UploadContent({Key? key, required this.file}) : super(key: key);
   @override
   State<UploadContent> createState() => _UploadContentState();
 }
@@ -38,14 +53,9 @@ class _UploadContentState extends State<UploadContent> {
   );
   String currMessage = "Uploading and installing...";
 
-  uploadUpdate() async {
-    var prefs = await SharedPreferences.getInstance();
-    try {
-      await stub.upload(UploadRequest(
-        content: widget.file.files.first.bytes,
-        name: widget.file.files.first.name,
-        token: prefs.getString("token"),
-      ));
+  upload() async {
+    var success = await widget.uploadCallback();
+    if (success) {
       setState(() {
         currIcon = Icon(
           Icons.check_circle,
@@ -57,14 +67,14 @@ class _UploadContentState extends State<UploadContent> {
           Navigator.pop(context);
         });
       });
-    } catch (e) {
+    } else {
       setState(() {
         currIcon = Icon(
           Icons.error,
           size: 24,
           color: Colors.white,
         );
-        currMessage = e.toString();
+        currMessage = "Error occured.";
         Future.delayed(Duration(milliseconds: 1327), () {
           Navigator.pop(context);
         });
@@ -75,7 +85,7 @@ class _UploadContentState extends State<UploadContent> {
   @override
   void initState() {
     super.initState();
-    uploadFile(context);
+    upload();
   }
 
   @override
