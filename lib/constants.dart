@@ -9,4 +9,4 @@ const backgroundColor = Color.fromARGB(255, 36, 36, 36);
 const defaultPadding = 16.0;
 
 var chan = GrpcWebClientChannel.xhr(Uri.parse("http://localhost:8080/"));
-var stub = PacmanServiceClient(chan);
+var stub = PacmanServiceClient(chan, CallOptions(timeout: Duration(days: 1)));

@@ -59,7 +59,7 @@ class PacmanServiceClient extends $grpc.Client {
           ($0.UploadRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.UploadResponse.fromBuffer(value));
 
-  PacmanServiceClient($grpc.ClientChannel channel,
+  PacmanServiceClient($grpc.ClientChannel channel, $grpc.CallOptions callOptions,
       {$grpc.CallOptions? options,
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
       : super(channel, options: options, interceptors: interceptors);
