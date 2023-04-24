@@ -12,7 +12,7 @@
 
 Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle. Base styling is provided to keep in sync with modern gnome apps.
 
-![](preview.gif)
+![](preview.png)
 
 ---
 
