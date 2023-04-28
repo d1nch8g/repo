@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	pb "fmnx.ru/dancheg97/fmnx-pkg/cmd/generated/proto/v1"
-	"fmnx.ru/dancheg97/fmnx-pkg/cmd/utils"
+	pb "fmnx.io/dancheg97/fmnx-pkg/cmd/generated/proto/v1"
+	"fmnx.io/dancheg97/fmnx-pkg/cmd/utils"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"

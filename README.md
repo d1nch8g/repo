@@ -4,11 +4,11 @@
 
 <h2 align="center">Pacman package repository - fmnx-pkg</h2>
 
-[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.ru/dancheg97/fmnx-pkg/src/branch/main/LICENSE)
-[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.ru/dancheg97/fmnx-pkg)
-[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fmnx-ru/fmnx-pkg)
-[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.ru/dancheg97/-/packages/container/fmnx-pkg/latest)
-[![Build Status](https://ci.fmnx.ru/api/badges/dancheg97/fmnx-pkg/status.svg)](https://ci.fmnx.ru/dancheg97/fmnx-pkg)
+[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.io/dancheg97/fmnx-pkg/src/branch/main/LICENSE)
+[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.io/dancheg97/fmnx-pkg)
+[![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fmnx-io/fmnx-pkg)
+[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/dancheg97/-/packages/container/fmnx-pkg/latest)
+[![Build Status](https://ci.fmnx.io/api/badges/dancheg97/fmnx-pkg/status.svg)](https://ci.fmnx.io/dancheg97/fmnx-pkg)
 
 Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle. Base styling is provided to keep in sync with modern gnome apps.
 
@@ -37,7 +37,7 @@ Environment variables/flags:
 - with `docker`:
 
 ```sh
-docker run -p 8080:8080 -e FMNXPKG_LOGS_FMT=text fmnx.ru/dancheg97/fmnx-pkg:latest
+docker run -p 8080:8080 -e FMNXPKG_LOGS_FMT=text fmnx.io/dancheg97/fmnx-pkg:latest
 ```
 
 - with `docker-compose`:
@@ -45,7 +45,7 @@ docker run -p 8080:8080 -e FMNXPKG_LOGS_FMT=text fmnx.ru/dancheg97/fmnx-pkg:late
 ```yml
 services:
   pacman:
-    image: fmnx.ru/dancheg97/fmnx-pkg:latest
+    image: fmnx.io/dancheg97/fmnx-pkg:latest
     command: run
     environment:
       FMNXPKG_INIT_PKGS: yay

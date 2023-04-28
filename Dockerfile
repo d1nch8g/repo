@@ -20,7 +20,7 @@ RUN flutter build web
 
 FROM archlinux/archlinux:base-devel
 
-LABEL maintainer="Dancheg97 <dancheg97@fmnx.ru>"
+LABEL maintainer="Dancheg97 <dancheg97@fmnx.io>"
 
 RUN pacman -Syu --needed --noconfirm git pacman-contrib wget
 

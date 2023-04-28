@@ -1,4 +1,4 @@
-module fmnx.ru/dancheg97/fmnx-pkg
+module fmnx.io/dancheg97/fmnx-pkg
 
 go 1.19
 

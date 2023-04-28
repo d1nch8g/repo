@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"fmnx.ru/dancheg97/fmnx-pkg/cmd/service"
-	"fmnx.ru/dancheg97/fmnx-pkg/cmd/utils"
+	"fmnx.io/dancheg97/fmnx-pkg/cmd/service"
+	"fmnx.io/dancheg97/fmnx-pkg/cmd/utils"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
