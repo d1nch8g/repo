@@ -20,15 +20,15 @@ Dockerized pacman repository with friendly user interface and public API. Projec
 
 Environment variables/flags:
 
-- 📄 - `FMNXPKG_REPO` - `repo` - repository name on the web page
-- 😀 - `FMNXPKG_USER` - `user` - user name in system, will be used to eject `yay` packages
-- 🌐 - `FMNXPKG_PORT` - `port` - publically exposed port, `8080` default
-- 📫 - `FMNXPKG_API_ADRESS` - `api-adress` - adress for backend api calls via `grpc-web`
-- 📦 - `FMNXPKG_INIT_PKGS` - `init-pkgs` - initial packages to download on start
-- 📥 - `FMNXPKG_INIT_PKGS_LINKS` - `init-pkgs-links` - initial packages to download using links, separated with space
-- 📒 - `FMNXPKG_LOGS_FORMAT` - `logs-fmt` - format for logs (can be text/json/pretty)
-- 📂 - `FMNXPKG_WEB_DIR` - `web-dir` - directory with flutter web app
-- 🔐 - `FMNXPKG_LOGINS` - `logins` - list of logins and passwords separated by '|' symbol
+- 📄 - `FMNXREPO_REPO` - `repo` - repository name on the web page
+- 😀 - `FMNXREPO_USER` - `user` - user name in system, will be used to eject `yay` packages
+- 🌐 - `FMNXREPO_PORT` - `port` - publically exposed port, `8080` default
+- 📫 - `FMNXREPO_API_ADRESS` - `api-adress` - adress for backend api calls via `grpc-web`
+- 📦 - `FMNXREPO_INIT_PKGS` - `init-pkgs` - initial packages to download on start
+- 📥 - `FMNXREPO_INIT_PKGS_LINKS` - `init-pkgs-links` - initial packages to download using links, separated with space
+- 📒 - `FMNXREPO_LOGS_FORMAT` - `logs-fmt` - format for logs (can be text/json/pretty)
+- 📂 - `FMNXREPO_WEB_DIR` - `web-dir` - directory with flutter web app
+- 🔐 - `FMNXREPO_LOGINS` - `logins` - list of logins and passwords separated by '|' symbol
 
 ---
 
@@ -37,7 +37,7 @@ Environment variables/flags:
 - with `docker`:
 
 ```sh
-docker run -p 8080:8080 -e FMNXPKG_LOGS_FMT=text fmnx.io/dancheg97/repo:latest
+docker run -p 8080:8080 -e FMNXREPO_LOGS_FMT=text fmnx.io/dancheg97/repo:latest
 ```
 
 - with `docker-compose`:
@@ -48,10 +48,10 @@ services:
     image: fmnx.io/dancheg97/repo:latest
     command: run
     environment:
-      FMNXPKG_INIT_PKGS: yay
-      FMNXPKG_API_ADRESS: http://localhost:8080/
-      FMNXPKG_LOGS_FMT: text
-      FMNXPKG_LOGINS: user1|pass1|user2|pass2
+      FMNXREPO_INIT_PKGS: yay
+      FMNXREPO_API_ADRESS: http://localhost:8080/
+      FMNXREPO_LOGS_FMT: text
+      FMNXREPO_LOGINS: user1|pass1|user2|pass2
     ports:
       - 8080:8080
 ```
