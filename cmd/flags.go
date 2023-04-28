@@ -30,7 +30,7 @@ var flags = []Flag{
 	{
 		Cmd:         rootCmd,
 		Name:        "port",
-		ShortName:   "g",
+		ShortName:   "p",
 		Env:         "FMNXREPO_PORT",
 		Value:       "8080",
 		Type:        "int",
@@ -46,7 +46,7 @@ var flags = []Flag{
 	{
 		Cmd:         rootCmd,
 		Name:        "init-pkgs-links",
-		ShortName:   "p",
+		ShortName:   "P",
 		Env:         "FMNXREPO_INIT_PKGS_LINKS",
 		Description: "📥 initial packages to download using links",
 	},

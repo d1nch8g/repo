@@ -7,6 +7,7 @@ import (
 
 	"fmnx.io/dev/repo/cmd/service"
 	"fmnx.io/dev/repo/cmd/utils"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -36,6 +37,8 @@ func Run(cmd *cobra.Command, args []string) {
 	)
 
 	setLogFormat()
+
+	logrus.Info("Service started with parameters: ", user, port, repoName, initPkgs)
 
 	helper := &utils.OsHelper{
 		User: user,
