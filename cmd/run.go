@@ -38,7 +38,8 @@ func Run(cmd *cobra.Command, args []string) {
 
 	setLogFormat()
 
-	logrus.Info("Service started with parameters: ", user, port, repoName, initPkgs)
+	logrus.Info("Initial API adress: ", apiAdress)
+	logrus.Info("Initial packages: ", initPkgs)
 
 	helper := &utils.OsHelper{
 		User: user,

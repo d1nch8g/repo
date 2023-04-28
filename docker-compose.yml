@@ -5,10 +5,8 @@ services:
     build:
       context: .
     environment:
-      FMNXREPO_REPO: localhost
-      FMNXREPO_PORT: 80
-      FMNXREPO_API_ADRESS: http://localhost/
+      FMNXREPO_INIT_PKGS: yay
       FMNXREPO_LOGS_FORMAT: text
       FMNXREPO_LOGINS: dev|hehehe
     ports:
-      - 80:80
+      - 8080:8080
