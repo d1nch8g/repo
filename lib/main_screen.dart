@@ -1,11 +1,11 @@
-import 'package:fmnx_pkg/components/header.dart';
-import 'package:fmnx_pkg/components/outdated_packages.dart';
-import 'package:fmnx_pkg/components/package_info_board.dart';
-import 'package:fmnx_pkg/components/side_menu.dart';
-import 'package:fmnx_pkg/constants.dart';
-import 'package:fmnx_pkg/controllers/menu_app_controller.dart';
-import 'package:fmnx_pkg/generated/v1/pacman.pb.dart';
-import 'package:fmnx_pkg/responsive.dart';
+import 'package:repo/components/header.dart';
+import 'package:repo/components/outdated_packages.dart';
+import 'package:repo/components/package_info_board.dart';
+import 'package:repo/components/side_menu.dart';
+import 'package:repo/constants.dart';
+import 'package:repo/controllers/menu_app_controller.dart';
+import 'package:repo/generated/v1/pacman.pb.dart';
+import 'package:repo/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

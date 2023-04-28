@@ -1,8 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fmnx_pkg/constants.dart';
-import 'package:fmnx_pkg/generated/v1/pacman.pb.dart';
+import 'package:repo/constants.dart';
+import 'package:repo/generated/v1/pacman.pb.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 uploadFile(BuildContext context) async {

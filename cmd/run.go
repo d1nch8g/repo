@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"fmnx.io/dancheg97/fmnx-pkg/cmd/service"
-	"fmnx.io/dancheg97/fmnx-pkg/cmd/utils"
+	"fmnx.io/dancheg97/repo/cmd/service"
+	"fmnx.io/dancheg97/repo/cmd/utils"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -17,7 +17,7 @@ func init() {
 
 var runCmd = &cobra.Command{
 	Use:   "run",
-	Short: "🚀 Run instance of fmnx-pkg",
+	Short: "🚀 Run instance of repo",
 	Run:   Run,
 }
 

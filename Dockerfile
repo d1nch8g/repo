@@ -6,7 +6,7 @@ COPY go.sum /src
 RUN go mod download
 
 COPY . /src
-RUN go build -o fmnx-pkg ./main.go
+RUN go build -o repo ./main.go
 
 FROM cirrusci/flutter AS flutter-build
 
@@ -34,9 +34,9 @@ RUN git clone https://aur.archlinux.org/yay.git
 RUN cd yay && makepkg -sri --needed --noconfirm && sudo  mv *.pkg.tar.zst /var/cache/pacman/pkg
 RUN cd && rm -rf .cache yay
 
-COPY --from=go-build /src/fmnx-pkg .
+COPY --from=go-build /src/repo .
 COPY --from=flutter-build /src/build/web /web
 RUN sudo chmod a+rwx -R /web
 
-ENTRYPOINT ["./fmnx-pkg"]
+ENTRYPOINT ["./repo"]
 CMD ["run"]

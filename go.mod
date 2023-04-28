@@ -1,4 +1,4 @@
-module fmnx.io/dancheg97/fmnx-pkg
+module fmnx.io/dancheg97/repo
 
 go 1.19
 

@@ -1,5 +1,5 @@
-import 'package:fmnx_pkg/generated/v1/pacman.pb.dart';
-import 'package:fmnx_pkg/components/fmnx_button.dart';
+import 'package:repo/generated/v1/pacman.pb.dart';
+import 'package:repo/components/fmnx_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:shared_preferences/shared_preferences.dart';

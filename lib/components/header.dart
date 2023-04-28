@@ -1,10 +1,10 @@
-import 'package:fmnx_pkg/components/upload_file.dart';
-import 'package:fmnx_pkg/controllers/menu_app_controller.dart';
-import 'package:fmnx_pkg/generated/v1/pacman.pb.dart';
-import 'package:fmnx_pkg/responsive.dart';
-import 'package:fmnx_pkg/components/add_pkg_popup.dart';
-import 'package:fmnx_pkg/components/fmnx_button.dart';
-import 'package:fmnx_pkg/components/login_popup.dart';
+import 'package:repo/components/upload_file.dart';
+import 'package:repo/controllers/menu_app_controller.dart';
+import 'package:repo/generated/v1/pacman.pb.dart';
+import 'package:repo/responsive.dart';
+import 'package:repo/components/add_pkg_popup.dart';
+import 'package:repo/components/fmnx_button.dart';
+import 'package:repo/components/login_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';

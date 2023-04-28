@@ -1,4 +1,4 @@
-name: fmnx_pkg
+name: repo
 description: Container package repository.
 
 version: 1.0.0+1

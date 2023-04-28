@@ -1,6 +1,6 @@
 {
-  "name": "fmnx-pkg",
-  "short_name": "fmnx-pkg",
+  "name": "repo",
+  "short_name": "repo",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

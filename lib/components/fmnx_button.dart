@@ -1,5 +1,5 @@
-import 'package:fmnx_pkg/generated/v1/pacman.pb.dart';
-import 'package:fmnx_pkg/responsive.dart';
+import 'package:repo/generated/v1/pacman.pb.dart';
+import 'package:repo/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constants.dart';

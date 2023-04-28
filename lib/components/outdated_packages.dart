@@ -1,6 +1,6 @@
-import 'package:fmnx_pkg/generated/v1/pacman.pb.dart';
-import 'package:fmnx_pkg/components/fmnx_button.dart';
-import 'package:fmnx_pkg/components/update_packages.dart';
+import 'package:repo/generated/v1/pacman.pb.dart';
+import 'package:repo/components/fmnx_button.dart';
+import 'package:repo/components/update_packages.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';

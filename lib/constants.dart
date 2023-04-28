@@ -1,4 +1,4 @@
-import 'package:fmnx_pkg/generated/v1/pacman.pbgrpc.dart';
+import 'package:repo/generated/v1/pacman.pbgrpc.dart';
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc_web.dart';
 
