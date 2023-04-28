@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"strings"
 
-	pb "fmnx.io/repo/repo/cmd/generated/proto/v1"
+	pb "fmnx.io/dev/repo/cmd/generated/proto/v1"
 	"github.com/sirupsen/logrus"
 )
 

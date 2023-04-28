@@ -4,11 +4,11 @@
 
 <h2 align="center">Pacman package repository - repo</h2>
 
-[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.io/repo/repo/src/branch/main/LICENSE)
-[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.io/repo/repo)
+[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.io/dev/repo/src/branch/main/LICENSE)
+[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.io/dev/repo)
 [![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fmnx-io/repo)
-[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/repo/-/packages/container/repo/latest)
-[![Build Status](https://ci.fmnx.io/api/badges/dancheg97/repo/status.svg)](https://ci.fmnx.io/repo/repo)
+[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/dev/-/packages/container/repo/latest)
+[![Build Status](https://ci.fmnx.io/api/badges/dancheg97/repo/status.svg)](https://ci.fmnx.io/dev/repo)
 
 Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle. Base styling is provided to keep in sync with modern gnome apps.
 
@@ -37,7 +37,7 @@ Environment variables/flags:
 - with `docker`:
 
 ```sh
-docker run -p 8080:8080 -e FMNXREPO_LOGS_FMT=text fmnx.io/repo/repo:latest
+docker run -p 8080:8080 -e FMNXREPO_LOGS_FMT=text fmnx.io/dev/repo:latest
 ```
 
 - with `docker-compose`:
@@ -45,7 +45,7 @@ docker run -p 8080:8080 -e FMNXREPO_LOGS_FMT=text fmnx.io/repo/repo:latest
 ```yml
 services:
   pacman:
-    image: fmnx.io/repo/repo:latest
+    image: fmnx.io/dev/repo:latest
     command: run
     environment:
       FMNXREPO_INIT_PKGS: yay

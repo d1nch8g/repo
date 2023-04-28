@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	pb "fmnx.io/repo/repo/cmd/generated/proto/v1"
-	"fmnx.io/repo/repo/cmd/utils"
+	pb "fmnx.io/dev/repo/cmd/generated/proto/v1"
+	"fmnx.io/dev/repo/cmd/utils"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
