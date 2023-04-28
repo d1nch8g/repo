@@ -1,6 +1,6 @@
 package main
 
-import "fmnx.io/dancheg97/repo/cmd"
+import "fmnx.io/repo/repo/cmd"
 
 func main() {
 	cmd.Execute()
