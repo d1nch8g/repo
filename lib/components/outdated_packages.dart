@@ -58,7 +58,7 @@ class OutdatedPackages extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Statistics",
+            "Outdated packages",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -74,7 +74,7 @@ class OutdatedPackages extends StatelessWidget {
               height: getHeight(1),
               child: Center(
                 child: Text(
-                  "System up to date",
+                  "Evrything up to date",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
