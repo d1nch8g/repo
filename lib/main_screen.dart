@@ -17,7 +17,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   DescribeResponse descr = DescribeResponse();
   StatsResponse stats = StatsResponse();
-  bool showOutdated = false;
 
   updateInformation(String text) async {
     var newDescr = await stub.describe(
@@ -27,7 +26,6 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       descr = newDescr;
       stats = newStats;
-      showOutdated = newStats.outdatedCount > 0;
     });
   }
 
@@ -88,8 +86,7 @@ class _MainScreenState extends State<MainScreen> {
                             flex: 5,
                             child: Column(
                               children: [
-                                if (Responsive.isMobile(context) &&
-                                    showOutdated)
+                                if (Responsive.isMobile(context))
                                   OutdatedPackages(
                                     updateCallback: () {
                                       updateInformation(descr.name);
@@ -99,8 +96,7 @@ class _MainScreenState extends State<MainScreen> {
                                     outdatedPackagesList:
                                         stats.outdatedPackages,
                                   ),
-                                if (Responsive.isMobile(context) &&
-                                    showOutdated)
+                                if (Responsive.isMobile(context))
                                   SizedBox(height: defaultPadding),
                                 AnimatedSwitcher(
                                   duration: Duration(milliseconds: 644),
@@ -114,7 +110,7 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           if (!Responsive.isMobile(context))
                             SizedBox(width: defaultPadding),
-                          if (!Responsive.isMobile(context) && showOutdated)
+                          if (!Responsive.isMobile(context))
                             Expanded(
                               flex: 2,
                               child: OutdatedPackages(

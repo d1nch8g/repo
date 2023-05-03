@@ -89,18 +89,19 @@ class OutdatedPackages extends StatelessWidget {
                 children: convertPackages(outdatedPackagesList),
               ),
             ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(defaultPadding),
-              child: FmnxButton(
-                text: "Update",
-                icon: Icons.refresh,
-                onPressed: () {
-                  showUpdateNotification(context, updateCallback);
-                },
+          if (outdated > 0)
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(defaultPadding),
+                child: FmnxButton(
+                  text: "Update",
+                  icon: Icons.refresh,
+                  onPressed: () {
+                    showUpdateNotification(context, updateCallback);
+                  },
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

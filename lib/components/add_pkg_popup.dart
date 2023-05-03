@@ -27,7 +27,7 @@ class AddPackageContents extends StatefulWidget {
 
 class _AddPackageContentsState extends State<AddPackageContents> {
   var textContoller = TextEditingController();
-  String textPlaceholder = "Type AUR packages";
+  String textPlaceholder = "Type packages";
   Widget inonPlaceholder = Icon(
     Icons.archive,
     size: 142,
