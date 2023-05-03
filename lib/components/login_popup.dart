@@ -1,4 +1,4 @@
-import 'package:repo/generated/v1/pacman.pb.dart';
+import 'package:repo/generated/v1/pack.pb.dart';
 import 'package:repo/components/fmnx_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shake_animated/flutter_shake_animated.dart';

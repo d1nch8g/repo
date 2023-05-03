@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: v1/pacman.proto
+//  source: v1/pack.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -10,56 +10,56 @@ import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
-import 'pacman.pb.dart' as $0;
-export 'pacman.pb.dart';
+import 'pack.pb.dart' as $0;
+export 'pack.pb.dart';
 
-class PacmanServiceClient extends $grpc.Client {
+class PackServiceClient extends $grpc.Client {
   static final _$add = $grpc.ClientMethod<$0.AddRequest, $0.AddResponse>(
-      '/proto.v1.PacmanService/Add',
+      '/proto.v1.PackService/Add',
       ($0.AddRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.AddResponse.fromBuffer(value));
   static final _$update =
       $grpc.ClientMethod<$0.UpdateRequest, $0.UpdateResponse>(
-          '/proto.v1.PacmanService/Update',
+          '/proto.v1.PackService/Update',
           ($0.UpdateRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.UpdateResponse.fromBuffer(value));
   static final _$search =
       $grpc.ClientMethod<$0.SearchRequest, $0.SearchResponse>(
-          '/proto.v1.PacmanService/Search',
+          '/proto.v1.PackService/Search',
           ($0.SearchRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.SearchResponse.fromBuffer(value));
   static final _$describe =
       $grpc.ClientMethod<$0.DescribeRequest, $0.DescribeResponse>(
-          '/proto.v1.PacmanService/Describe',
+          '/proto.v1.PackService/Describe',
           ($0.DescribeRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.DescribeResponse.fromBuffer(value));
   static final _$stats = $grpc.ClientMethod<$0.StatsRequest, $0.StatsResponse>(
-      '/proto.v1.PacmanService/Stats',
+      '/proto.v1.PackService/Stats',
       ($0.StatsRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.StatsResponse.fromBuffer(value));
   static final _$login = $grpc.ClientMethod<$0.LoginRequest, $0.LoginResponse>(
-      '/proto.v1.PacmanService/Login',
+      '/proto.v1.PackService/Login',
       ($0.LoginRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.LoginResponse.fromBuffer(value));
   static final _$checkToken =
       $grpc.ClientMethod<$0.CheckTokenRequest, $0.CheckTokenResponse>(
-          '/proto.v1.PacmanService/CheckToken',
+          '/proto.v1.PackService/CheckToken',
           ($0.CheckTokenRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.CheckTokenResponse.fromBuffer(value));
   static final _$remove =
       $grpc.ClientMethod<$0.RemoveRequest, $0.RemoveResponse>(
-          '/proto.v1.PacmanService/Remove',
+          '/proto.v1.PackService/Remove',
           ($0.RemoveRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.RemoveResponse.fromBuffer(value));
   static final _$upload =
       $grpc.ClientMethod<$0.UploadRequest, $0.UploadResponse>(
-          '/proto.v1.PacmanService/Upload',
+          '/proto.v1.PackService/Upload',
           ($0.UploadRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.UploadResponse.fromBuffer(value));
 
-  PacmanServiceClient($grpc.ClientChannel channel, $grpc.CallOptions callOptions,
+  PackServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
       : super(channel, options: options, interceptors: interceptors);
@@ -111,10 +111,10 @@ class PacmanServiceClient extends $grpc.Client {
   }
 }
 
-abstract class PacmanServiceBase extends $grpc.Service {
-  $core.String get $name => 'proto.v1.PacmanService';
+abstract class PackServiceBase extends $grpc.Service {
+  $core.String get $name => 'proto.v1.PackService';
 
-  PacmanServiceBase() {
+  PackServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.AddRequest, $0.AddResponse>(
         'Add',
         add_Pre,

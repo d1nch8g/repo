@@ -1,7 +1,7 @@
 import 'package:repo/components/fmnx_button.dart';
 import 'package:repo/components/notification.dart';
 import 'package:repo/constants.dart';
-import 'package:repo/generated/v1/pacman.pbgrpc.dart';
+import 'package:repo/generated/v1/pack.pbgrpc.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

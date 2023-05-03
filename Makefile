@@ -8,7 +8,7 @@ docker:
 gen:
 	buf format -w
 	buf generate
-	protoc --dart_out=grpc:lib/generated -Iproto proto/v1/pacman.proto
+	protoc --dart_out=grpc:lib/generated -Iproto proto/v1/pack.proto
 
 check:
 	gofumpt -l -w .
@@ -21,4 +21,4 @@ run:
 	docker compose up --build app
 
 evans:
-	evans --proto proto/v1/pacman.proto --web --host localhost -p 8080
+	evans --proto proto/v1/pack.proto --web --host localhost -p 8080

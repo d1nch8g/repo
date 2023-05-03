@@ -35,7 +35,7 @@ func Run(params *Params) error {
 		),
 		grpc.MaxRecvMsgSize(math.MaxInt),
 	)
-	pb.RegisterPacmanServiceServer(grpcServer, &Handlers{
+	pb.RegisterPackServiceServer(grpcServer, &Handlers{
 		Helper:   params.OsHelper,
 		RepoName: params.RepoName,
 		Logins:   params.Logins,

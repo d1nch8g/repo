@@ -3,12 +3,11 @@ package proto.v1;
 
 option go_package = "gen/go/pb";
 
-// Service containing method for adding aur packages
-service PacmanService {
-  // Add new packages from AUR package registry
+service PackService {
+  // Add new packages with pack add
   rpc Add(AddRequest) returns (AddResponse);
 
-  // Update all packages from AUR
+  // Update all packages with pack
   rpc Update(UpdateRequest) returns (UpdateResponse);
 
   // Check wether some package exists in repository
@@ -33,7 +32,7 @@ service PacmanService {
   rpc Upload(UploadRequest) returns (UploadResponse);
 }
 
-// List of packages from AUR to add
+// List of packages or git links
 message AddRequest {
   repeated string packages = 1;
   string token = 2;

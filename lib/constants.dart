@@ -1,4 +1,4 @@
-import 'package:repo/generated/v1/pacman.pbgrpc.dart';
+import 'package:repo/generated/v1/pack.pbgrpc.dart';
 import 'package:flutter/material.dart';
 import 'package:grpc/grpc_web.dart';
 
@@ -8,5 +8,8 @@ const backgroundColor = Color.fromARGB(255, 36, 36, 36);
 
 const defaultPadding = 16.0;
 
-var chan = GrpcWebClientChannel.xhr(Uri.parse("http://localhost:8080/"));
-var stub = PacmanServiceClient(chan, CallOptions(timeout: Duration(days: 1)));
+var chan = GrpcWebClientChannel.xhr(Uri.parse("http://localhost:80/"));
+var stub = PackServiceClient(
+  chan,
+  options: CallOptions(timeout: Duration(days: 1)),
+);

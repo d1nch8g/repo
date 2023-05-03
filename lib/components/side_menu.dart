@@ -1,5 +1,5 @@
 import 'package:repo/constants.dart';
-import 'package:repo/generated/v1/pacman.pb.dart';
+import 'package:repo/generated/v1/pack.pb.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

@@ -4,7 +4,7 @@
 
 <h2 align="center">Pack package repository - repo</h2>
 
-[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.io/core/repo/src/branch/main/LICENSE)
+[![Generic badge](https://img.shields.io/badge/LICENSE-GPL-orange.svg)](https://fmnx.io/core/repo/src/branch/main/LICENSE)
 [![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.io/core/repo)
 [![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fmnx-io/repo)
 [![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/core/-/packages/container/repo/latest)
@@ -85,4 +85,5 @@ located in `cmd` folder.
 Добавить OAuth через сторонние приложения акки гити
 Добавить tree view для просмотра зависимостей пакетов
 add del lockfile on startup
+add sanitizer on each request
 -->

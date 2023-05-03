@@ -1,4 +1,4 @@
-import 'package:repo/generated/v1/pacman.pb.dart';
+import 'package:repo/generated/v1/pack.pb.dart';
 import 'package:repo/components/fmnx_button.dart';
 import 'package:repo/components/update_packages.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +58,7 @@ class OutdatedPackages extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Outdated packages",
+            "Statistics",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -69,12 +69,26 @@ class OutdatedPackages extends StatelessWidget {
             outdated: outdated,
             uptodate: total - outdated,
           ),
-          Container(
-            height: getHeight(outdated),
-            child: ListView(
-              children: convertPackages(outdatedPackagesList),
+          if (outdated == 0)
+            Container(
+              height: getHeight(1),
+              child: Center(
+                child: Text(
+                  "System up to date",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
             ),
-          ),
+          if (outdated > 0)
+            Container(
+              height: getHeight(outdated),
+              child: ListView(
+                children: convertPackages(outdatedPackagesList),
+              ),
+            ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(defaultPadding),
