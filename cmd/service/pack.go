@@ -14,7 +14,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-type Handlers struct {
+type Svc struct {
 	Helper   *utils.OsHelper
 	User     string
 	RepoName string
@@ -23,7 +23,7 @@ type Handlers struct {
 }
 
 // Remove implements pb.PacmanServiceServer.
-func (s *Handlers) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveResponse, error) {
+func (s *Svc) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveResponse, error) {
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
 	}
@@ -31,7 +31,7 @@ func (s *Handlers) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.Remove
 }
 
 // Upload implements pb.PacmanServiceServer.
-func (s *Handlers) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadResponse, error) {
+func (s *Svc) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadResponse, error) {
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
 	}
@@ -52,7 +52,7 @@ func (s *Handlers) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.Upload
 }
 
 // CheckToken implements pb.PacmanServiceServer.
-func (s *Handlers) CheckToken(ctx context.Context, in *pb.CheckTokenRequest) (*pb.CheckTokenResponse, error) {
+func (s *Svc) CheckToken(ctx context.Context, in *pb.CheckTokenRequest) (*pb.CheckTokenResponse, error) {
 	if s.Tokens[in.Token] {
 		return &pb.CheckTokenResponse{
 			UpToDate: true,
@@ -64,7 +64,7 @@ func (s *Handlers) CheckToken(ctx context.Context, in *pb.CheckTokenRequest) (*p
 }
 
 // Login implements pb.PacmanServiceServer.
-func (s *Handlers) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginResponse, error) {
+func (s *Svc) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginResponse, error) {
 	password, exists := s.Logins[in.Login]
 	if !exists {
 		return nil, status.Error(codes.Unauthenticated, "no user in list")
@@ -80,7 +80,10 @@ func (s *Handlers) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginRes
 }
 
 // Describe implements pb.PacmanServiceServer.
-func (s *Handlers) Describe(ctx context.Context, in *pb.DescribeRequest) (*pb.DescribeResponse, error) {
+func (s *Svc) Describe(ctx context.Context, in *pb.DescribeRequest) (*pb.DescribeResponse, error) {
+	if !Validate(in.Package) {
+		return nil, status.Error(codes.Aborted, "not validated")
+	}
 	info, err := s.Helper.Call(`pack info ` + in.Package)
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute yay command: %w`, err)
@@ -89,7 +92,7 @@ func (s *Handlers) Describe(ctx context.Context, in *pb.DescribeRequest) (*pb.De
 }
 
 // Stats implements pb.PacmanServiceServer.
-func (s *Handlers) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse, error) {
+func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse, error) {
 	pkgCountString, err := s.Helper.Call(`sudo pacman -Q | wc -l`)
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
@@ -119,7 +122,7 @@ func (s *Handlers) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsRes
 	}, nil
 }
 
-func (s *Handlers) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, error) {
+func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, error) {
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
@@ -134,7 +137,10 @@ func (s *Handlers) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse,
 	return &pb.AddResponse{}, err
 }
 
-func (s *Handlers) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchResponse, error) {
+func (s *Svc) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchResponse, error) {
+	if !Validate(in.Pattern) {
+		return nil, status.Error(codes.Aborted, "not validated")
+	}
 	if in.Pattern == "" {
 		in.Pattern = "\"\""
 	}
@@ -150,7 +156,7 @@ func (s *Handlers) Search(ctx context.Context, in *pb.SearchRequest) (*pb.Search
 	}, nil
 }
 
-func (s *Handlers) Update(ctx context.Context, in *pb.UpdateRequest) (*pb.UpdateResponse, error) {
+func (s *Svc) Update(ctx context.Context, in *pb.UpdateRequest) (*pb.UpdateResponse, error) {
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}

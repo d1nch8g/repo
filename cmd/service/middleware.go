@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"strings"
 
 	pb "fmnx.io/dev/repo/cmd/generated/proto/v1"
 	"github.com/sirupsen/logrus"
@@ -21,4 +22,8 @@ func UnaryLogger() grpc.UnaryServerInterceptor {
 		logrus.Infof("Request [%s] success, req: [%s], resp: [%s]", info.FullMethod, req, resp)
 		return resp, err
 	}
+}
+
+func Validate(in string) bool {
+	return !strings.ContainsAny(in, "<>'\"#$-&\\^*?")
 }

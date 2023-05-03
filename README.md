@@ -85,5 +85,4 @@ located in `cmd` folder.
 Добавить OAuth через сторонние приложения акки гити
 Добавить tree view для просмотра зависимостей пакетов
 add del lockfile on startup
-add sanitizer on each request
 -->
