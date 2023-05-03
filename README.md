@@ -2,15 +2,15 @@
 <img style="align: center; padding-left: 10px; padding-right: 10px; padding-bottom: 10px;" width="238px" height="238px" src="./assets/images/logo.png" />
 </p>
 
-<h2 align="center">📦 Pacman package repository - repo 📦</h2>
+<h2 align="center">Pack package repository - repo</h2>
 
-[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.io/dev/repo/src/branch/main/LICENSE)
-[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.io/dev/repo)
+[![Generic badge](https://img.shields.io/badge/LICENSE-GPLv3-orange.svg)](https://fmnx.io/core/repo/src/branch/main/LICENSE)
+[![Generic badge](https://img.shields.io/badge/GITEA-REPO-red.svg)](https://fmnx.io/core/repo)
 [![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fmnx-io/repo)
-[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/dev/-/packages/container/repo/latest)
-[![Build Status](https://ci.fmnx.io/api/badges/dev/repo/status.svg)](https://ci.fmnx.io/dev/repo)
+[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/core/-/packages/container/repo/latest)
+[![Build Status](https://ci.fmnx.io/api/badges/core/repo/status.svg)](https://ci.fmnx.io/core/repo)
 
-Dockerized pacman repository with friendly user interface and public API. Project goal is to quickly set up personal pacman repostitory without pain and hustle. Base styling is provided to keep in sync with modern gnome apps.
+Dockerized pack repository with friendly user interface and public API. Project goal is to quickly set up personal repostitory for arch packages.
 
 ![](preview.png)
 
@@ -20,15 +20,15 @@ Dockerized pacman repository with friendly user interface and public API. Projec
 
 Environment variables/flags:
 
-- 📄 - `FMNXREPO_REPO` - `repo` - repository name on the web page
-- 😀 - `FMNXREPO_USER` - `user` - user name in system, will be used to eject `yay` packages
-- 🌐 - `FMNXREPO_PORT` - `port` - publically exposed port, `8080` default
-- 📫 - `FMNXREPO_API_ADRESS` - `api-adress` - adress for backend api calls via `grpc-web`
-- 📦 - `FMNXREPO_INIT_PKGS` - `init-pkgs` - initial packages to download on start
-- 📥 - `FMNXREPO_INIT_PKGS_LINKS` - `init-pkgs-links` - initial packages to download using links, separated with space
-- 📒 - `FMNXREPO_LOGS_FORMAT` - `logs-fmt` - format for logs (can be text/json/pretty)
-- 📂 - `FMNXREPO_WEB_DIR` - `web-dir` - directory with flutter web app
-- 🔐 - `FMNXREPO_LOGINS` - `logins` - list of logins and passwords separated by '|' symbol
+- 📄 - `PACKREPO_REPO` - `repo` - repository name on the web page
+- 😀 - `PACKREPO_USER` - `user` - user name in system, will be used to eject `pack` packages, by default it's 'pack'
+- 🌐 - `PACKREPO_PORT` - `port` - publically exposed port, `80` default
+- 📫 - `PACKREPO_API_ADRESS` - `api-adress` - adress for backend api calls via `grpc-web`
+- 📦 - `PACKREPO_INIT_PKGS` - `init-pkgs` - initial packages to download on start
+- 📥 - `PACKREPO_INIT_PKGS_LINKS` - `init-pkgs-links` - initial packages to download using links, separated with space
+- 📒 - `PACKREPO_LOGS_FORMAT` - `logs-fmt` - format for logs (can be text/json/pretty)
+- 📂 - `PACKREPO_WEB_DIR` - `web-dir` - directory with flutter web app
+- 🔐 - `PACKREPO_LOGINS` - `logins` - list of logins and passwords separated by '|' symbol
 
 ---
 
@@ -37,7 +37,7 @@ Environment variables/flags:
 - with `docker`:
 
 ```sh
-docker run -p 8080:8080 -e FMNXREPO_LOGS_FMT=text fmnx.io/dev/repo:latest
+docker run -p 80:80 -e PACKREPO_LOGS_FMT=text fmnx.io/core/repo:latest
 ```
 
 - with `docker-compose`:
@@ -45,15 +45,15 @@ docker run -p 8080:8080 -e FMNXREPO_LOGS_FMT=text fmnx.io/dev/repo:latest
 ```yml
 services:
   pacman:
-    image: fmnx.io/dev/repo:latest
+    image: fmnx.io/core/repo:latest
     command: run
     environment:
-      FMNXREPO_INIT_PKGS: yay
-      FMNXREPO_API_ADRESS: http://localhost:8080/
-      FMNXREPO_LOGS_FMT: text
-      FMNXREPO_LOGINS: user1|pass1|user2|pass2
+      PACKREPO_INIT_PKGS: aur.archlinux.org/yamux fmnx.io/core/ainst
+      PACKREPO_API_ADRESS: http://localhost:80/
+      PACKREPO_LOGS_FMT: text
+      PACKREPO_LOGINS: user1|pass1|user2|pass2
     ports:
-      - 8080:8080
+      - 80:80
 ```
 
 ## Add to pacman conf
@@ -63,14 +63,7 @@ Add those lines to your `/etc/pacman.conf`, to get things to work:
 ```conf
 [localhost]
 SigLevel = Optional TrustAll
-Server = http://localhost:8080/pkg
-```
-
-You can test it with this commands:
-
-```sh
-sudo pacman -R yay
-sudo pacman -Sy yay
+Server = http://localhost/pkg
 ```
 
 ## Contribute
@@ -88,10 +81,8 @@ All frontend dart code is located in `lib` folder, all backend go code is
 located in `cmd` folder.
 
 <!--
-Добавить установку пакетов загруженных из ссылок
-Добавить ui для загрузки пакетов через ссылки
 Добавить файл конфигурации который будет автоматически изменяться с поступающими командами для возможности бэкапа в слуаче проблем
 Добавить OAuth через сторонние приложения акки гити
-Добавить удаление пактов через апи
 Добавить tree view для просмотра зависимостей пакетов
+add del lockfile on startup
 -->

@@ -18,21 +18,7 @@ COPY . /src
 RUN flutter clean
 RUN flutter build web
 
-FROM archlinux/archlinux:base-devel
-
-LABEL maintainer="Dancheg97 <dancheg97@fmnx.io>"
-
-RUN pacman -Syu --needed --noconfirm git pacman-contrib wget
-
-ARG user=makepkg
-RUN useradd --system --create-home $user
-RUN echo "$user ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/$user
-USER $user
-WORKDIR /home/$user
-
-RUN git clone https://aur.archlinux.org/yay.git
-RUN cd yay && makepkg -sri --needed --noconfirm && sudo  mv *.pkg.tar.zst /var/cache/pacman/pkg
-RUN cd && rm -rf .cache yay
+FROM fmnx.io/core/pack:latest
 
 COPY --from=go-build /src/repo .
 COPY --from=flutter-build /src/build/web /web

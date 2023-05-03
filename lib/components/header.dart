@@ -27,7 +27,7 @@ class Header extends StatelessWidget {
           ),
         if (!Responsive.isMobile(context))
           Text(
-            "Pacman package repository",
+            "Pack package repository",
             style: Theme.of(context).textTheme.titleLarge,
           ),
         Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),

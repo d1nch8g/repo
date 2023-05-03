@@ -19,8 +19,6 @@ import (
 
 type Params struct {
 	Port     int
-	PkgPath  string
-	YayPath  string
 	WebPath  string
 	RepoName string
 	Logins   map[string]string
@@ -39,8 +37,6 @@ func Run(params *Params) error {
 	)
 	pb.RegisterPacmanServiceServer(grpcServer, &Handlers{
 		Helper:   params.OsHelper,
-		YayPath:  params.YayPath,
-		PkgPath:  params.PkgPath,
 		RepoName: params.RepoName,
 		Logins:   params.Logins,
 		Tokens:   map[string]bool{},
@@ -50,7 +46,7 @@ func Run(params *Params) error {
 	appfs := http.FileServer(http.Dir(params.WebPath))
 	mux.Handle("/", http.StripPrefix("/", appfs))
 
-	pkgfs := http.FileServer(http.Dir(params.PkgPath))
+	pkgfs := http.FileServer(http.Dir("/var/cache/pacman/pkg"))
 	mux.Handle("/pkg/", http.StripPrefix("/pkg/", pkgfs))
 
 	wrappedGrpc := grpcweb.WrapServer(grpcServer)

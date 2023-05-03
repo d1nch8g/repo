@@ -9,15 +9,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "repo",
-	Short: "📦 Tool for managing personal pacman repository written in go.",
-	Long: `📦 Tool for managing personal pacman repository written in go.
-
-	repo - Copyright (C) 2023  Dancheg97
-	
-	This program comes with ABSOLUTELY NO WARRANTY; for details 'use -h flag'.
-	This is free software, and you are welcome to redistribute it
-	under certain conditions; watch license for details.
-`,
+	Short: "📦 Personal repository for arch packages written in go",
 }
 
 func Execute() {

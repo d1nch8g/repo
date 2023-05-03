@@ -24,16 +24,12 @@ var runCmd = &cobra.Command{
 
 func Run(cmd *cobra.Command, args []string) {
 	var (
-		pkgPath   = "/var/cache/pacman/pkg"
-		user      = viper.GetString("user")
-		yayPath   = "/home/" + user + "/.cache/yay"
 		port      = viper.GetInt("port")
 		repoName  = viper.GetString("repo")
 		webPath   = viper.GetString("web-dir")
 		initPkgs  = viper.GetString(`init-pkgs`)
 		apiAdress = viper.GetString(`api-adress`)
 		logins    = viper.GetString(`logins`)
-		linkPkgs  = viper.GetString(`init-pkgs-links`)
 	)
 
 	setLogFormat()
@@ -41,9 +37,7 @@ func Run(cmd *cobra.Command, args []string) {
 	logrus.Info("Initial API adress: ", apiAdress)
 	logrus.Info("Initial packages: ", initPkgs)
 
-	helper := &utils.OsHelper{
-		User: user,
-	}
+	helper := &utils.OsHelper{}
 
 	err := helper.ReplaceFileString(
 		webPath+`/main.dart.js`,
@@ -56,20 +50,15 @@ func Run(cmd *cobra.Command, args []string) {
 	checkErr(err)
 
 	go func() {
-		err = helper.Execute("yay -Sy --noconfirm " + initPkgs)
+		err = helper.Execute("pack get " + initPkgs)
 		checkErr(err)
 
-		err = helper.LoadFilePackages(linkPkgs)
-		checkErr(err)
-
-		err = helper.FormDb(yayPath, pkgPath, repoName)
+		err = helper.FormDb(repoName)
 		checkErr(err)
 	}()
 
 	err = service.Run(&service.Params{
 		Port:     port,
-		PkgPath:  pkgPath,
-		YayPath:  yayPath,
 		WebPath:  webPath,
 		RepoName: repoName,
 		OsHelper: helper,

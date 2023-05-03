@@ -16,8 +16,7 @@ import (
 
 type Handlers struct {
 	Helper   *utils.OsHelper
-	YayPath  string
-	PkgPath  string
+	User     string
 	RepoName string
 	Logins   map[string]string
 	Tokens   map[string]bool
@@ -36,7 +35,7 @@ func (s *Handlers) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.Upload
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
 	}
-	err := os.WriteFile("/home/"+s.Helper.User+"/"+in.Name, in.Content, 0o600)
+	err := os.WriteFile("/home/"+s.User+"/"+in.Name, in.Content, 0o600)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
@@ -44,11 +43,11 @@ func (s *Handlers) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.Upload
 	if err != nil {
 		return nil, err
 	}
-	err = s.Helper.Execute("sudo mv /home/" + s.Helper.User + "/" + in.Name + " " + "/var/cache/pacman/pkg/" + in.Name)
+	err = s.Helper.Execute("sudo mv /home/" + s.User + "/" + in.Name + " " + "/var/cache/pacman/pkg/" + in.Name)
 	if err != nil {
 		return nil, err
 	}
-	err = s.Helper.FormDb(s.YayPath, s.PkgPath, s.RepoName)
+	err = s.Helper.FormDb(s.RepoName)
 	return &pb.UploadResponse{}, err
 }
 
@@ -82,7 +81,7 @@ func (s *Handlers) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginRes
 
 // Describe implements pb.PacmanServiceServer.
 func (s *Handlers) Describe(ctx context.Context, in *pb.DescribeRequest) (*pb.DescribeResponse, error) {
-	info, err := s.Helper.Call(`yay -Qi ` + in.Package)
+	info, err := s.Helper.Call(`pack info ` + in.Package)
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute yay command: %w`, err)
 	}
@@ -124,14 +123,14 @@ func (s *Handlers) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse,
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	out, err := s.Helper.Call("yay -Sy --noconfirm " + strings.Join(in.Packages, ` `))
+	out, err := s.Helper.Call("pack get " + strings.Join(in.Packages, ` `))
 	if err != nil {
 		if strings.Contains(out, "Could not find") {
 			return nil, status.Error(codes.NotFound, "unable to find package")
 		}
 		return nil, fmt.Errorf("unable to execute yay command: %w", err)
 	}
-	err = s.Helper.FormDb(s.YayPath, s.PkgPath, s.RepoName)
+	err = s.Helper.FormDb(s.RepoName)
 	return &pb.AddResponse{}, err
 }
 
@@ -155,6 +154,6 @@ func (s *Handlers) Update(ctx context.Context, in *pb.UpdateRequest) (*pb.Update
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	err := s.Helper.Execute("yay -Syu --noconfirm ")
+	err := s.Helper.Execute("pack update")
 	return &pb.UpdateResponse{}, err
 }

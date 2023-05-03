@@ -2,11 +2,9 @@ version: "3.11"
 
 services:
   app:
-    build:
-      context: .
+    image: fmnx.io/core/repo:latest
     environment:
-      FMNXREPO_INIT_PKGS: yay
-      FMNXREPO_LOGS_FORMAT: text
-      FMNXREPO_LOGINS: dev|hehehe
+      PACKREPO_LOGS_FORMAT: text
+      PACKREPO_LOGINS: dev|hehehe
     ports:
-      - 8080:8080
+      - 80:80

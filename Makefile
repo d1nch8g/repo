@@ -1,5 +1,9 @@
 pwd := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
+docker:
+	docker build -t fmnx.io/core/repo .
+	docker run -p 80:80 fmnx.io/core/repo
+
 .PHONY: gen
 gen:
 	buf format -w

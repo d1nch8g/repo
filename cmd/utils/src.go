@@ -10,9 +10,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type OsHelper struct {
-	User string
-}
+type OsHelper struct{}
 
 // Executes bash call and loggs output to logrus.
 func (o *OsHelper) Execute(cmd string) error {
@@ -93,22 +91,10 @@ func (o *OsHelper) Clean(dir string) error {
 	return nil
 }
 
-func (o *OsHelper) FormDb(yay string, pkg string, repo string) error {
-	entires, err := os.ReadDir(yay)
-	if err != nil {
-		return err
-	}
-	for _, de := range entires {
-		if de.IsDir() {
-			err := o.Move(yay+"/"+de.Name(), pkg)
-			if err != nil {
-				return err
-			}
-		}
-	}
-	repoPath := pkg + "/" + repo + ".db.tar.gz"
-	pkgsPath := pkg + "/*.pkg.tar.zst"
-	err = o.Execute("sudo repo-add -n -q " + repoPath + " " + pkgsPath)
+func (o *OsHelper) FormDb(repo string) error {
+	repoPath := "/var/cache/pacman/pkg/" + repo + ".db.tar.gz"
+	pkgsPath := "/var/cache/pacman/pkg/*.pkg.tar.zst"
+	err := o.Execute("sudo repo-add -n -q " + repoPath + " " + pkgsPath)
 	return err
 }
 
@@ -211,25 +197,4 @@ func (o *OsHelper) ReplaceFileString(file string, old string, new string) error 
 	}
 	replaced := strings.ReplaceAll(string(contents), old, new)
 	return os.WriteFile(file, []byte(replaced), 0o600)
-}
-
-func (o *OsHelper) LoadFilePackages(linkPkgs string) error {
-	if linkPkgs == "" {
-		return nil
-	}
-	for _, v := range strings.Split(linkPkgs, " ") {
-		split := strings.Split(v, "::")
-		name := split[0]
-		link := split[1]
-		err := o.Execute("wget -O " + name + " " + link)
-		if err != nil {
-			return err
-		}
-
-		err = o.Execute("sudo mv /home/" + o.User + "/" + name + " " + "/var/cache/pacman/pkg/" + name)
-		if err != nil {
-			return err
-		}
-	}
-	return nil
 }
