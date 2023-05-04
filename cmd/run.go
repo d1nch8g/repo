@@ -39,6 +39,8 @@ func Run(cmd *cobra.Command, args []string) {
 
 	helper := &utils.OsHelper{}
 
+	helper.PrepareInitialPackages()
+
 	err := helper.ReplaceFileString(
 		webPath+`/main.dart.js`,
 		`http://localhost:8080/`,

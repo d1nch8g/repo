@@ -91,6 +91,10 @@ func (o *OsHelper) Clean(dir string) error {
 	return nil
 }
 
+func (o *OsHelper) PrepareInitialPackages() error {
+	return o.Execute("sudo mv -v /var/cache/pacman/initpkg/* /var/cache/pacman/pkg")
+}
+
 func (o *OsHelper) FormDb(repo string) error {
 	repoPath := "/var/cache/pacman/pkg/" + repo + ".db.tar.gz"
 	pkgsPath := "/var/cache/pacman/pkg/*.pkg.tar.zst"
