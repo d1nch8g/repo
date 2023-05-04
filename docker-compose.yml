@@ -4,7 +4,7 @@ services:
   app:
     image: fmnx.io/core/repo:latest
     environment:
-      PACKREPO_INIT_PKGS: xdg-user-dirs-gtk aur.archlinux.org/papirus-icon-theme
+      PACKREPO_INIT_PKGS: cmake clang qemu-desktop edk2-ovmf archiso archinstall xdg-user-dirs-gtk aur.archlinux.org/papirus-icon-theme aur.archlinux.org/adw-gtk-theme aur.archlinux.org/gnome-browser-connector aur.archlinux.org/gnome-shell-extension-dash-to-dock aur.archlinux.org/zsh-theme-powerlevel10k-bin-git aur.archlinux.org/zsh-autosuggestions aur.archlinux.org/zsh-syntax-highlighting aur.archlinux.org/onlyoffice-bin aur.archlinux.org/telegram-desktop aur.archlinux.org/visual-studio-code-bin docker docker-compose aur.archlinux.org/flutter aur.archlinux.org/buf-bin aur.archlinux.org/golangci-lint-bin aur.archlinux.org/protoc-gen-go-grpc aur.archlinux.org/bluez-utils aur.archlinux.org/gnome-shell-extension-dash-to-dock aur.archlinux.org/gnome-shell-extension-gtile aur.archlinux.org/neovim-git aur.archlinux.org/vlang
       PACKREPO_LOGS_FORMAT: text
       PACKREPO_LOGINS: user|password
     volumes:
