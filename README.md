@@ -21,12 +21,9 @@ Dockerized pack repository with friendly user interface and public API. Project 
 Environment variables/flags:
 
 - 📄 - `PACKREPO_REPO` - `repo` - repository name on the web page
-- 😀 - `PACKREPO_USER` - `user` - user name in system, will be used to eject `pack` packages, by default it's 'pack'
 - 🌐 - `PACKREPO_PORT` - `port` - publically exposed port, `80` default
 - 📫 - `PACKREPO_API_ADRESS` - `api-adress` - adress for backend api calls via `grpc-web`
 - 📦 - `PACKREPO_INIT_PKGS` - `init-pkgs` - initial packages to download on start
-- 📥 - `PACKREPO_INIT_PKGS_LINKS` - `init-pkgs-links` - initial packages to download using links, separated with space
-- 📒 - `PACKREPO_LOGS_FORMAT` - `logs-fmt` - format for logs (can be text/json/pretty)
 - 📂 - `PACKREPO_WEB_DIR` - `web-dir` - directory with flutter web app
 - 🔐 - `PACKREPO_LOGINS` - `logins` - list of logins and passwords separated by '|' symbol
 

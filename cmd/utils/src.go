@@ -2,36 +2,37 @@ package utils
 
 import (
 	"bytes"
+	"fmt"
+	"io"
 	"os"
 	"os/exec"
 	"strings"
 
 	pb "fmnx.io/dev/repo/cmd/generated/proto/v1"
-	"github.com/sirupsen/logrus"
 )
 
 type OsHelper struct{}
 
-// Executes bash call and loggs output to logrus.
+// Executes bash call and loggs output to stdout.
 func (o *OsHelper) Execute(cmd string) error {
-	logrus.Info(`executing system call: `, cmd)
+	fmt.Println(`executing system call: `, cmd)
 
 	commad := exec.Command("bash", "-c", cmd)
 
-	commad.Stdout = logrus.StandardLogger().Writer()
-	commad.Stderr = logrus.StandardLogger().Writer()
+	commad.Stdout = os.Stdout
+	commad.Stderr = os.Stderr
 
 	return commad.Run()
 }
 
 func (o *OsHelper) Call(cmd string) (string, error) {
-	logrus.Info(`executing system call: `, cmd)
+	fmt.Println(`executing system call: `, cmd)
 
 	command := exec.Command("bash", "-c", cmd)
 
 	out := bytes.Buffer{}
-	command.Stdout = &out
-	command.Stderr = &out
+	command.Stdout = io.MultiWriter(&out, os.Stdout)
+	command.Stderr = io.MultiWriter(&out, os.Stderr)
 
 	err := command.Run()
 	if err != nil {
@@ -56,7 +57,7 @@ func (o *OsHelper) Move(src string, dst string) error {
 	}
 	for _, de := range des {
 		if strings.HasSuffix(de.Name(), ".pkg.tar.zst") {
-			logrus.Info("moving package file: ", de.Name())
+			fmt.Println("moving package file: ", de.Name())
 
 			input, err := os.ReadFile(src + "/" + de.Name())
 			if err != nil {
@@ -67,7 +68,7 @@ func (o *OsHelper) Move(src string, dst string) error {
 			if err != nil {
 				return err
 			}
-			logrus.Info("moved file, success: ", de.Name())
+			fmt.Println("moved file, success: ", de.Name())
 		}
 	}
 
@@ -103,7 +104,7 @@ func (o *OsHelper) FormDb(repo string) error {
 }
 
 func (o *OsHelper) ParsePkgInfo(inp string) *pb.DescribeResponse {
-	logrus.Info("parsing package info: ", inp)
+	fmt.Println("parsing package info: ", inp)
 	out := &pb.DescribeResponse{}
 	for _, s := range strings.Split(inp, "\n") {
 		if strings.HasPrefix(s, " ") {

@@ -5,7 +5,6 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -34,14 +33,6 @@ var flags = []Flag{
 		ShortName:   "i",
 		Env:         "PACKREPO_INIT_PKGS",
 		Description: "📦 initial packages for download",
-	},
-	{
-		Cmd:         rootCmd,
-		Name:        "logs-format",
-		ShortName:   "f",
-		Env:         "PACKREPO_LOGS_FORMAT",
-		Value:       "json",
-		Description: "📒 output format for logs (json/text/pretty)",
 	},
 	{
 		Cmd:         rootCmd,
@@ -139,24 +130,7 @@ func AddFlag(cmd Flag) {
 
 func checkErr(err error) {
 	if err != nil {
-		logrus.Error(err)
+		fmt.Println("Error occured: ", fmt.Sprintf("%+v", err))
 		os.Exit(1)
-	}
-}
-
-func setLogFormat() {
-	switch viper.GetString(`logs-format`) {
-	case `json`:
-		logrus.SetFormatter(&logrus.JSONFormatter{})
-	case `text`:
-		logrus.SetFormatter(&logrus.TextFormatter{})
-	case `pretty`:
-		logrus.SetFormatter(&logrus.TextFormatter{
-			ForceColors:   true,
-			DisableQuote:  true,
-			FullTimestamp: true,
-		})
-	default:
-		logrus.SetFormatter(&logrus.JSONFormatter{})
 	}
 }

@@ -7,7 +7,7 @@ import (
 
 	"fmnx.io/dev/repo/cmd/service"
 	"fmnx.io/dev/repo/cmd/utils"
-	"github.com/sirupsen/logrus"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -32,10 +32,8 @@ func Run(cmd *cobra.Command, args []string) {
 		logins    = viper.GetString(`logins`)
 	)
 
-	setLogFormat()
-
-	logrus.Info("Initial API adress: ", apiAdress)
-	logrus.Info("Initial packages: ", initPkgs)
+	fmt.Println("Initial API adress: ", apiAdress)
+	fmt.Println("Initial packages: ", initPkgs)
 
 	helper := &utils.OsHelper{}
 

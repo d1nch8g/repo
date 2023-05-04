@@ -2,10 +2,11 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"strings"
 
 	pb "fmnx.io/dev/repo/cmd/generated/proto/v1"
-	"github.com/sirupsen/logrus"
+
 	"google.golang.org/grpc"
 )
 
@@ -16,10 +17,10 @@ func UnaryLogger() grpc.UnaryServerInterceptor {
 			req.Content = nil
 		}
 		if err != nil {
-			logrus.Errorf("Request [%s] error, req: [%s], resp: [%s], err: [%s]", info.FullMethod, req, resp, err.Error())
+			fmt.Printf("Request [%s] error, req: [%s], resp: [%s], err: [%s]\n", info.FullMethod, req, resp, err.Error())
 			return resp, err
 		}
-		logrus.Infof("Request [%s] success, req: [%s], resp: [%s]", info.FullMethod, req, resp)
+		fmt.Printf("Request [%s] success, req: [%s], resp: [%s]\n", info.FullMethod, req, resp)
 		return resp, err
 	}
 }

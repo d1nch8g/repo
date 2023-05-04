@@ -12,7 +12,7 @@ import (
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/sirupsen/logrus"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -64,6 +64,6 @@ func Run(params *Params) error {
 		Handler:           mux,
 	}
 
-	logrus.Info("server running on port: " + fmt.Sprint(params.Port))
+	fmt.Println("server running on port: " + fmt.Sprint(params.Port))
 	return server.ListenAndServe()
 }
