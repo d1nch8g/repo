@@ -5,6 +5,7 @@ import 'package:repo/generated/v1/pack.pbgrpc.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PackageInfoBoard extends StatefulWidget {
   final DescribeResponse description;
@@ -235,9 +236,11 @@ DataRow formDataRow({
           ],
         ),
       ),
-      DataCell(
-        Text(value),
-      ),
+      DataCell(Text(value), onTap: () {
+        if (key == "Official web URL") {
+          launchUrl(Uri.parse(value));
+        }
+      }),
     ],
   );
 }
