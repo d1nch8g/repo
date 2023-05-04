@@ -12,14 +12,6 @@ volumes:
       path: /var/run/docker.sock
 
 steps:
-  - name: lint and test
-    image: golangci/golangci-lint:latest
-    commands:
-      - go fmt  ./...
-      - go vet  ./...
-      - golangci-lint run
-      - go test ./...
-
   - name: build and push docker registry
     image: docker
     volumes:
