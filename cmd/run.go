@@ -41,7 +41,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	err := helper.ReplaceFileString(
 		webPath+`/main.dart.js`,
-		`http://localhost:8080/`,
+		`http://localhost:80/`,
 		apiAdress,
 	)
 	checkErr(err)
