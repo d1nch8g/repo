@@ -81,7 +81,6 @@ All frontend dart code is located in `lib` folder, all backend go code is
 located in `cmd` folder.
 
 <!--
-Добавить файл конфигурации который будет автоматически изменяться с поступающими командами для возможности бэкапа в слуаче проблем
 Добавить OAuth через сторонние приложения акки гити
 Добавить tree view для просмотра зависимостей пакетов
 add del lockfile on startup

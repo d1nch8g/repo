@@ -4,7 +4,10 @@ services:
   app:
     image: fmnx.io/core/repo:latest
     environment:
+      PACKREPO_INIT_PKGS: bluez-utils
       PACKREPO_LOGS_FORMAT: text
       PACKREPO_LOGINS: dev|hehehe
+    volumes:
+      - ./pkgs:/var/cache/pacman/pkg:rw
     ports:
       - 80:80

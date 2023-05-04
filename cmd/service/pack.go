@@ -86,7 +86,7 @@ func (s *Svc) Describe(ctx context.Context, in *pb.DescribeRequest) (*pb.Describ
 	}
 	info, err := s.Helper.Call(`pack info ` + in.Package)
 	if err != nil {
-		return nil, fmt.Errorf(`unable to execute yay command: %w`, err)
+		return nil, fmt.Errorf(`unable to execute pack command: %w`, err)
 	}
 	return s.Helper.ParsePkgInfo(info), nil
 }
@@ -131,7 +131,7 @@ func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, erro
 		if strings.Contains(out, "Could not find") {
 			return nil, status.Error(codes.NotFound, "unable to find package")
 		}
-		return nil, fmt.Errorf("unable to execute yay command: %w", err)
+		return nil, fmt.Errorf("unable to execute pack command: %w", err)
 	}
 	err = s.Helper.FormDb(s.RepoName)
 	return &pb.AddResponse{}, err
