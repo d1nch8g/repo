@@ -46,12 +46,17 @@ docker run -p 80:80 -e PACKREPO_LOGS_FMT=text fmnx.io/core/repo:latest
 services:
   pacman:
     image: fmnx.io/core/repo:latest
-    command: run
     environment:
+      # Initial packages to install with pack
       PACKREPO_INIT_PKGS: aur.archlinux.org/yamux fmnx.io/core/ainst
+      # Adress for calls by grpcweb
       PACKREPO_API_ADRESS: http://localhost:80/
       PACKREPO_LOGS_FMT: text
+      # Admins logins and passwords
       PACKREPO_LOGINS: user1|pass1|user2|pass2
+    volumes:
+      # Cache packages between sessions
+      - ./pkg:/var/cache/pacman/pkg
     ports:
       - 80:80
 ```
