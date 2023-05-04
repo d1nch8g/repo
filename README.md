@@ -89,3 +89,7 @@ For applicaiton development you need to install following software:
 
 All frontend dart code is located in `lib` folder, all backend go code is
 located in `cmd` folder.
+
+<!--
+Add option to install packages from cache
+-->

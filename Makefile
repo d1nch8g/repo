@@ -9,7 +9,6 @@ gen:
 docker:
 	docker build -t fmnx.io/core/repo .
 	docker compose up -d
-	chromium --disalbe-web-security http://localhost/ &
 
 check:
 	gofumpt -l -w .
