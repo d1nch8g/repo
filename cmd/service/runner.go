@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"net/http"
+	"os/user"
 	"time"
 
 	pb "fmnx.io/dev/repo/cmd/generated/proto/v1"
@@ -26,6 +27,11 @@ type Params struct {
 }
 
 func Run(params *Params) error {
+	usr, err := user.Current()
+	if err != nil {
+		return err
+	}
+
 	mux := http.NewServeMux()
 
 	grpcServer := grpc.NewServer(
@@ -39,6 +45,7 @@ func Run(params *Params) error {
 		Helper:   params.OsHelper,
 		RepoName: params.RepoName,
 		Logins:   params.Logins,
+		HomeDir:  usr.HomeDir,
 		Tokens:   map[string]bool{},
 	})
 	reflection.Register(grpcServer)

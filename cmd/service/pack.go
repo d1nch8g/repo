@@ -16,7 +16,7 @@ import (
 
 type Svc struct {
 	Helper   *utils.OsHelper
-	User     string
+	HomeDir  string
 	RepoName string
 	Logins   map[string]string
 	Tokens   map[string]bool
@@ -35,7 +35,7 @@ func (s *Svc) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadRespo
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
 	}
-	err := os.WriteFile("/home/"+s.User+"/"+in.Name, in.Content, 0o600)
+	err := os.WriteFile(s.HomeDir+"/"+in.Name, in.Content, 0o600)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
@@ -43,7 +43,7 @@ func (s *Svc) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadRespo
 	if err != nil {
 		return nil, err
 	}
-	err = s.Helper.Execute("sudo mv /home/" + s.User + "/" + in.Name + " " + "/var/cache/pacman/pkg/" + in.Name)
+	err = s.Helper.Execute("sudo mv " + s.HomeDir + "/" + in.Name + " " + "/var/cache/pacman/pkg/" + in.Name)
 	if err != nil {
 		return nil, err
 	}
