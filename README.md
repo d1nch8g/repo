@@ -92,4 +92,5 @@ located in `cmd` folder.
 
 <!--
 Add option to install packages from cache
+Add ability to attach shell to execute some scripts from UI when logged
 -->

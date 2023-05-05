@@ -27,7 +27,7 @@ func (s *Svc) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveRespo
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
 	}
-	return &pb.RemoveResponse{}, s.Helper.Execute("yay -R --noconfirm " + in.Package)
+	return &pb.RemoveResponse{}, s.Helper.Execute("pack remove " + in.Package)
 }
 
 // Upload implements pb.PacmanServiceServer.
