@@ -93,11 +93,12 @@ func (o *OsHelper) Clean(dir string) error {
 }
 
 func (o *OsHelper) PrepareInitialPackages() error {
-	err := o.Execute("sudo rm /var/lib/pacman/db.lck")
+	err := o.Execute("sudo rm -rf /var/lib/pacman/db.lck")
 	if err != nil {
 		return err
 	}
-	return o.Execute("sudo mv -v /var/cache/pacman/initpkg/* /var/cache/pacman/pkg")
+	err = o.Execute("sudo mv -v /var/cache/pacman/initpkg/* /var/cache/pacman/pkg")
+	return err
 }
 
 func (o *OsHelper) FormDb(repo string) error {

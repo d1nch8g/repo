@@ -37,24 +37,25 @@ func Run(cmd *cobra.Command, args []string) {
 
 	helper := &utils.OsHelper{}
 
-	helper.PrepareInitialPackages()
+	err := helper.PrepareInitialPackages()
+	CheckErr(err)
 
-	err := helper.ReplaceFileString(
+	err = helper.ReplaceFileString(
 		webPath+`/main.dart.js`,
 		`http://localhost:80/`,
 		apiAdress,
 	)
-	checkErr(err)
+	CheckErr(err)
 
 	formattedLogins, err := formatLogins(logins)
-	checkErr(err)
+	CheckErr(err)
 
 	go func() {
 		err = helper.Execute("pack get " + initPkgs)
-		checkErr(err)
+		CheckErr(err)
 
 		err = helper.FormDb(repoName)
-		checkErr(err)
+		CheckErr(err)
 	}()
 
 	err = service.Run(&service.Params{
@@ -64,7 +65,7 @@ func Run(cmd *cobra.Command, args []string) {
 		OsHelper: helper,
 		Logins:   formattedLogins,
 	})
-	checkErr(err)
+	CheckErr(err)
 }
 
 func formatLogins(raw string) (map[string]string, error) {

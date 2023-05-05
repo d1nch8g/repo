@@ -8,7 +8,7 @@ RUN go mod download
 COPY . /src
 RUN go build -o repo ./main.go
 
-FROM cirrusci/flutter AS flutter-build
+FROM cirrusci/flutter:latest AS flutter-build
 
 WORKDIR /src
 COPY pubspec.yaml /src
