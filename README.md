@@ -10,7 +10,7 @@
 [![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/core/-/packages/container/repo/latest)
 [![Build Status](https://ci.fmnx.io/api/badges/core/repo/status.svg)](https://ci.fmnx.io/core/repo)
 
-Dockerized pack repository with friendly user interface and public API. Project goal is to quickly set up personal repostitory for arch packages. Uses [pack](https://fmnx.io/core/pack) for installing and updating packages (to keep AUR compatability).
+Dockerized pack repository with friendly user interface and public API. Project goal is to quickly set up personal repostitory for arch packages. Uses [pack](https://fmnx.io/core/pack) for installing and updating packages (you can install AUR packages aswell).
 
 ![](preview.png)
 
@@ -53,7 +53,7 @@ services:
     image: fmnx.io/core/repo:latest
     environment:
       # Initial packages to install with pack
-      PACKREPO_INIT_PKGS: aur.archlinux.org/yamux fmnx.io/core/ainst
+      PACKREPO_INIT_PKGS: aur.archlinux.org/yay fmnx.io/core/ainst
       # Adress for calls by grpcweb
       PACKREPO_API_ADRESS: http://localhost:80/
       PACKREPO_LOGS_FMT: text
@@ -75,20 +75,6 @@ Add those lines to your `/etc/pacman.conf`, to get things to work:
 SigLevel = Optional TrustAll
 Server = http://localhost/pkg
 ```
-
-## Contribute
-
-For applicaiton development you need to install following software:
-
-- `go`
-- `gofumpt`
-- `golangci-lint`
-- `buf`
-- `flutter`
-- `flutter webkit`
-
-All frontend dart code is located in `lib` folder, all backend go code is
-located in `cmd` folder.
 
 <!--
 Add option to install packages from cache
