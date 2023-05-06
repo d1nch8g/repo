@@ -98,6 +98,10 @@ func (o *OsHelper) PrepareInitialPackages() error {
 		return err
 	}
 	err = o.Execute("sudo mv -v /var/cache/pacman/initpkg/* /var/cache/pacman/pkg")
+	if err != nil {
+		return err
+	}
+	err = o.Execute("sudo pacman -U /var/cache/pacman/pkg/*.pkg.tar.zst ")
 	return err
 }
 
