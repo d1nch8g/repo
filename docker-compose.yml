@@ -4,7 +4,7 @@ services:
   app:
     image: fmnx.io/core/repo:latest
     environment:
-      PACKREPO_INIT_PKGS: fmnx.io/pkg/gnome-browser-connector fmnx.io/pkg/gnome-shell-extension-dash-to-dock
+      PACKREPO_INIT_PKGS: fmnx.io/pkg/gnome-shell-extension-dash-to-dock
       PACKREPO_LOGS_FORMAT: text
       PACKREPO_LOGINS: user|password
     volumes:

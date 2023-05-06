@@ -26,5 +26,5 @@ func UnaryLogger() grpc.UnaryServerInterceptor {
 }
 
 func Validate(in string) bool {
-	return !strings.ContainsAny(in, "<>'\"#$-&\\^*?")
+	return !strings.ContainsAny(in, "<>'\"#$&\\^*?")
 }
