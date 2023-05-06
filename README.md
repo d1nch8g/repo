@@ -5,7 +5,8 @@
 <h2 align="center">Pack package repository - repo</h2>
 
 [![Generic badge](https://img.shields.io/badge/LICENSE-GPL-orange.svg)](https://fmnx.io/core/repo/src/branch/main/LICENSE)
-[![Generic badge](https://img.shields.io/badge/GITEA-REPO-yellow.svg)](https://fmnx.io/core/repo)
+[![Generic badge](https://img.shields.io/badge/FMNX-REPO-006db0.svg)](https://fmnx.io/core/repo)
+[![Generic badge](https://img.shields.io/badge/CODEBERG-REPO-45a3fb.svg)](https://codeberg.org/fmnx/repo)
 [![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fmnx-io/repo)
 [![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/core/-/packages/container/repo/latest)
 [![Build Status](https://ci.fmnx.io/api/badges/core/repo/status.svg)](https://ci.fmnx.io/core/repo)
