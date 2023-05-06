@@ -101,8 +101,7 @@ func (o *OsHelper) PrepareInitialPackages() error {
 	if err != nil {
 		return err
 	}
-	err = o.Execute("sudo pacman -U /var/cache/pacman/pkg/*.pkg.tar.zst ")
-	return err
+	return nil
 }
 
 func (o *OsHelper) FormDb(repo string) error {
