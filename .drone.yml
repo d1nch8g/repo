@@ -30,7 +30,7 @@ steps:
     settings:
       branch: main
       remote: git@github.com:fmnx-io/repo.git
-      force: false
+      force: true
       commit: true
       ssh_key:
         from_secret: SSHKEY
@@ -40,7 +40,7 @@ steps:
     settings:
       branch: main
       remote: git@codeberg.org:fmnx/repo.git
-      force: false
+      force: true
       commit: true
       ssh_key:
         from_secret: CBSSHKEY
