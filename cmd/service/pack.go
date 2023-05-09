@@ -88,7 +88,7 @@ func (s *Svc) Describe(ctx context.Context, in *pb.DescribeRequest) (*pb.Describ
 	if !Validate(in.Package) {
 		return nil, status.Error(codes.Aborted, "not validated")
 	}
-	info, err := s.Helper.Call(`pack info ` + in.Package)
+	info, err := s.Helper.Call(`pack describe ` + in.Package)
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute pack command: %w`, err)
 	}
