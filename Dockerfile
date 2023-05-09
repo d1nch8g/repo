@@ -5,7 +5,7 @@
 FROM fmnx.io/core/pack:latest AS flutter-build
 
 RUN pack i fmnx.io/pkg/flutter
-RUN sudo chmod a+rwx /opt/flutter
+RUN sudo chmod a+rwx -R /opt/flutter
 
 WORKDIR /src
 COPY pubspec.yaml /src
