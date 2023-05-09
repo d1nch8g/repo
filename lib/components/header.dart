@@ -1,3 +1,7 @@
+// Copyright 2023 FMNX Linux team.
+// This code is covered by GPL license, which can be found in LICENSE file.
+// Additional information could be found on official web page: https://fmnx.io/
+// Email: help@fmnx.io
 import 'package:repo/components/upload_file.dart';
 import 'package:repo/controllers/menu_app_controller.dart';
 import 'package:repo/generated/v1/pack.pb.dart';

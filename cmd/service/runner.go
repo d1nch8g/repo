@@ -1,3 +1,7 @@
+// Copyright 2023 FMNX Linux team.
+// This code is covered by GPL license, which can be found in LICENSE file.
+// Additional information could be found on official web page: https://fmnx.io/
+// Email: help@fmnx.io
 package service
 
 import (
@@ -7,8 +11,8 @@ import (
 	"os/user"
 	"time"
 
-	pb "fmnx.io/dev/repo/cmd/generated/proto/v1"
-	"fmnx.io/dev/repo/cmd/utils"
+	pb "fmnx.io/core/repo/cmd/generated/proto/v1"
+	"fmnx.io/core/repo/cmd/utils"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"

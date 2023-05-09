@@ -1,4 +1,4 @@
-module fmnx.io/dev/repo
+module fmnx.io/core/repo
 
 go 1.19
 

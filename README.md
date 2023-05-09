@@ -22,7 +22,7 @@ Dockerized pack repository with friendly user interface and public API. Project 
 Packrepo environment variables/flags:
 
 - `PACKREPO_REPO` - repository name on the web page
-- `PACKREPO_PORT` - publically exposed port, `80` default
+- `PACKREPO_PORT` - exposed port, `80` default
 - `PACKREPO_API_ADRESS` - adress for backend api calls via `grpc-web`
 - `PACKREPO_INIT_PKGS` - initial packages to download on start
 - `PACKREPO_WEB_DIR` - directory with flutter web app

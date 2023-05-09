@@ -1,3 +1,7 @@
+// Copyright 2023 FMNX Linux team.
+// This code is covered by GPL license, which can be found in LICENSE file.
+// Additional information could be found on official web page: https://fmnx.io/
+// Email: help@fmnx.io
 package service
 
 import (
@@ -7,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	pb "fmnx.io/dev/repo/cmd/generated/proto/v1"
-	"fmnx.io/dev/repo/cmd/utils"
+	pb "fmnx.io/core/repo/cmd/generated/proto/v1"
+	"fmnx.io/core/repo/cmd/utils"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -126,7 +130,7 @@ func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, erro
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	out, err := s.Helper.Call("pack get " + strings.Join(in.Packages, ` `))
+	out, err := s.Helper.Call("pack install " + strings.Join(in.Packages, ` `))
 	if err != nil {
 		if strings.Contains(out, "Could not find") {
 			return nil, status.Error(codes.NotFound, "unable to find package")
