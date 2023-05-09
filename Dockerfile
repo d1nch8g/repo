@@ -4,6 +4,7 @@
 # Email: help@fmnx.io
 FROM fmnx.io/core/pack:latest AS build
 
+RUN pack r python libns1
 RUN pack i go fmnx.io/pkg/flutter
 RUN sudo chmod a+rwx -R /opt/flutter
 RUN git config --global --add safe.directory /opt/flutter
