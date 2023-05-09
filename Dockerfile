@@ -11,6 +11,7 @@ RUN git config --global --add safe.directory /opt/flutter
 WORKDIR /home/pack
 COPY pubspec.yaml /home/pack
 COPY pubspec.lock /home/pack
+RUN sudo chmod a+rwx -R /home/pack
 RUN flutter pub get
 
 COPY go.mod /home/pack/
