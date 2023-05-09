@@ -55,7 +55,7 @@ func Run(cmd *cobra.Command, args []string) {
 	CheckErr(err)
 
 	go func() {
-		err = helper.Execute("pack get " + initPkgs)
+		err = helper.Execute("pack install " + initPkgs)
 		CheckErr(err)
 
 		err = helper.FormDb(repoName)
