@@ -2,7 +2,7 @@
 # This code is covered by GPL license, which can be found in LICENSE file.
 # Additional information could be found on official web page: https://fmnx.io/
 # Email: help@fmnx.io
-FROM fmnx.io/core/pack:latest AS flutter-build
+FROM fmnx.io/core/pack:latest AS build
 
 RUN pack i go fmnx.io/pkg/flutter
 RUN sudo chmod a+rwx -R /opt/flutter
@@ -31,8 +31,8 @@ LABEL source="https://fmnx.io/core/repo"
 RUN sudo mkdir /var/cache/pacman/initpkg
 RUN sudo mv -v /var/cache/pacman/pkg/* /var/cache/pacman/initpkg
 
-COPY --from=go-build /home/pack/repo .
-COPY --from=flutter-build /home/pack/build/web /web
+COPY --from=build /home/pack/repo .
+COPY --from=build /home/pack/build/web /web
 RUN sudo chmod a+rwx -R /web
 
 ENTRYPOINT ["./repo"]
