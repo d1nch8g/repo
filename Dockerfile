@@ -1,7 +1,8 @@
-# Copyright 2023 FMNX Linux team.
-# This code is covered by GPL license, which can be found in LICENSE file.
+# Copyright 2023 FMNX team.
+# Use of this code is governed by GNU General Public License.
 # Additional information can be found on official web page: https://fmnx.io/
 # Contact email: help@fmnx.io
+
 FROM fmnx.io/core/pack:latest AS build
 
 RUN pack i go fmnx.io/pkg/flutter
@@ -11,7 +12,7 @@ RUN git config --global --add safe.directory /opt/flutter
 WORKDIR /home/pack
 COPY pubspec.yaml /home/pack
 COPY pubspec.lock /home/pack
-RUN sudo flutter pub get
+RUN flutter pub get
 
 COPY go.mod /home/pack/
 COPY go.sum /home/pack/
@@ -19,8 +20,8 @@ RUN go mod download
 
 COPY . /home/pack
 
-RUN sudo flutter clean
-RUN sudo flutter build web
+RUN flutter clean
+RUN flutter build web
 RUN go build -o repo ./main.go
 
 FROM fmnx.io/core/pack:latest

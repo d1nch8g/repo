@@ -1,7 +1,8 @@
-// Copyright 2023 FMNX Linux team.
-// This code is covered by GPL license, which can be found in LICENSE file.
+// Copyright 2023 FMNX team.
+// Use of this code is governed by GNU General Public License.
 // Additional information can be found on official web page: https://fmnx.io/
 // Contact email: help@fmnx.io
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
