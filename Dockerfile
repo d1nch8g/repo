@@ -12,7 +12,7 @@ RUN git config --global --add safe.directory /opt/flutter
 WORKDIR /home/pack
 COPY pubspec.yaml /home/pack
 COPY pubspec.lock /home/pack
-RUN flutter pub get
+RUN sudo flutter pub get
 
 COPY go.mod /home/pack/
 COPY go.sum /home/pack/
@@ -20,8 +20,8 @@ RUN go mod download
 
 COPY . /home/pack
 
-RUN flutter clean
-RUN flutter build web
+RUN sudo flutter clean
+RUN sudo flutter build web
 RUN go build -o repo ./main.go
 
 FROM fmnx.io/core/pack:latest
