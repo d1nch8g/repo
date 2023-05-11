@@ -104,7 +104,7 @@ func (o *OsHelper) PrepareInitialPackages() error {
 	}
 	err = o.Execute("sudo mv -v /var/cache/pacman/initpkg/* /var/cache/pacman/pkg")
 	if err != nil {
-		return err
+		fmt.Printf("unable to move initial packages, %+v\n", err)
 	}
 	return nil
 }
