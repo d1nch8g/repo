@@ -139,7 +139,10 @@ func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, erro
 		return nil, fmt.Errorf("unable to execute pack command: %w", err)
 	}
 	err = s.Helper.FormDb(s.RepoName)
-	return &pb.AddResponse{}, err
+	if err != nil {
+		return nil, err
+	}
+	return &pb.AddResponse{}, nil
 }
 
 func (s *Svc) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchResponse, error) {
