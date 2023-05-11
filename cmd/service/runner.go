@@ -7,6 +7,7 @@ package service
 
 import (
 	"fmt"
+	"log"
 	"math"
 	"net/http"
 	"os/user"
@@ -74,6 +75,7 @@ func Run(params *Params) error {
 		WriteTimeout:      time.Minute,
 		IdleTimeout:       time.Minute,
 		Handler:           mux,
+		ErrorLog:          log.Default(),
 	}
 
 	fmt.Println("server running on port: " + fmt.Sprint(params.Port))

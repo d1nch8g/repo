@@ -8,7 +8,6 @@ package utils
 import (
 	"bytes"
 	"fmt"
-	"io"
 	"os"
 	"os/exec"
 	"strings"
@@ -36,8 +35,8 @@ func (o *OsHelper) Call(cmd string) (string, error) {
 	command := exec.Command("bash", "-c", cmd)
 
 	out := bytes.Buffer{}
-	command.Stdout = io.MultiWriter(&out, os.Stdout)
-	command.Stderr = io.MultiWriter(&out, os.Stderr)
+	command.Stdout = &out
+	command.Stderr = &out
 
 	err := command.Run()
 	if err != nil {
