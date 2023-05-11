@@ -1,4 +1,4 @@
-// Copyright 2023 FMNX team.
+// 2023 FMNX team.
 // Use of this code is governed by GNU General Public License.
 // Additional information can be found on official web page: https://fmnx.io/
 // Contact email: help@fmnx.io
@@ -107,7 +107,7 @@ func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse
 	if err != nil {
 		return nil, fmt.Errorf(`unable convert number output: %w`, err)
 	}
-	outdatedCountString, err := s.Helper.Call(`sudo pacman -Qu | wc -l`)
+	outdatedCountString, err := s.Helper.Call(`pack o | wc -l`)
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
 	}
