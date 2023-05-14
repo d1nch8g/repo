@@ -22,7 +22,7 @@ COPY . /home/pack
 
 RUN sudo flutter clean
 RUN sudo flutter build web
-RUN go build -o repo ./main.go
+RUN go build -o repo .
 
 FROM fmnx.su/core/pack:latest
 

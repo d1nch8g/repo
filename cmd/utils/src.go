@@ -135,38 +135,22 @@ func (o *OsHelper) ParsePkgInfo(inp string) *pb.DescribeResponse {
 			out.Version = value
 		case "Description":
 			out.Description = value
-		case "Architecture":
-			out.Architecture = value
-		case "URL":
+		case "Size":
+			out.Size = value
+		case "Url":
 			out.Url = value
-		case "Licenses":
-			out.Licenses = value
-		case "Groups":
-			out.Groups = value
-		case "Provides":
-			out.Provides = value
-		case "Required By":
-			out.RequiredBy = value
-		case "Optional For":
-			out.OptionalFor = value
-		case "Conflicts With":
-			out.ConflictsWith = value
-		case "Replaces":
-			out.Replaces = value
-		case "Installed Size":
-			out.InstalledSize = value
-		case "Packager":
-			out.Packager = value
-		case "Build Date":
+		case "BuildDate":
 			out.BuildDate = value
-		case "Install Date":
-			out.InstallDate = value
-		case "Install Reason":
-			out.InstallReason = value
-		case "Install Script":
-			out.InstallScript = value
-		case "Validated By":
-			out.ValidatedBy = value
+		case "PackName":
+			out.PackName = value
+		case "PackVersion":
+			out.PackVersion = value
+		case "PackBranch":
+			out.PackBranch = value
+		case "DependsOn":
+			out.DependsOn = value
+		case "RequiredBy":
+			out.RequiredBy = value
 		}
 	}
 	return out

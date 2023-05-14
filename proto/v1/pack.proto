@@ -69,28 +69,14 @@ message DescribeResponse {
   string name = 1;
   string version = 2;
   string description = 3;
-  string architecture = 4;
+  string size = 4;
   string url = 5;
-  string licenses = 6;
-  string groups = 7;
-  string provides = 8;
-  string required_by = 9;
-  string optional_for = 10;
-  string conflicts_with = 11;
-  string replaces = 12;
-  string installed_size = 13;
-  string packager = 14;
-  string build_date = 15;
-  string install_date = 16;
-  string install_reason = 17;
-  string install_script = 18;
-  string validated_by = 19;
-  repeated Dependency dependecies = 20;
-}
-
-message Dependency {
-  string name = 1;
-  repeated Dependency dependecies = 2;
+  string build_date = 6;
+  string pack_name = 7;
+  string pack_version = 8;
+  string pack_branch = 9;
+  string depends_on = 10;
+  string required_by = 11;
 }
 
 message StatsRequest {}

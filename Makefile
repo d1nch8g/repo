@@ -1,5 +1,9 @@
 pwd := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
+install:
+	dart pub global activate protoc_plugin
+	pack i aur.archlinux.org/protoc-gen-go aur.archlinux.org/protoc-gen-go-grpc aur.archlinux.org/buf-bin
+
 .PHONY: gen
 gen:
 	buf format -w
