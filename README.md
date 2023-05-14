@@ -4,14 +4,14 @@
 
 <h2 align="center">Pack package repository - repo</h2>
 
-[![Generic badge](https://img.shields.io/badge/LICENSE-GPL-orange.svg)](https://fmnx.io/core/repo/src/branch/main/LICENSE)
-[![Generic badge](https://img.shields.io/badge/FMNX-REPO-006db0.svg)](https://fmnx.io/core/repo)
+[![Generic badge](https://img.shields.io/badge/LICENSE-GPL-orange.svg)](https://fmnx.su/core/repo/src/branch/main/LICENSE)
+[![Generic badge](https://img.shields.io/badge/FMNX-REPO-006db0.svg)](https://fmnx.su/core/repo)
 [![Generic badge](https://img.shields.io/badge/CODEBERG-REPO-45a3fb.svg)](https://codeberg.org/fmnx/repo)
 [![Generic badge](https://img.shields.io/badge/GITHUB-REPO-white.svg)](https://github.com/fmnx-io/repo)
-[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.io/core/-/packages/container/repo/latest)
-[![Build Status](https://ci.fmnx.io/api/badges/core/repo/status.svg)](https://ci.fmnx.io/core/repo)
+[![Generic badge](https://img.shields.io/badge/DOCKER-REGISTRY-blue.svg)](https://fmnx.su/core/-/packages/container/repo/latest)
+[![Build Status](https://ci.fmnx.su/api/badges/core/repo/status.svg)](https://ci.fmnx.su/core/repo)
 
-Dockerized pack repository with friendly user interface and public API. Project goal is to quickly set up personal repostitory for arch packages. Uses [pack](https://fmnx.io/core/pack) for installing and updating packages (you can install AUR packages aswell).
+Dockerized pack repository with friendly user interface and public API. Project goal is to quickly set up personal repostitory for arch packages. Uses [pack](https://fmnx.su/core/pack) for installing and updating packages (you can install AUR packages aswell).
 
 ![](preview.png)
 
@@ -43,7 +43,7 @@ Pack environment variables:
 - with `docker`:
 
 ```sh
-docker run -p 80:80 -e PACKREPO_LOGS_FMT=text fmnx.io/core/repo:latest
+docker run -p 80:80 -e PACKREPO_LOGS_FMT=text fmnx.su/core/repo:latest
 ```
 
 - with `docker-compose`:
@@ -51,10 +51,10 @@ docker run -p 80:80 -e PACKREPO_LOGS_FMT=text fmnx.io/core/repo:latest
 ```yml
 services:
   pacman:
-    image: fmnx.io/core/repo:latest
+    image: fmnx.su/core/repo:latest
     environment:
       # Initial packages to install with pack
-      PACKREPO_INIT_PKGS: aur.archlinux.org/yay fmnx.io/core/ainst
+      PACKREPO_INIT_PKGS: aur.archlinux.org/yay fmnx.su/core/ainst
       # Adress for calls by grpcweb
       PACKREPO_API_ADRESS: http://localhost:80/
       PACKREPO_LOGS_FMT: text

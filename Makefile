@@ -7,7 +7,7 @@ gen:
 	protoc --dart_out=grpc:lib/generated -Iproto proto/v1/pack.proto
 
 docker:
-	docker build -t fmnx.io/core/repo .
+	docker build -t fmnx.su/core/repo .
 	docker compose up -d
 
 check:

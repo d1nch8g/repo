@@ -1,11 +1,11 @@
 # 2023 FMNX team.
 # Use of this code is governed by GNU General Public License.
-# Additional information can be found on official web page: https://fmnx.io/
-# Contact email: help@fmnx.io
+# Additional information can be found on official web page: https://fmnx.su/
+# Contact email: help@fmnx.su
 
-FROM fmnx.io/core/pack:latest AS build
+FROM fmnx.su/core/pack:latest AS build
 
-RUN pack i go fmnx.io/pkg/flutter
+RUN pack i go fmnx.su/pkg/flutter
 RUN sudo chmod a+rwx -R /opt/flutter
 RUN git config --global --add safe.directory /opt/flutter
 
@@ -24,10 +24,10 @@ RUN sudo flutter clean
 RUN sudo flutter build web
 RUN go build -o repo ./main.go
 
-FROM fmnx.io/core/pack:latest
+FROM fmnx.su/core/pack:latest
 
-LABEL maintainer="dancheg97 <help@fmnx.io>"
-LABEL source="https://fmnx.io/core/repo"
+LABEL maintainer="dancheg97 <help@fmnx.su>"
+LABEL source="https://fmnx.su/core/repo"
 
 RUN sudo mkdir /var/cache/pacman/initpkg
 RUN sudo mv -v /var/cache/pacman/pkg/* /var/cache/pacman/initpkg
