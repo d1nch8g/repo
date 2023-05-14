@@ -22,14 +22,14 @@ steps:
         from_secret: PASS
     commands:
       - docker build --no-cache -t fmnx.su/$DRONE_REPO:latest .
-      - docker login -u dancheg97 -p $PASS fmnx.su
+      - docker login -u dancheg -p $PASS fmnx.su
       - docker push fmnx.su/$DRONE_REPO:latest
 
   - name: push github mirror
     image: appleboy/drone-git-push
     settings:
       branch: main
-      remote: git@github.com:fmnx-io/repo.git
+      remote: git@github.com:fmnx-su/repo.git
       force: true
       commit: true
       ssh_key:
@@ -43,4 +43,4 @@ steps:
       force: true
       commit: true
       ssh_key:
-        from_secret: CBSSHKEY
+        from_secret: SSHKEY
