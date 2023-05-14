@@ -80,39 +80,19 @@ const DescribeResponse$json = const {
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'version', '3': 2, '4': 1, '5': 9, '10': 'version'},
     const {'1': 'description', '3': 3, '4': 1, '5': 9, '10': 'description'},
-    const {'1': 'architecture', '3': 4, '4': 1, '5': 9, '10': 'architecture'},
+    const {'1': 'size', '3': 4, '4': 1, '5': 9, '10': 'size'},
     const {'1': 'url', '3': 5, '4': 1, '5': 9, '10': 'url'},
-    const {'1': 'licenses', '3': 6, '4': 1, '5': 9, '10': 'licenses'},
-    const {'1': 'groups', '3': 7, '4': 1, '5': 9, '10': 'groups'},
-    const {'1': 'provides', '3': 8, '4': 1, '5': 9, '10': 'provides'},
-    const {'1': 'required_by', '3': 9, '4': 1, '5': 9, '10': 'requiredBy'},
-    const {'1': 'optional_for', '3': 10, '4': 1, '5': 9, '10': 'optionalFor'},
-    const {'1': 'conflicts_with', '3': 11, '4': 1, '5': 9, '10': 'conflictsWith'},
-    const {'1': 'replaces', '3': 12, '4': 1, '5': 9, '10': 'replaces'},
-    const {'1': 'installed_size', '3': 13, '4': 1, '5': 9, '10': 'installedSize'},
-    const {'1': 'packager', '3': 14, '4': 1, '5': 9, '10': 'packager'},
-    const {'1': 'build_date', '3': 15, '4': 1, '5': 9, '10': 'buildDate'},
-    const {'1': 'install_date', '3': 16, '4': 1, '5': 9, '10': 'installDate'},
-    const {'1': 'install_reason', '3': 17, '4': 1, '5': 9, '10': 'installReason'},
-    const {'1': 'install_script', '3': 18, '4': 1, '5': 9, '10': 'installScript'},
-    const {'1': 'validated_by', '3': 19, '4': 1, '5': 9, '10': 'validatedBy'},
-    const {'1': 'dependecies', '3': 20, '4': 3, '5': 11, '6': '.proto.v1.Dependency', '10': 'dependecies'},
+    const {'1': 'build_date', '3': 6, '4': 1, '5': 9, '10': 'buildDate'},
+    const {'1': 'pack_name', '3': 7, '4': 1, '5': 9, '10': 'packName'},
+    const {'1': 'pack_version', '3': 8, '4': 1, '5': 9, '10': 'packVersion'},
+    const {'1': 'pack_branch', '3': 9, '4': 1, '5': 9, '10': 'packBranch'},
+    const {'1': 'depends_on', '3': 10, '4': 1, '5': 9, '10': 'dependsOn'},
+    const {'1': 'required_by', '3': 11, '4': 1, '5': 9, '10': 'requiredBy'},
   ],
 };
 
 /// Descriptor for `DescribeResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List describeResponseDescriptor = $convert.base64Decode('ChBEZXNjcmliZVJlc3BvbnNlEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHdmVyc2lvbhgCIAEoCVIHdmVyc2lvbhIgCgtkZXNjcmlwdGlvbhgDIAEoCVILZGVzY3JpcHRpb24SIgoMYXJjaGl0ZWN0dXJlGAQgASgJUgxhcmNoaXRlY3R1cmUSEAoDdXJsGAUgASgJUgN1cmwSGgoIbGljZW5zZXMYBiABKAlSCGxpY2Vuc2VzEhYKBmdyb3VwcxgHIAEoCVIGZ3JvdXBzEhoKCHByb3ZpZGVzGAggASgJUghwcm92aWRlcxIfCgtyZXF1aXJlZF9ieRgJIAEoCVIKcmVxdWlyZWRCeRIhCgxvcHRpb25hbF9mb3IYCiABKAlSC29wdGlvbmFsRm9yEiUKDmNvbmZsaWN0c193aXRoGAsgASgJUg1jb25mbGljdHNXaXRoEhoKCHJlcGxhY2VzGAwgASgJUghyZXBsYWNlcxIlCg5pbnN0YWxsZWRfc2l6ZRgNIAEoCVINaW5zdGFsbGVkU2l6ZRIaCghwYWNrYWdlchgOIAEoCVIIcGFja2FnZXISHQoKYnVpbGRfZGF0ZRgPIAEoCVIJYnVpbGREYXRlEiEKDGluc3RhbGxfZGF0ZRgQIAEoCVILaW5zdGFsbERhdGUSJQoOaW5zdGFsbF9yZWFzb24YESABKAlSDWluc3RhbGxSZWFzb24SJQoOaW5zdGFsbF9zY3JpcHQYEiABKAlSDWluc3RhbGxTY3JpcHQSIQoMdmFsaWRhdGVkX2J5GBMgASgJUgt2YWxpZGF0ZWRCeRI2CgtkZXBlbmRlY2llcxgUIAMoCzIULnByb3RvLnYxLkRlcGVuZGVuY3lSC2RlcGVuZGVjaWVz');
-@$core.Deprecated('Use dependencyDescriptor instead')
-const Dependency$json = const {
-  '1': 'Dependency',
-  '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    const {'1': 'dependecies', '3': 2, '4': 3, '5': 11, '6': '.proto.v1.Dependency', '10': 'dependecies'},
-  ],
-};
-
-/// Descriptor for `Dependency`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List dependencyDescriptor = $convert.base64Decode('CgpEZXBlbmRlbmN5EhIKBG5hbWUYASABKAlSBG5hbWUSNgoLZGVwZW5kZWNpZXMYAiADKAsyFC5wcm90by52MS5EZXBlbmRlbmN5UgtkZXBlbmRlY2llcw==');
+final $typed_data.Uint8List describeResponseDescriptor = $convert.base64Decode('ChBEZXNjcmliZVJlc3BvbnNlEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHdmVyc2lvbhgCIAEoCVIHdmVyc2lvbhIgCgtkZXNjcmlwdGlvbhgDIAEoCVILZGVzY3JpcHRpb24SEgoEc2l6ZRgEIAEoCVIEc2l6ZRIQCgN1cmwYBSABKAlSA3VybBIdCgpidWlsZF9kYXRlGAYgASgJUglidWlsZERhdGUSGwoJcGFja19uYW1lGAcgASgJUghwYWNrTmFtZRIhCgxwYWNrX3ZlcnNpb24YCCABKAlSC3BhY2tWZXJzaW9uEh8KC3BhY2tfYnJhbmNoGAkgASgJUgpwYWNrQnJhbmNoEh0KCmRlcGVuZHNfb24YCiABKAlSCWRlcGVuZHNPbhIfCgtyZXF1aXJlZF9ieRgLIAEoCVIKcmVxdWlyZWRCeQ==');
 @$core.Deprecated('Use statsRequestDescriptor instead')
 const StatsRequest$json = const {
   '1': 'StatsRequest',
