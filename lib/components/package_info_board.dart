@@ -7,7 +7,6 @@ import 'package:repo/components/fmnx_button.dart';
 import 'package:repo/components/notification.dart';
 import 'package:repo/constants.dart';
 import 'package:repo/generated/v1/pack.pbgrpc.dart';
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -102,17 +101,17 @@ class _PackageInfoBoardState extends State<PackageInfoBoard> {
           ),
           SizedBox(
             width: double.infinity,
-            child: DataTable2(
+            child: DataTable(
               columnSpacing: defaultPadding,
-              minWidth: 600,
               columns: [
-                DataColumn2(
-                  label: Text("Property"),
-                  size: ColumnSize.S,
+                DataColumn(
+                  label: Text(""),
                 ),
-                DataColumn2(
+                DataColumn(
+                  label: Text("Property"),
+                ),
+                DataColumn(
                   label: Text("Value"),
-                  size: ColumnSize.L,
                 ),
               ],
               rows: [
@@ -147,31 +146,31 @@ class _PackageInfoBoardState extends State<PackageInfoBoard> {
                   color: Colors.cyan,
                 ),
                 formDataRow(
-                  value: widget.description.buildDate,
+                  value: widget.description.packName,
                   key: "Pack link",
                   icon: Icons.broadcast_on_home,
                   color: Colors.orange,
                 ),
                 formDataRow(
-                  value: widget.description.buildDate,
+                  value: widget.description.packVersion,
                   key: "Pack version",
                   icon: Icons.browser_updated,
                   color: Colors.purple,
                 ),
                 formDataRow(
-                  value: widget.description.buildDate,
+                  value: widget.description.packBranch,
                   key: "Default branch",
                   icon: Icons.arrow_back_ios_new_outlined,
                   color: Colors.blue,
                 ),
                 formDataRow(
-                  value: widget.description.buildDate,
+                  value: widget.description.dependsOn,
                   key: "Depends on",
                   icon: Icons.lock,
                   color: Colors.amber,
                 ),
                 formDataRow(
-                  value: widget.description.buildDate,
+                  value: widget.description.requiredBy,
                   key: "Required by",
                   icon: Icons.lock_outline,
                   color: Colors.red,
@@ -195,33 +194,38 @@ DataRow formDataRow({
   return DataRow(
     cells: [
       DataCell(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: const BorderRadius.all(Radius.circular(4)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Icon(
-                  icon,
-                  size: 18,
-                  color: Colors.white,
-                ),
-              ),
+        Container(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: const BorderRadius.all(Radius.circular(4)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Icon(
+              icon,
+              size: 18,
+              color: Colors.white,
             ),
-            Padding(padding: EdgeInsets.all(defaultPadding)),
-            Text(key),
-          ],
+          ),
         ),
       ),
-      DataCell(Text(value), onTap: () {
-        if (key == "Official web URL") {
-          launchUrl(Uri.parse(value));
-        }
-      }),
+      DataCell(
+        Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: SizedBox(
+            width: 120,
+            child: Text(key),
+          ),
+        ),
+      ),
+      DataCell(
+        Text(value + " " * 1000),
+        onTap: () {
+          if (key == "Official web URL") {
+            launchUrl(Uri.parse(value));
+          }
+        },
+      ),
     ],
   );
 }

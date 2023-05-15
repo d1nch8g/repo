@@ -4,7 +4,7 @@ services:
   app:
     image: fmnx.su/core/repo:latest
     environment:
-      PACKREPO_INIT_PKGS: fmnx.su/pkg/gnome-shell-extension-dash-to-dock
+      PACKREPO_INIT_PKGS: git
       PACKREPO_LOGS_FORMAT: text
       PACKREPO_LOGINS: user|password
     volumes:

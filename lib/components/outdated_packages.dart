@@ -62,11 +62,13 @@ class OutdatedPackages extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Outdated packages",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+          Center(
+            child: Text(
+              "Outdated packages",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           SizedBox(height: defaultPadding),
