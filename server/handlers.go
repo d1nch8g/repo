@@ -3,24 +3,26 @@
 // Additional information can be found on official web page: https://fmnx.su/
 // Contact email: help@fmnx.su
 
-package service
+package server
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
 
-	pb "fmnx.su/core/repo/cmd/generated/proto/v1"
-	"fmnx.su/core/repo/cmd/utils"
+	"fmnx.su/core/pack/cmd"
+	"fmnx.su/core/pack/pacman"
+	"fmnx.su/core/pack/system"
+	"fmnx.su/core/repo/gen/pb"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
 type Svc struct {
-	Helper   *utils.OsHelper
 	HomeDir  string
 	RepoName string
 	Logins   map[string]string
@@ -32,7 +34,11 @@ func (s *Svc) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveRespo
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
 	}
-	return &pb.RemoveResponse{}, s.Helper.Execute("pack remove " + in.Package)
+	err := pacman.Remove([]string{in.Package})
+	if err != nil {
+		return nil, err
+	}
+	return &pb.RemoveResponse{}, nil
 }
 
 // Upload implements pb.PacmanServiceServer.
@@ -44,15 +50,15 @@ func (s *Svc) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadRespo
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
-	err = s.Helper.Execute("sudo pacman -U --noconfirm " + in.Name)
+	err = pacman.InstallDir(s.HomeDir)
 	if err != nil {
 		return nil, err
 	}
-	err = s.Helper.Execute("sudo mv " + s.HomeDir + "/" + in.Name + " " + "/var/cache/pacman/pkg/" + in.Name)
+	err = system.MvExt(s.HomeDir, `/var/cache/pacman/pkg/`, `.pkg.tar.zst`)
 	if err != nil {
 		return nil, err
 	}
-	err = s.Helper.FormDb(s.RepoName)
+	err = FormDb(s.RepoName)
 	return &pb.UploadResponse{}, err
 }
 
@@ -89,16 +95,25 @@ func (s *Svc) Describe(ctx context.Context, in *pb.DescribeRequest) (*pb.Describ
 	if !Validate(in.Package) {
 		return nil, status.Error(codes.Aborted, "not validated")
 	}
-	info, err := s.Helper.Call(`pack describe ` + in.Package)
-	if err != nil {
-		return nil, fmt.Errorf(`unable to execute pack command: %w`, err)
-	}
-	return s.Helper.ParsePkgInfo(info), nil
+	pacman, pack := cmd.DescribePackage(in.Package)
+	return &pb.DescribeResponse{
+		Name:        pacman.Name,
+		Version:     pacman.Version,
+		Description: pacman.Description,
+		Size:        pacman.Size,
+		Url:         pacman.Url,
+		BuildDate:   pacman.BuildDate,
+		PackName:    pack.PackName,
+		PackVersion: pack.Version,
+		PackBranch:  pack.DefaultBranch,
+		DependsOn:   pacman.DependsOn,
+		RequiredBy:  pacman.RequiredBy,
+	}, nil
 }
 
 // Stats implements pb.PacmanServiceServer.
 func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse, error) {
-	pkgCountString, err := s.Helper.Call(`sudo pacman -Q | wc -l`)
+	pkgCountString, err := system.Call(`sudo pacman -Q | wc -l`)
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
 	}
@@ -107,7 +122,7 @@ func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse
 	if err != nil {
 		return nil, fmt.Errorf(`unable convert number output: %w`, err)
 	}
-	outdatedCountString, err := s.Helper.Call(`pack o | wc -l`)
+	outdatedCountString, err := system.Call(`pack o | wc -l`)
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
 	}
@@ -116,29 +131,39 @@ func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse
 	if err != nil {
 		return nil, fmt.Errorf(`unable convert number output: %w`, err)
 	}
-	outdatedList, err := s.Helper.GetOutdatedPacakges()
+	packOutdated := cmd.PackOutdated()
+	pacmanOutdated, err := pacman.Outdated()
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
 	}
 	return &pb.StatsResponse{
 		PackagesCount:    int32(pkgCountInt),
 		OutdatedCount:    int32(outdatedCount),
-		OutdatedPackages: outdatedList,
+		OutdatedPackages: serializeOutdated(append(packOutdated, pacmanOutdated...)),
 	}, nil
+}
+
+func serializeOutdated(pkgs []pacman.OutdatedPackage) []*pb.OutdatedPackage {
+	var od []*pb.OutdatedPackage
+	for _, op := range pkgs {
+		od = append(od, &pb.OutdatedPackage{
+			Name:           op.Name,
+			CurrentVersion: op.CurrentVersion,
+			LatestVersion:  op.NewVersion,
+		})
+	}
+	return od
 }
 
 func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, error) {
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	out, err := s.Helper.Call("pack install " + strings.Join(in.Packages, ` `))
+	out, err := system.Call("pack install " + strings.Join(in.Packages, ` `))
 	if err != nil {
-		if strings.Contains(out, "Could not find") {
-			return nil, status.Error(codes.NotFound, "unable to find package")
-		}
-		return nil, fmt.Errorf("unable to execute pack command: %w", err)
+		return nil, fmt.Errorf(out)
 	}
-	err = s.Helper.FormDb(s.RepoName)
+	err = FormDb(s.RepoName)
 	if err != nil {
 		return nil, err
 	}
@@ -152,7 +177,7 @@ func (s *Svc) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchRespo
 	if in.Pattern == "" {
 		in.Pattern = "\"\""
 	}
-	out, err := s.Helper.Call("pacman -Q | grep " + in.Pattern)
+	out, err := system.Call("pacman -Q | grep " + in.Pattern)
 	if err != nil {
 		if out == `` {
 			return &pb.SearchResponse{}, nil
@@ -160,7 +185,7 @@ func (s *Svc) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchRespo
 		return nil, fmt.Errorf("unable to execute pacman+grep command: %w", err)
 	}
 	return &pb.SearchResponse{
-		Packages: s.Helper.ParsePackages(out),
+		Packages: strings.Split(strings.Trim(out, "\n"), "\n"),
 	}, nil
 }
 
@@ -168,6 +193,9 @@ func (s *Svc) Update(ctx context.Context, in *pb.UpdateRequest) (*pb.UpdateRespo
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	err := s.Helper.Execute("pack update")
-	return &pb.UpdateResponse{}, err
+	o, err := system.Call("pack u")
+	if err != nil {
+		return nil, errors.New(o)
+	}
+	return &pb.UpdateResponse{}, nil
 }

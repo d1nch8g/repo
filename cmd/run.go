@@ -10,9 +10,8 @@ import (
 	"fmt"
 	"strings"
 
-	"fmnx.su/core/repo/cmd/service"
-	"fmnx.su/core/repo/cmd/utils"
-
+	"fmnx.su/core/pack/system"
+	"fmnx.su/core/repo/server"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -40,14 +39,12 @@ func Run(cmd *cobra.Command, args []string) {
 	fmt.Println("Initial API adress: ", apiAdress)
 	fmt.Println("Initial packages: ", initPkgs)
 
-	helper := &utils.OsHelper{}
+	go Prepare(initPkgs, repoName)
 
-	err := helper.PrepareInitialPackages()
-	CheckErr(err)
-
-	err = helper.ReplaceFileString(
-		webPath+`/main.dart.js`,
+	_, err := system.Callf(
+		`sed -i 's|%s|%s|g' %s`,
 		`http://localhost:80/`,
+		webPath+`/main.dart.js`,
 		apiAdress,
 	)
 	CheckErr(err)
@@ -55,19 +52,10 @@ func Run(cmd *cobra.Command, args []string) {
 	formattedLogins, err := formatLogins(logins)
 	CheckErr(err)
 
-	go func() {
-		err = helper.Execute("pack install " + initPkgs)
-		CheckErr(err)
-
-		err = helper.FormDb(repoName)
-		CheckErr(err)
-	}()
-
-	err = service.Run(&service.Params{
+	err = server.Run(&server.Params{
 		Port:     port,
 		WebPath:  webPath,
 		RepoName: repoName,
-		OsHelper: helper,
 		Logins:   formattedLogins,
 	})
 	CheckErr(err)
@@ -85,4 +73,19 @@ func formatLogins(raw string) (map[string]string, error) {
 		}
 	}
 	return formattedLogins, nil
+}
+
+func Prepare(initPkgs string, repo string) {
+	_, err := system.Call("sudo rm -rf /var/lib/pacman/db.lck")
+	CheckErr(err)
+	_, err = system.Call("sudo rm -rf /tmp/pack.lock")
+	CheckErr(err)
+	_, err = system.Call("sudo mv -v /var/cache/pacman/initpkg/* /var/cache/pacman/pkg")
+	if err != nil {
+		fmt.Printf("unable to move initial packages, %+v\n", err)
+	}
+	_, err = system.Call("pack install " + initPkgs)
+	CheckErr(err)
+	err = server.FormDb(repo)
+	CheckErr(err)
 }

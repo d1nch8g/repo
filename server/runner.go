@@ -3,7 +3,7 @@
 // Additional information can be found on official web page: https://fmnx.su/
 // Contact email: help@fmnx.su
 
-package service
+package server
 
 import (
 	"fmt"
@@ -13,8 +13,7 @@ import (
 	"os/user"
 	"time"
 
-	pb "fmnx.su/core/repo/cmd/generated/proto/v1"
-	"fmnx.su/core/repo/cmd/utils"
+	"fmnx.su/core/repo/gen/pb"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -29,7 +28,6 @@ type Params struct {
 	WebPath  string
 	RepoName string
 	Logins   map[string]string
-	OsHelper *utils.OsHelper
 }
 
 func Run(params *Params) error {
@@ -48,7 +46,6 @@ func Run(params *Params) error {
 		grpc.MaxRecvMsgSize(math.MaxInt),
 	)
 	pb.RegisterPackServiceServer(grpcServer, &Svc{
-		Helper:   params.OsHelper,
 		RepoName: params.RepoName,
 		Logins:   params.Logins,
 		HomeDir:  usr.HomeDir,

@@ -4,9 +4,10 @@
 // Contact email: help@fmnx.su
 
 syntax = "proto3";
-package proto.v1;
 
-option go_package = "gen/go/pb";
+package pack;
+
+option go_package = "gen/pb";
 
 service PackService {
   // Add new packages with pack add
@@ -46,24 +47,16 @@ message AddRequest {
 message AddResponse {}
 
 // Search pattern that will be used in search text field
-message SearchRequest {
-  string pattern = 1;
-}
+message SearchRequest { string pattern = 1; }
 
 // List of package names
-message SearchResponse {
-  repeated string packages = 1;
-}
+message SearchResponse { repeated string packages = 1; }
 
-message UpdateRequest {
-  string token = 1;
-}
+message UpdateRequest { string token = 1; }
 
 message UpdateResponse {}
 
-message DescribeRequest {
-  string package = 1;
-}
+message DescribeRequest { string package = 1; }
 
 message DescribeResponse {
   string name = 1;
@@ -101,17 +94,11 @@ message LoginRequest {
   string password = 2;
 }
 
-message LoginResponse {
-  string token = 1;
-}
+message LoginResponse { string token = 1; }
 
-message CheckTokenRequest {
-  string token = 1;
-}
+message CheckTokenRequest { string token = 1; }
 
-message CheckTokenResponse {
-  bool up_to_date = 1;
-}
+message CheckTokenResponse { bool up_to_date = 1; }
 
 message UploadRequest {
   bytes content = 1;

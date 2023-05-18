@@ -3,14 +3,14 @@
 // Additional information can be found on official web page: https://fmnx.su/
 // Contact email: help@fmnx.su
 
-package service
+package server
 
 import (
 	"context"
 	"fmt"
 	"strings"
 
-	pb "fmnx.su/core/repo/cmd/generated/proto/v1"
+	"fmnx.su/core/repo/gen/pb"
 
 	"google.golang.org/grpc"
 )
