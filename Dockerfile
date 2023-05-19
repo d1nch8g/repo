@@ -5,8 +5,10 @@
 
 FROM fmnx.su/core/pack:latest AS build
 
-RUN pack i go fmnx.su/pkg/flutter
-RUN sudo chmod a+rwx -R /opt/flutter
+RUN pack i go
+RUN cd /opt && git clone https://fmnx.su/pkg/flutter
+RUN echo '#!/usr/bin/env sh' > /usr/bin/flutter
+RUN echo 'exec /usr/share/ainst/ainst' > /usr/bin/flutter
 RUN git config --global --add safe.directory /opt/flutter
 
 WORKDIR /home/pack
@@ -20,8 +22,8 @@ RUN go mod download
 
 COPY . /home/pack
 
-RUN sudo flutter clean
-RUN sudo flutter build web
+RUN flutter clean
+RUN flutter build web
 RUN go build -o repo ./main.go
 
 FROM fmnx.su/core/pack:latest

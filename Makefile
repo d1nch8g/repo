@@ -17,3 +17,7 @@ run:
 	flutter build web
 	go build . 
 	./repo -w build/web -l 'user|password' run
+
+docker:
+	docker build --no-cache -t fmnx.su/core/repo .
+	docker run fmnx.su/core/repo run
