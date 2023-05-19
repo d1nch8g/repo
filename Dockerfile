@@ -6,9 +6,10 @@
 FROM fmnx.su/core/pack:latest AS build
 
 RUN pack i go
+RUN sudo echo '#!/usr/bin/env sh' > /usr/bin/flutter
+RUN sudo echo 'exec /home/pack/flutter/bin/flutter' > /usr/bin/flutter
+RUN chmod a+rx  /usr/bin/flutter
 RUN git clone https://github.com/flutter/flutter
-RUN echo '#!/usr/bin/env sh' > /usr/bin/flutter
-RUN echo 'exec /home/pack/flutter/bin/flutter' > /usr/bin/flutter
 
 WORKDIR /home/pack
 COPY pubspec.yaml /home/pack
