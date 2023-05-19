@@ -15,7 +15,6 @@ import (
 
 	"fmnx.su/core/repo/gen/pb"
 
-	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 
@@ -39,7 +38,7 @@ func Run(params *Params) error {
 	mux := http.NewServeMux()
 
 	grpcServer := grpc.NewServer(
-		grpc_middleware.WithUnaryServerChain(
+		grpc.ChainUnaryInterceptor(
 			grpc_recovery.UnaryServerInterceptor(),
 			UnaryLogger(),
 		),

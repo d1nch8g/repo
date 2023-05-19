@@ -185,8 +185,19 @@ func (s *Svc) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchRespo
 		return nil, fmt.Errorf("unable to execute pacman+grep command: %w", err)
 	}
 	return &pb.SearchResponse{
-		Packages: strings.Split(strings.Trim(out, "\n"), "\n"),
+		Packages: serializePackageList(out),
 	}, nil
+}
+
+func serializePackageList(in string) []string {
+	var out []string
+	for _, v := range strings.Split(in, "\n") {
+		if v == `` {
+			continue
+		}
+		out = append(out, strings.Split(v, " ")[0])
+	}
+	return out
 }
 
 func (s *Svc) Update(ctx context.Context, in *pb.UpdateRequest) (*pb.UpdateResponse, error) {

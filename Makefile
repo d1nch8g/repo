@@ -16,4 +16,4 @@ evans:
 run:
 	flutter build web
 	go build . 
-	./repo -w build/web -l 'user|password' -p 80 run
+	./repo -w build/web -l 'user|password' run
