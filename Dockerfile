@@ -6,15 +6,13 @@
 FROM fmnx.su/core/pack:latest AS build
 
 RUN pack i go
-RUN sudo echo '#!/usr/bin/env sh' > /usr/bin/flutter
-RUN sudo echo 'exec /home/pack/flutter/bin/flutter' > /usr/bin/flutter
-RUN chmod a+rx  /usr/bin/flutter
+RUN alias flutter="./home/pack/flutter/bin/flutter"
 RUN git clone https://github.com/flutter/flutter
 
 WORKDIR /home/pack
 COPY pubspec.yaml /home/pack
 COPY pubspec.lock /home/pack
-RUN sudo flutter pub get
+RUN flutter pub get
 
 COPY go.mod /home/pack/
 COPY go.sum /home/pack/
