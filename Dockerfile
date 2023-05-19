@@ -6,9 +6,9 @@
 FROM fmnx.su/core/pack:latest AS build
 
 RUN pack i go
-RUN cd /opt && git clone https://github.com/flutter/flutter
-RUN echo '#!/usr/bin/env sh' > /usr/bin/flutter
-RUN echo 'exec /usr/share/ainst/ainst' > /usr/bin/flutter
+RUN git clone https://github.com/flutter/flutter
+RUN echo '#!/usr/bin/env sh' > /home/pack/bin/flutter
+RUN echo 'exec /usr/share/ainst/ainst' > /home/pack/bin/flutter
 RUN git config --global --add safe.directory /opt/flutter
 
 WORKDIR /home/pack
