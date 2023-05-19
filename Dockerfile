@@ -7,9 +7,8 @@ FROM fmnx.su/core/pack:latest AS build
 
 RUN pack i go
 RUN git clone https://github.com/flutter/flutter
-RUN echo '#!/usr/bin/env sh' > /home/pack/flutter/bin/flutter
-RUN echo 'exec /usr/share/ainst/ainst' > /home/pack/flutter/bin/flutter
-RUN git config --global --add safe.directory /opt/flutter
+RUN echo '#!/usr/bin/env sh' > /usr/bin/flutter
+RUN echo 'exec /home/pack/flutter/bin/flutter' > /usr/bin/flutter
 
 WORKDIR /home/pack
 COPY pubspec.yaml /home/pack
