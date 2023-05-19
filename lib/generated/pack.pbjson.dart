@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: v1/pack.proto
+//  source: pack.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,deprecated_member_use_from_same_package,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -106,12 +106,12 @@ const StatsResponse$json = const {
   '2': const [
     const {'1': 'packages_count', '3': 1, '4': 1, '5': 5, '10': 'packagesCount'},
     const {'1': 'outdated_count', '3': 2, '4': 1, '5': 5, '10': 'outdatedCount'},
-    const {'1': 'outdated_packages', '3': 3, '4': 3, '5': 11, '6': '.proto.v1.OutdatedPackage', '10': 'outdatedPackages'},
+    const {'1': 'outdated_packages', '3': 3, '4': 3, '5': 11, '6': '.pack.OutdatedPackage', '10': 'outdatedPackages'},
   ],
 };
 
 /// Descriptor for `StatsResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List statsResponseDescriptor = $convert.base64Decode('Cg1TdGF0c1Jlc3BvbnNlEiUKDnBhY2thZ2VzX2NvdW50GAEgASgFUg1wYWNrYWdlc0NvdW50EiUKDm91dGRhdGVkX2NvdW50GAIgASgFUg1vdXRkYXRlZENvdW50EkYKEW91dGRhdGVkX3BhY2thZ2VzGAMgAygLMhkucHJvdG8udjEuT3V0ZGF0ZWRQYWNrYWdlUhBvdXRkYXRlZFBhY2thZ2Vz');
+final $typed_data.Uint8List statsResponseDescriptor = $convert.base64Decode('Cg1TdGF0c1Jlc3BvbnNlEiUKDnBhY2thZ2VzX2NvdW50GAEgASgFUg1wYWNrYWdlc0NvdW50EiUKDm91dGRhdGVkX2NvdW50GAIgASgFUg1vdXRkYXRlZENvdW50EkIKEW91dGRhdGVkX3BhY2thZ2VzGAMgAygLMhUucGFjay5PdXRkYXRlZFBhY2thZ2VSEG91dGRhdGVkUGFja2FnZXM=');
 @$core.Deprecated('Use outdatedPackageDescriptor instead')
 const OutdatedPackage$json = const {
   '1': 'OutdatedPackage',

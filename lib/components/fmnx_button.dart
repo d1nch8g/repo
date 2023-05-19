@@ -3,7 +3,7 @@
 // Additional information can be found on official web page: https://fmnx.su/
 // Contact email: help@fmnx.su
 
-import 'package:repo/generated/v1/pack.pb.dart';
+import 'package:repo/generated//pack.pb.dart';
 import 'package:repo/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -5,7 +5,7 @@
 
 import 'package:repo/components/upload_file.dart';
 import 'package:repo/controllers/menu_app_controller.dart';
-import 'package:repo/generated/v1/pack.pb.dart';
+import 'package:repo/generated//pack.pb.dart';
 import 'package:repo/responsive.dart';
 import 'package:repo/components/add_pkg_popup.dart';
 import 'package:repo/components/fmnx_button.dart';

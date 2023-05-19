@@ -122,7 +122,7 @@ func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse
 	if err != nil {
 		return nil, fmt.Errorf(`unable convert number output: %w`, err)
 	}
-	outdatedCountString, err := system.Call(`pack o | wc -l`)
+	outdatedCountString, err := system.Call(`pack l o | wc -l`)
 	if err != nil {
 		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
 	}

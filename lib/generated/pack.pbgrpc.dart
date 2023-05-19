@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: v1/pack.proto
+//  source: pack.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -15,47 +15,47 @@ export 'pack.pb.dart';
 
 class PackServiceClient extends $grpc.Client {
   static final _$add = $grpc.ClientMethod<$0.AddRequest, $0.AddResponse>(
-      '/proto.v1.PackService/Add',
+      '/pack.PackService/Add',
       ($0.AddRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.AddResponse.fromBuffer(value));
   static final _$update =
       $grpc.ClientMethod<$0.UpdateRequest, $0.UpdateResponse>(
-          '/proto.v1.PackService/Update',
+          '/pack.PackService/Update',
           ($0.UpdateRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.UpdateResponse.fromBuffer(value));
   static final _$search =
       $grpc.ClientMethod<$0.SearchRequest, $0.SearchResponse>(
-          '/proto.v1.PackService/Search',
+          '/pack.PackService/Search',
           ($0.SearchRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.SearchResponse.fromBuffer(value));
   static final _$describe =
       $grpc.ClientMethod<$0.DescribeRequest, $0.DescribeResponse>(
-          '/proto.v1.PackService/Describe',
+          '/pack.PackService/Describe',
           ($0.DescribeRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.DescribeResponse.fromBuffer(value));
   static final _$stats = $grpc.ClientMethod<$0.StatsRequest, $0.StatsResponse>(
-      '/proto.v1.PackService/Stats',
+      '/pack.PackService/Stats',
       ($0.StatsRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.StatsResponse.fromBuffer(value));
   static final _$login = $grpc.ClientMethod<$0.LoginRequest, $0.LoginResponse>(
-      '/proto.v1.PackService/Login',
+      '/pack.PackService/Login',
       ($0.LoginRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.LoginResponse.fromBuffer(value));
   static final _$checkToken =
       $grpc.ClientMethod<$0.CheckTokenRequest, $0.CheckTokenResponse>(
-          '/proto.v1.PackService/CheckToken',
+          '/pack.PackService/CheckToken',
           ($0.CheckTokenRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.CheckTokenResponse.fromBuffer(value));
   static final _$remove =
       $grpc.ClientMethod<$0.RemoveRequest, $0.RemoveResponse>(
-          '/proto.v1.PackService/Remove',
+          '/pack.PackService/Remove',
           ($0.RemoveRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.RemoveResponse.fromBuffer(value));
   static final _$upload =
       $grpc.ClientMethod<$0.UploadRequest, $0.UploadResponse>(
-          '/proto.v1.PackService/Upload',
+          '/pack.PackService/Upload',
           ($0.UploadRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.UploadResponse.fromBuffer(value));
 
@@ -112,7 +112,7 @@ class PackServiceClient extends $grpc.Client {
 }
 
 abstract class PackServiceBase extends $grpc.Service {
-  $core.String get $name => 'proto.v1.PackService';
+  $core.String get $name => 'pack.PackService';
 
   PackServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.AddRequest, $0.AddResponse>(

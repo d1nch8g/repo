@@ -44,7 +44,7 @@ var flags = []Flag{
 		Name:        "port",
 		ShortName:   "p",
 		Env:         "PACKREPO_PORT",
-		Value:       "80",
+		Value:       "8080",
 		Type:        "int",
 		Description: "🌐 publically exposed port for both HTTP and gRPC calls",
 	},
@@ -68,7 +68,7 @@ var flags = []Flag{
 		Name:        "api-adress",
 		ShortName:   "a",
 		Env:         "PACKREPO_API_ADRESS",
-		Value:       "http://localhost:80/",
+		Value:       "http://localhost:8080/",
 		Description: "📫 adress for backend api calls via grpc-web",
 	},
 	{

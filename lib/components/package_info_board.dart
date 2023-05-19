@@ -6,7 +6,7 @@
 import 'package:repo/components/fmnx_button.dart';
 import 'package:repo/components/notification.dart';
 import 'package:repo/constants.dart';
-import 'package:repo/generated/v1/pack.pbgrpc.dart';
+import 'package:repo/generated//pack.pbgrpc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -44,8 +44,8 @@ func Run(cmd *cobra.Command, args []string) {
 	_, err := system.Callf(
 		`sed -i 's|%s|%s|g' %s`,
 		`http://localhost:80/`,
-		webPath+`/main.dart.js`,
 		apiAdress,
+		webPath+`/main.dart.js`,
 	)
 	CheckErr(err)
 

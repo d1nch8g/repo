@@ -7,7 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:repo/constants.dart';
-import 'package:repo/generated/v1/pack.pb.dart';
+import 'package:repo/generated//pack.pb.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 uploadFile(BuildContext context) async {
