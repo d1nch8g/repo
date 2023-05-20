@@ -122,34 +122,29 @@ func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse
 	if err != nil {
 		return nil, fmt.Errorf(`unable convert number output: %w`, err)
 	}
-	outdatedCountString, err := system.Call(`pack l o | wc -l`)
+	out, err := system.Call("pack list outdated")
 	if err != nil {
-		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
+		return nil, fmt.Errorf("unable to get outdated pkgs: %w", err)
 	}
-	outdatedCountString = strings.ReplaceAll(outdatedCountString, "\n", "")
-	outdatedCount, err := strconv.ParseInt(outdatedCountString, 10, 32)
-	if err != nil {
-		return nil, fmt.Errorf(`unable convert number output: %w`, err)
-	}
-	packOutdated := cmd.PackOutdated()
-	pacmanOutdated, err := pacman.Outdated()
-	if err != nil {
-		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
-	}
+	outdated := serializeOutdatedPkgs(out)
 	return &pb.StatsResponse{
 		PackagesCount:    int32(pkgCountInt),
-		OutdatedCount:    int32(outdatedCount),
-		OutdatedPackages: serializeOutdatedPkgs(append(packOutdated, pacmanOutdated...)),
+		OutdatedCount:    int32(len(outdated)),
+		OutdatedPackages: outdated,
 	}, nil
 }
 
-func serializeOutdatedPkgs(pkgs []pacman.OutdatedPackage) []*pb.OutdatedPackage {
+func serializeOutdatedPkgs(pkgs string) []*pb.OutdatedPackage {
 	var od []*pb.OutdatedPackage
-	for _, op := range pkgs {
+	for _, op := range strings.Split(pkgs, "\n") {
+		if op == `` {
+			break
+		}
+		splt := strings.Split(op, " ")
 		od = append(od, &pb.OutdatedPackage{
-			Name:           op.Name,
-			CurrentVersion: op.CurrentVersion,
-			LatestVersion:  op.NewVersion,
+			Name:           splt[0],
+			CurrentVersion: splt[1][0:8],
+			LatestVersion:  splt[2][0:8],
 		})
 	}
 	return od

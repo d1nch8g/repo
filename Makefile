@@ -20,4 +20,4 @@ run:
 
 docker:
 	docker build -t fmnx.su/core/repo .
-	docker run fmnx.su/core/repo run
+	docker run -p 8080:8080 fmnx.su/core/repo run
