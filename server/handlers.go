@@ -139,11 +139,11 @@ func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse
 	return &pb.StatsResponse{
 		PackagesCount:    int32(pkgCountInt),
 		OutdatedCount:    int32(outdatedCount),
-		OutdatedPackages: serializeOutdated(append(packOutdated, pacmanOutdated...)),
+		OutdatedPackages: serializeOutdatedPkgs(append(packOutdated, pacmanOutdated...)),
 	}, nil
 }
 
-func serializeOutdated(pkgs []pacman.OutdatedPackage) []*pb.OutdatedPackage {
+func serializeOutdatedPkgs(pkgs []pacman.OutdatedPackage) []*pb.OutdatedPackage {
 	var od []*pb.OutdatedPackage
 	for _, op := range pkgs {
 		od = append(od, &pb.OutdatedPackage{
