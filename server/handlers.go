@@ -165,7 +165,12 @@ func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, erro
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	cmd.Build(nil, in.Packages)
+	for _, v := range in.Packages {
+		_, err := system.Call("sudo pacman --noconfirm -S " + v)
+		if err != nil {
+			cmd.Build(nil, []string{v})
+		}
+	}
 	err := FormDb(s.RepoName)
 	if err != nil {
 		return nil, err
@@ -177,22 +182,24 @@ func (s *Svc) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchRespo
 	if !Validate(in.Pattern) {
 		return nil, status.Error(codes.Aborted, "not validated")
 	}
-	if in.Pattern == "" {
-		in.Pattern = "\"\""
-	}
 	pkgs, err := getPackages()
 	if err != nil {
 		return nil, err
 	}
+	if in.Pattern == "" {
+		return &pb.SearchResponse{
+			Packages: pkgs,
+		}, nil
+	}
 	return &pb.SearchResponse{
-		Packages: filterPackages(in.Pattern, pkgs),
+		Packages: applyFilter(in.Pattern, pkgs),
 	}, nil
 }
 
-func filterPackages(filter string, pkgs []string) []string {
+func applyFilter(filter string, pkgs []string) []string {
 	var rez []string
 	for _, pkg := range pkgs {
-		if strings.Contains(filter, pkg) {
+		if strings.Contains(pkg, filter) {
 			rez = append(rez, pkg)
 		}
 	}
