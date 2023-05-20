@@ -27,7 +27,6 @@ RUN go build -o repo ./main.go
 FROM fmnx.su/core/pack:latest
 
 LABEL maintainer="dancheg <dancheg@fmnx.su>"
-LABEL source="https://fmnx.su/core/repo"
 
 RUN sudo mkdir /var/cache/pacman/initpkg
 RUN sudo mv -v /var/cache/pacman/pkg/* /var/cache/pacman/initpkg
