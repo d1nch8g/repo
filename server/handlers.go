@@ -154,11 +154,8 @@ func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, erro
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	out, err := system.Call("pack install " + strings.Join(in.Packages, ` `))
-	if err != nil {
-		return nil, fmt.Errorf(out)
-	}
-	err = FormDb(s.RepoName)
+	cmd.Install(nil, in.Packages)
+	err := FormDb(s.RepoName)
 	if err != nil {
 		return nil, err
 	}
