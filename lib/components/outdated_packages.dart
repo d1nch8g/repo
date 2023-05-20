@@ -81,7 +81,7 @@ class OutdatedPackages extends StatelessWidget {
               height: getHeight(1),
               child: Center(
                 child: Text(
-                  "Evrything up to date",
+                  "Everything up to date",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,

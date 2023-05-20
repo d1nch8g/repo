@@ -10,7 +10,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 
 	"fmnx.su/core/pack/cmd"
@@ -113,14 +112,9 @@ func (s *Svc) Describe(ctx context.Context, in *pb.DescribeRequest) (*pb.Describ
 
 // Stats implements pb.PacmanServiceServer.
 func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse, error) {
-	pkgCountString, err := system.Call(`sudo pacman -Q | wc -l`)
+	pkgs, err := getPackages()
 	if err != nil {
-		return nil, fmt.Errorf(`unable to execute pacman command: %w`, err)
-	}
-	pkgCountString = strings.ReplaceAll(pkgCountString, "\n", "")
-	pkgCountInt, err := strconv.ParseInt(pkgCountString, 10, 32)
-	if err != nil {
-		return nil, fmt.Errorf(`unable convert number output: %w`, err)
+		return nil, err
 	}
 	out, err := system.Call("pack list outdated")
 	if err != nil {
@@ -128,10 +122,27 @@ func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse
 	}
 	outdated := serializeOutdatedPkgs(out)
 	return &pb.StatsResponse{
-		PackagesCount:    int32(pkgCountInt),
+		PackagesCount:    int32(len(pkgs)),
 		OutdatedCount:    int32(len(outdated)),
 		OutdatedPackages: outdated,
 	}, nil
+}
+
+func getPackages() ([]string, error) {
+	o, err := system.Call("ls /var/cache/pacman/pkg | grep .pkg.tar.zst")
+	if err != nil {
+		return nil, err
+	}
+	mapping := map[string]struct{}{}
+	for _, file := range strings.Split(strings.Trim(o, "\n"), "\n") {
+		fileSplit := strings.Split(file, "-")
+		mapping[strings.Join(fileSplit[0:len(fileSplit)-3], "-")] = struct{}{}
+	}
+	var rez []string
+	for k := range mapping {
+		rez = append(rez, k)
+	}
+	return rez, nil
 }
 
 func serializeOutdatedPkgs(pkgs string) []*pb.OutdatedPackage {
@@ -154,7 +165,7 @@ func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, erro
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	cmd.Install(nil, in.Packages)
+	cmd.Build(nil, in.Packages)
 	err := FormDb(s.RepoName)
 	if err != nil {
 		return nil, err
@@ -169,27 +180,23 @@ func (s *Svc) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchRespo
 	if in.Pattern == "" {
 		in.Pattern = "\"\""
 	}
-	out, err := system.Call("pacman -Q | grep " + in.Pattern)
+	pkgs, err := getPackages()
 	if err != nil {
-		if out == `` {
-			return &pb.SearchResponse{}, nil
-		}
-		return nil, fmt.Errorf("unable to execute pacman+grep command: %w", err)
+		return nil, err
 	}
 	return &pb.SearchResponse{
-		Packages: serializePackageList(out),
+		Packages: filterPackages(in.Pattern, pkgs),
 	}, nil
 }
 
-func serializePackageList(in string) []string {
-	var out []string
-	for _, v := range strings.Split(in, "\n") {
-		if v == `` {
-			continue
+func filterPackages(filter string, pkgs []string) []string {
+	var rez []string
+	for _, pkg := range pkgs {
+		if strings.Contains(filter, pkg) {
+			rez = append(rez, pkg)
 		}
-		out = append(out, strings.Split(v, " ")[0])
 	}
-	return out
+	return rez
 }
 
 func (s *Svc) Update(ctx context.Context, in *pb.UpdateRequest) (*pb.UpdateResponse, error) {
