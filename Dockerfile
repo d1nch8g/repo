@@ -12,6 +12,7 @@ ENV PATH $PATH:/home/pack/flutter/bin
 WORKDIR /home/pack
 COPY pubspec.yaml /home/pack
 COPY pubspec.lock /home/pack
+RUN sudo chmod a+rwx pubspec.lock pubspec.yaml
 RUN flutter pub get
 
 COPY go.mod /home/pack/
