@@ -7,7 +7,7 @@ FROM fmnx.su/core/pack:latest AS build
 
 RUN pack i go unzip
 RUN git clone https://github.com/flutter/flutter
-RUN export PATH=/bin:/home/pack/flutter/bin
+ENV PATH $PATH:/home/pack/flutter/bin
 
 WORKDIR /home/pack
 COPY pubspec.yaml /home/pack
