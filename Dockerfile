@@ -22,6 +22,7 @@ RUN go mod download
 COPY . /home/pack
 
 RUN flutter clean
+RUN sudo chmod a+rwx -R .
 RUN flutter build web
 RUN go build -o repo ./main.go
 
