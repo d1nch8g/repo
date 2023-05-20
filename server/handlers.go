@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	"fmnx.su/core/pack/cmd"
+	"fmnx.su/core/pack/pack"
 	"fmnx.su/core/pack/pacman"
 	"fmnx.su/core/pack/system"
 	"fmnx.su/core/repo/gen/pb"
@@ -48,10 +49,6 @@ func (s *Svc) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadRespo
 	err := os.WriteFile(s.HomeDir+"/"+in.Name, in.Content, 0o600)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
-	}
-	err = pacman.InstallDir(s.HomeDir)
-	if err != nil {
-		return nil, err
 	}
 	err = system.MvExt(s.HomeDir, `/var/cache/pacman/pkg/`, `.pkg.tar.zst`)
 	if err != nil {
@@ -165,10 +162,18 @@ func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, erro
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	for _, v := range in.Packages {
-		_, err := system.Call("sudo pacman --noconfirm -S " + v)
+	for _, pkg := range in.Packages {
+		_, err := system.Call("sudo pacman --noconfirm -S " + pkg)
 		if err != nil {
-			cmd.Build(nil, []string{v})
+			i := pack.GetPackInfo(pkg)
+			_, err := system.Call("rm -rf " + i.Directory)
+			if err != nil {
+				return nil, err
+			}
+			_, err = system.Call("pack b " + pkg)
+			if err != nil {
+				return nil, err
+			}
 		}
 	}
 	err := FormDb(s.RepoName)
