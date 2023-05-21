@@ -65,12 +65,12 @@ func Run(params *Params) error {
 	}
 
 	server := http.Server{
-		Addr:              ":" + fmt.Sprint(params.Port),
-		ReadTimeout:       time.Minute,
-		ReadHeaderTimeout: time.Minute,
-		WriteTimeout:      time.Minute,
-		IdleTimeout:       time.Minute,
 		Handler:           mux,
+		Addr:              ":" + fmt.Sprint(params.Port),
+		ReadTimeout:       time.Hour,
+		ReadHeaderTimeout: time.Hour,
+		WriteTimeout:      time.Hour,
+		IdleTimeout:       time.Hour,
 		ErrorLog:          log.Default(),
 	}
 
