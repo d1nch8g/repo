@@ -13,7 +13,6 @@ import (
 	"strings"
 
 	"fmnx.su/core/pack/cmd"
-	"fmnx.su/core/pack/pack"
 	"fmnx.su/core/pack/pacman"
 	"fmnx.su/core/pack/system"
 	"fmnx.su/core/repo/gen/pb"
@@ -34,7 +33,20 @@ func (s *Svc) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveRespo
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
 	}
-	err := pacman.Remove([]string{in.Package})
+	o, err := system.Call("ls /var/cache/pacman/pkg | grep .pkg.tar.zst")
+	if err != nil {
+		return nil, err
+	}
+	for _, file := range strings.Split(strings.Trim(o, "\n"), "\n") {
+		fileSplit := strings.Split(file, "-")
+		if in.Package == strings.Join(fileSplit[0:len(fileSplit)-3], "-") {
+			_, err = system.Call("sudo rm -f /var/cache/pacman/pkg/" + file)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+	_, err = system.Call("pack r " + in.Package)
 	if err != nil {
 		return nil, err
 	}
@@ -47,6 +59,10 @@ func (s *Svc) Upload(ctx context.Context, in *pb.UploadRequest) (*pb.UploadRespo
 		return nil, status.Error(codes.Unauthenticated, "token incorrect")
 	}
 	err := os.WriteFile(s.HomeDir+"/"+in.Name, in.Content, 0o600)
+	if err != nil {
+		return nil, status.Error(codes.Internal, err.Error())
+	}
+	err = pacman.InstallDir(s.HomeDir)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
@@ -162,21 +178,11 @@ func (s *Svc) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, erro
 	if !s.Tokens[in.Token] {
 		return nil, status.Error(codes.Unauthenticated, "not authorized")
 	}
-	for _, pkg := range in.Packages {
-		_, err := system.Call("sudo pacman --noconfirm -S " + pkg)
-		if err != nil {
-			i := pack.GetPackInfo(pkg)
-			_, err := system.Call("rm -rf " + i.Directory)
-			if err != nil {
-				return nil, err
-			}
-			_, err = system.Call("pack b " + pkg)
-			if err != nil {
-				return nil, err
-			}
-		}
+	_, err := system.Call("pack i " + strings.Join(in.Packages, " "))
+	if err != nil {
+		return nil, err
 	}
-	err := FormDb(s.RepoName)
+	err = FormDb(s.RepoName)
 	if err != nil {
 		return nil, err
 	}
