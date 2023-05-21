@@ -44,6 +44,10 @@ func (s *Svc) Remove(ctx context.Context, in *pb.RemoveRequest) (*pb.RemoveRespo
 			if err != nil {
 				return nil, err
 			}
+			err = RepoRemove(s.RepoName, file)
+			if err != nil {
+				return nil, err
+			}
 		}
 	}
 	_, err = system.Call("pack r " + in.Package)

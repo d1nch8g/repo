@@ -20,3 +20,12 @@ func FormDb(repo string) error {
 	}
 	return nil
 }
+
+func RepoRemove(repo string, file string) error {
+	repoPath := "/var/cache/pacman/pkg/" + repo + ".db.tar.gz"
+	o, err := system.Call("sudo repo-add -R " + repoPath + " " + file)
+	if err != nil {
+		return errors.New(o)
+	}
+	return nil
+}
