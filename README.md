@@ -81,6 +81,6 @@ Server = http://localhost/pkg
 ```
 
 <!--
-Add option to install packages from cache
-Add ability to attach shell to execute some scripts from UI when logged
+Add database signing after package installation
+Add package signing after build from different sources
 -->
