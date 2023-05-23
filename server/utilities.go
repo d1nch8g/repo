@@ -12,9 +12,13 @@ import (
 )
 
 func FormDb(repo string) error {
+	o, err := system.Call("sudo rm /var/cache/pacman/pkg/" + repo + "*")
+	if err != nil {
+		return errors.New(o)
+	}
 	repoPath := "/var/cache/pacman/pkg/" + repo + ".db.tar.gz"
 	pkgsPath := "/var/cache/pacman/pkg/*.pkg.tar.zst"
-	o, err := system.Call("sudo repo-add -n -q " + repoPath + " " + pkgsPath)
+	o, err = system.Call("sudo repo-add -n -q " + repoPath + " " + pkgsPath)
 	if err != nil {
 		return errors.New(o)
 	}
