@@ -25,7 +25,7 @@ func UnaryLogger() grpc.UnaryServerInterceptor {
 			fmt.Printf("Request [%s] error, req: [%s], resp: [%s], err: [%s]\n", info.FullMethod, req, resp, err.Error())
 			return resp, err
 		}
-		fmt.Printf("Request [%s] success, req: [%s], resp: [%s]\n", info.FullMethod, req, resp)
+		fmt.Printf("Request [%s] success\n", info.FullMethod)
 		return resp, err
 	}
 }
