@@ -137,8 +137,7 @@ func (s *Svc) Stats(ctx context.Context, in *pb.StatsRequest) (*pb.StatsResponse
 	if err != nil {
 		return nil, fmt.Errorf("unable to get outdated pkgs: %w", err)
 	}
-	pk := cmd.PackOutdated()
-	outdated := serializeOutdatedPkgs(append(pm, pk...))
+	outdated := serializeOutdatedPkgs(pm)
 	return &pb.StatsResponse{
 		PackagesCount:    int32(len(pkgs)),
 		OutdatedCount:    int32(len(outdated)),
