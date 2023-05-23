@@ -88,4 +88,5 @@ func Prepare(initPkgs string, repo string) {
 	CheckErr(err)
 	err = server.FormDb(repo)
 	CheckErr(err)
+	fmt.Println("initialization complete, base packages installed")
 }
