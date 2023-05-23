@@ -83,4 +83,5 @@ Server = http://localhost/pkg
 <!--
 Add database signing after package installation
 Add package signing after build from different sources
+At the end this should be a system, which can rebuild all packages from git repos and then sign and distribute them in arch like format.
 -->
