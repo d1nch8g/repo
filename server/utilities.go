@@ -7,6 +7,7 @@ package server
 
 import (
 	"errors"
+	"fmt"
 
 	"fmnx.su/core/pack/system"
 )
@@ -14,7 +15,7 @@ import (
 func FormDb(repo string) error {
 	o, err := system.Call("sudo rm /var/cache/pacman/pkg/" + repo + "*")
 	if err != nil {
-		return errors.New(o)
+		fmt.Printf("unable to remove old db: %s", o)
 	}
 	repoPath := "/var/cache/pacman/pkg/" + repo + ".db.tar.gz"
 	pkgsPath := "/var/cache/pacman/pkg/*.pkg.tar.zst"
